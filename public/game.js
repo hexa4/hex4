@@ -123,7 +123,7 @@ let fixedText1, fixedText2, fixedText3, fixedText4, fixedText5, fixedText6;
 		 fixedText6 = this.add.text(window.innerWidth - 10, 10, 'Points: 0', { fontSize: '16px', fill: '#ffffff' });
 		
 
-		fixedText1.setFontSize(32 * window.devicePixelRatio);
+		fixedText1.setFontSize(12 * window.devicePixelRatio);
 		
 		fixedText6.setOrigin(1, 0); 
 		//VELOCIDAD TOP RIGHT TEXT
