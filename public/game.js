@@ -19,18 +19,27 @@
         function startGame(playerName) {
 
         const config = {
-            type: Phaser.AUTO,
-            width: window.innerWidth,
-            height: window.innerHeight,
-            physics: {
-        	default: 'arcade',
-        	arcade: {
-            gravity: { y: 0 }, // Puedes ajustar la gravedad según lo necesites
-            debug: false // Puedes activar esto para ver los cuerpos de colisión
-        			} },
-            backgroundColor: '#0a0a0a',
-            scene: { preload: preload, create: create, update: update }
-        };
+                type: Phaser.AUTO,
+                width: window.innerWidth * window.devicePixelRatio,
+                height: window.innerHeight * window.devicePixelRatio,
+                scale: {
+                    mode: Phaser.Scale.FIT,
+                    autoCenter: Phaser.Scale.CENTER_BOTH,
+                    parent: 'phaser-example',
+                    width: window.innerWidth,
+                    height: window.innerHeight,
+                    resolution: window.devicePixelRatio,
+                },
+                physics: {
+                    default: 'arcade',
+                    arcade: {
+                        gravity: { y: 0 },
+                        debug: false
+                    }
+                },
+                backgroundColor: '#0a0a0a',
+                scene: { preload, create, update }
+            };
 
         const game = new Phaser.Game(config);
 
