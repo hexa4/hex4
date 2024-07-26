@@ -139,7 +139,7 @@ let fixedText1, fixedText2, fixedText3, fixedText4, fixedText5, fixedText6;
 		fixedText7.setScrollFactor(0);
 		
 		
-		
+	let lineWidth = 2; 	
 		
 		
 
@@ -172,7 +172,7 @@ let fixedText1, fixedText2, fixedText3, fixedText4, fixedText5, fixedText6;
             checkbox.fillRect(checkboxX, checkboxY, checkboxSize, checkboxSize);
 
             if (isChecked) {
-                checkbox.lineStyle(2, 0x000000); // Color negro para la "X"
+                checkbox.lineStyle(lineWidth, 0x000000); // Color negro para la "X"
                 checkbox.beginPath();
                 checkbox.moveTo(checkboxX, checkboxY);
                 checkbox.lineTo(checkboxX + checkboxSize, checkboxY + checkboxSize);
@@ -229,6 +229,29 @@ let fixedText1, fixedText2, fixedText3, fixedText4, fixedText5, fixedText6;
         console.log('Checkbox initial state: checked, Cam =', Cam);
 		
 		  
+let updateCheckboxPositionAndSize = (newX, newY, newSize, factor, fontsize) => {
+    checkboxX = newX;
+    checkboxY = newY;
+    checkboxSize = newSize;
+
+    // Actualizar hit area
+    hitArea.setSize(checkboxSize, checkboxSize);
+    hitArea.setPosition(checkboxX, checkboxY);
+
+    // Redibujar el checkbox en la nueva posición y tamaño
+    drawCheck(isChecked);
+
+    // Actualizar la interactividad del checkbox con la nueva hit area
+    checkbox.setInteractive(hitArea, Phaser.Geom.Rectangle.Contains);
+
+    // Actualizar la posición del texto
+    fixedText.setPosition(checkboxX + checkboxSize + 10*factor, checkboxY + textOffsetY*factor);
+        fixedText.setFontSize(fontsize);
+
+
+};
+		  
+		  
 		            
 //CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM
 //CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM
@@ -262,7 +285,7 @@ let drawBoxCheck = (isBoxChecked) => {
     box.fillRect(boxX, boxY, boxSize, boxSize);
 
     if (isBoxChecked) {
-        box.lineStyle(2, 0x000000); // Color negro para la "X"
+        box.lineStyle(lineWidth, 0x000000); // Color negro para la "X"
         box.beginPath();
         box.moveTo(boxX, boxY);
         box.lineTo(boxX + boxSize, boxY + boxSize);
@@ -295,6 +318,12 @@ let playerLocal = players[socket.id];
         this.cameras.main.setZoom(1.0);
         
         
+        lineWidth = 2;
+        
+      updateCheckboxPositionAndSize( 10, window.innerHeight-40, 20, 1, 16);
+
+updateBoxPositionAndSize( 10, window.innerHeight-70, 20, 1, 16);  
+        
 
 fixedText.setPosition(
         checkboxX + checkboxSize + 10, checkboxY + textOffsetY
@@ -312,12 +341,41 @@ fixedText1.setFontSize(16); // Cambia el tamaño de la fuente a 48px
  fixedText1.setPosition(
          10,
         10);
+        
+        
+ fixedText2.setFontSize(16); // Cambia el tamaño de la fuente a 48px
+ fixedText2.setPosition(
+         10,
+        30);       
     
+    
+  fixedText3.setFontSize(16); // Cambia el tamaño de la fuente a 48px
+ fixedText3.setPosition(
+         10,
+        50);         
+    
+    
+      fixedText4.setFontSize(16); // Cambia el tamaño de la fuente a 48px
+ fixedText4.setPosition(
+         10,
+        70);   
+        
+        
+          fixedText5.setFontSize(16); // Cambia el tamaño de la fuente a 48px
+ fixedText5.setPosition(
+         10,
+        90);   
      
 fixedText6.setFontSize(16); // Cambia el tamaño de la fuente a 48px
  fixedText6.setPosition(
         window.innerWidth-10,
         10);
+    
+    
+    fixedText7.setFontSize(16); // Cambia el tamaño de la fuente a 48px
+ fixedText7.setPosition(
+        window.innerWidth-10,
+        30);
     
     
 playerLocal.fontSizePlayer(12);
@@ -333,6 +391,8 @@ playerLocal.fontSizePlayer(12);
 
  this.cameras.main.setZoom(0.5);
  
+ 
+ 
   this.cameras.main.scrollX = 0;
         this.cameras.main.scrollY = 0;
 
@@ -347,8 +407,16 @@ let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, th
 console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
 
 
+        lineWidth = 4;
 
-        let textOffsetY2 = checkboxSize;
+
+updateCheckboxPositionAndSize( -worldPoint.x +20, worldPoint.y+window.innerHeight-80, 40, 2, 32);
+
+updateBoxPositionAndSize( -worldPoint.x +20, worldPoint.y+window.innerHeight-140, 40, 2, 32);
+
+
+
+       /* let textOffsetY2 = checkboxSize;
 
 fixedText.setPosition(
         -worldPoint.x + checkboxX*2 + checkboxSize*2 + 20,
@@ -365,7 +433,7 @@ staticText.setPosition(
         worldPoint.y+window.innerHeight-140+textYOffset2
     );
     staticText.setFontSize(32);
-    
+    */
     
     
     
@@ -378,6 +446,37 @@ fixedText1.setFontSize(32);
     );
     
     
+    
+    fixedText2.setFontSize(32); 
+ fixedText2.setPosition(
+        -worldPoint.x +20,
+        -worldPoint.y +60
+    );
+    
+    
+    fixedText3.setFontSize(32); 
+ fixedText3.setPosition(
+        -worldPoint.x +20,
+        -worldPoint.y +100
+    );
+    
+    fixedText4.setFontSize(32); 
+ fixedText4.setPosition(
+        -worldPoint.x +20,
+        -worldPoint.y +140
+    );
+    
+    fixedText5.setFontSize(32); 
+ fixedText5.setPosition(
+        -worldPoint.x +20,
+        -worldPoint.y +180
+    );
+    
+    
+    
+    
+    
+    
     fixedText6.setFontSize(32); 
  fixedText6.setPosition(
         worldPoint.x +window.innerWidth-20,
@@ -385,6 +484,11 @@ fixedText1.setFontSize(32);
     );
     
 
+   fixedText7.setFontSize(32); 
+ fixedText7.setPosition(
+        worldPoint.x +window.innerWidth-20,
+        -worldPoint.y +60
+    );
 
 playerLocal.fontSizePlayer(24);
     
@@ -395,6 +499,30 @@ playerLocal.startCameraFollow();
     
 
     }
+};
+
+
+
+let updateBoxPositionAndSize = (newX, newY, newSize, factor, fontsize) => {
+    boxX = newX;
+    boxY = newY;
+    boxSize = newSize;
+
+    // Actualizar hit area
+    hitAreaBox.setSize(boxSize, boxSize);
+    hitAreaBox.setPosition(boxX, boxY);
+
+    // Redibujar el checkbox en la nueva posición y tamaño
+    drawBoxCheck(isBoxChecked);
+
+    // Actualizar la interactividad del checkbox con la nueva hit area
+    box.setInteractive(hitAreaBox, Phaser.Geom.Rectangle.Contains);
+
+    // Actualizar la posición del texto
+    staticText.setPosition(boxX + boxSize + 10*factor, boxY + textYOffset*factor);
+    
+        staticText.setFontSize(fontsize);
+
 };
 
 
