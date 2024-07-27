@@ -2,15 +2,12 @@
 /* ///////////// BODY HTML  ////////////////// */
 /* ///////////// BODY HTML  ////////////////// */
 /* ///////////// BODY HTML  ////////////////// */
-        body {
+        html, body {
             margin: 0;
+            padding: 0;
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            width: 100vw;
-            background-color: #000;
+            width: 100%;
+            height: 100%;
         }
          #errorMessage {
             color: red;
