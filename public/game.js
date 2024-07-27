@@ -53,7 +53,7 @@
       
         let redCirclesGroup;
         let hexagonGroup;
-        let playerName;
+        let playerNameCircle;
 
         function preload() {
             // Cargar recursos si es necesario
@@ -92,10 +92,10 @@
          //   playerName = this.add.text(randomVertex.x, randomVertex.y - 20, 'Player', { fontSize: '12px', fill: '#ffffff' });
            
            
-            playerName = this.add.text(randomVertex.x, randomVertex.y - 20, 'Player', { fontSize: '12px', fill: '#ffffff', resolution: dpi });
+            playerNameCircle = this.add.text(randomVertex.x, randomVertex.y - 20, 'Player', { fontSize: '12px', fill: '#ffffff', resolution: dpi });
            
            
-            playerName.setOrigin(0.5);
+            playerNameCircle.setOrigin(0.5);
 
             // Centrar la cámara en el jugador
             this.cameras.main.startFollow(player);
@@ -160,8 +160,8 @@
                 duration: 500,
                 ease: 'Power2',
                 onUpdate: function(tween) {
-                    playerName.x = player.x;
-                    playerName.y = player.y - 20; // Mantener el texto 20 píxeles por encima del jugador
+                    playerNameCircle.x = player.x;
+                    playerNameCircle.y = player.y - 20; // Mantener el texto 20 píxeles por encima del jugador
                 },
                 onComplete: updateRedVertices,
                 onCompleteScope: this
