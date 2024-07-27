@@ -28,6 +28,17 @@
             type: Phaser.AUTO,
             width: width,
             height: height,
+physics: {
+default: 'arcade',
+arcade: {
+gravity: {  y: 0   },
+debug: false
+}
+
+},
+
+
+
             backgroundColor: '#0a0a0a',
             scale: {
                 mode: Phaser.Scale.FIT,
