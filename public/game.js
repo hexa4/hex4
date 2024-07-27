@@ -25,27 +25,23 @@
 
 
         const config = {
-                type: Phaser.AUTO,
-                width: window.innerWidth * window.devicePixelRatio,
-                height: window.innerHeight * window.devicePixelRatio,
-                scale: {
-                    mode: Phaser.Scale.NONE,
-                    autoCenter: Phaser.Scale.NO_CENTER,
-                    parent: 'phaser-example',
-                    width: window.innerWidth,
-                    height: window.innerHeight,
-                    resolution: window.devicePixelRatio,
-                },
-                physics: {
-                    default: 'arcade',
-                    arcade: {
-                        gravity: { y: 0 },
-                        debug: false
-                    }
-                },
-                backgroundColor: '#0a0a0a',
-                scene: { preload, create, update }
-            };
+            type: Phaser.AUTO,
+            width: width,
+            height: height,
+            backgroundColor: '#0a0a0a',
+            scale: {
+                mode: Phaser.Scale.FIT,
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            },
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
+            },
+            pixelArt: true,
+            roundPixels: true
+        };
+
 
         const game = new Phaser.Game(config);
 
