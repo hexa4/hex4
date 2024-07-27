@@ -18,6 +18,12 @@
     
         function startGame(playerName) {
 
+
+ const dpi = window.devicePixelRatio;
+        const width = window.innerWidth * dpi;
+        const height = window.innerHeight * dpi;
+
+
         const config = {
                 type: Phaser.AUTO,
                 width: window.innerWidth * window.devicePixelRatio,
@@ -124,21 +130,15 @@ let fixedText1, fixedText2, fixedText3, fixedText4, fixedText5, fixedText6;
         	socket.emit('LlamargreenCirclesS');
         	
         //TEXTOS PHASER EN LA PANTALLA (top jugadores, points, checkbox)
-         fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff' });
+         fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff', resolution: dpi });
          fixedText2 = this.add.text(10, 30, '', { fontSize: '16px', fill: '#ffffff' });
          fixedText3 = this.add.text(10, 50, '', { fontSize: '16px', fill: '#ffffff' });
          fixedText4 = this.add.text(10, 70, '', { fontSize: '16px', fill: '#ffffff' });
          fixedText5 = this.add.text(10, 90, '', { fontSize: '16px', fill: '#ffffff' });
-		 fixedText6 = this.add.text(window.innerWidth - 10, 10, 'Points: 0', { fontSize: '16px', fill: '#ffffff' });
+		 fixedText6 = this.add.text(window.innerWidth - 10, 10, 'Points: 0', { fontSize: '16px', fill: '#ffffff', resolution: dpi });
 		
 
-	fixedText1 = this.add.text(10, 10, 'Player', {
-                fontFamily: 'Arial',
-                fontSize: '32px',
-                
-                
-            }).setResolution(window.devicePixelRatio);
-
+	
 
 
 
