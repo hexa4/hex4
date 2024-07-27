@@ -17,6 +17,15 @@
             display: none;
             margin-bottom: 10px;
         }
+
+
+
+#phaser-example {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
         .no-select {
 -webkit-touch-callout: none; /* iOS Safari */
 -webkit-user-select: none; /* Safari */
