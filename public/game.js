@@ -94,7 +94,7 @@ let fixedText1, fixedText2, fixedText3, fixedText4, fixedText5, fixedText6;
        
         function create() {
         
-        
+        this.cameras.main.setZoom(8 / dpi);
       
         
             hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x0099ff } });
