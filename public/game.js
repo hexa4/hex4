@@ -41,8 +41,8 @@ debug: false
 
             backgroundColor: '#0a0a0a',
             scale: {
-                mode: Phaser.Scale.FIT,
-                autoCenter: Phaser.Scale.CENTER_BOTH
+                mode: Phaser.Scale.FIT
+                
             },
             scene: {
                 preload: preload,
