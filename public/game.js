@@ -2,7 +2,7 @@
 
 startGame("hehe");
 
-
+nameForm.style.display = 'none';
 
     let playerName;
     let playerNameInput = document.getElementById('playerName');
@@ -17,7 +17,7 @@ startGame("hehe");
             errorMessage.style.display = 'block';
             return;
         }
-		nameForm.style.display = 'none';
+		
         
     });
     
