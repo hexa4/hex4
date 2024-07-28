@@ -1,6 +1,9 @@
  const socket = io();
 
 
+const dpi = window.devicePixelRatio;
+        const width = window.innerWidth * dpi;
+        const height = window.innerHeight * dpi;
 
 
 
@@ -37,10 +40,7 @@ requestAnimationFrame(function() {
     
         function startGame(playerName) {
 
-        const dpi = window.devicePixelRatio;
-        const width = window.innerWidth * dpi;
-        const height = window.innerHeight * dpi;
-
+        
         const config = {
             type: Phaser.AUTO,
             width: width,
