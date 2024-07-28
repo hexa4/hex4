@@ -873,6 +873,58 @@ function collectGreenCircle(player, greenCircle) {
        	}
        
 }
+
+
+
+
+
+let Velocidad = false;
+let segundosRestantes = 5;
+let intervalo;
+///ACTIVAR VELOCIDAD TEXTO
+function activarVelocidad() {
+clearInterval(intervalo);
+
+    Velocidad = true;
+    const newVel = { velocidad: Velocidad };
+    //socket.emit('updateVelocidadServer', newVel);
+    console.log('Velocidad activada');
+    fixedText7.setText(`X2 SPEED - 5 s`);
+
+    segundosRestantes = 5;
+    intervalo = setInterval(function() {
+        segundosRestantes--;
+        if (segundosRestantes > 0) {
+            fixedText7.setText(`X2 SPEED - ${segundosRestantes} s`);
+        } else {
+            clearInterval(intervalo);
+            Velocidad = false;
+            console.log('Velocidad desactivada');
+            const newVel = { velocidad: Velocidad };
+            //socket.emit('updateVelocidadServer', newVel);
+            fixedText7.setText(``);
+        }
+    }, 1000); // Actualizar cada segundo
+}
+
+
+
+//BORRA TODOS CIRCULOS VERDES PARA VOLVER A GENERAR (DESDE SERVER ACCIONADO)
+socket.on('borrarTodosGreen', () => {
+	console.log('BORRAR GREEN CIRCLES.');
+	
+	
+    	    greenCirclesGroup.getChildren().forEach(circle => {
+        // Verificar si el tipo no es 'player'
+        if (circle.type !== 'player') {
+            // Eliminar el círculo
+            circle.destroy();
+        }
+    });
+    	    
+    	    
+    	    
+});
 		
 
 		
