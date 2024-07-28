@@ -1,6 +1,6 @@
  const socket = io();
 
-startGame("hehe");
+
 
 
 
@@ -10,7 +10,7 @@ startGame("hehe");
     let submitButton = document.getElementById('submitButton');
 	const nameForm = document.getElementById('nameForm');
 
-nameForm.style.display = 'none';
+
 
 
 //FUNCION DEL BOTON JUGAR PLAY SE INICIA JUEGO
@@ -21,6 +21,9 @@ nameForm.style.display = 'none';
             return;
         }
 		
+startGame("hehe");
+
+nameForm.style.display = 'none';
         
     });
     
