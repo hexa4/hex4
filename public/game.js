@@ -1,4 +1,9 @@
  const socket = io();
+
+startGame("hehe");
+
+
+
     let playerName;
     let playerNameInput = document.getElementById('playerName');
     let errorMessage = document.getElementById('errorMessage');
@@ -13,7 +18,7 @@
             return;
         }
 		nameForm.style.display = 'none';
-        startGame(playerName);
+        
     });
     
         function startGame(playerName) {
