@@ -153,6 +153,228 @@ socket.emit('newPlayer', { name: playerName, x: randomVertex.x, y: randomVertex.
             this.input.on('pointerdown', onPointerDown, this);
 
 	        	socket.emit('LlamargreenCirclesS');
+
+
+
+
+
+//RECIBIR UPDATE POINTS AND SIZE Of PLAYER
+socket.on('updatePuntos', function(myID, puntos) {
+console.log('Recibido upDate Puntos:', myID, puntos);
+const sizeCalc = (0.01 * puntos) + 0.2;		
+players[myID].text.setText(players[myID].name + ' (' + puntos + ')');
+players[myID].circle.setScale(sizeCalc); 
+players[myID].puntos = puntos;
+if(socket.id===myID)
+fixedText6.setText('Points: '+puntos);
+});
+
+
+//UPDATE PLAYERS!!!!!! // AND CREATE PLAYERS //UPDATE PLAYERS!!!!!! // AND CREATE PLAYERS
+//UPDATE PLAYERS!!!!!! // AND CREATE PLAYERS //UPDATE PLAYERS!!!!!! // AND CREATE PLAYERS
+//UPDATE PLAYERS!!!!!! // AND CREATE PLAYERS //UPDATE PLAYERS!!!!!! // AND CREATE PLAYERS
+//UPDATE PLAYERS!!!!!! // AND CREATE PLAYERS //UPDATE PLAYERS!!!!!! // AND CREATE PLAYERS
+//UPDATE PLAYERS!!!!!! // AND CREATE PLAYERS //UPDATE PLAYERS!!!!!! // AND CREATE PLAYERS
+socket.on('updatePlayers', updatedPlayers => {
+console.log('SOCKET UPDATE PLAYERS');	
+for (const playerId in updatedPlayers) {
+const playerData = updatedPlayers[playerId];
+console.log("Jugador:", playerData);
+// Si el jugador ya existe, actualiza su posición
+if (players[playerData.id]) {
+} else {
+// Si el jugador no existe, créalo y añádelo al objeto players
+const playerKey = `player_${playerData.id}`; // Llave única para cada jugador
+if (!this.textures.exists(playerKey)) {
+const svgBlob = new Blob([playerData.skin], { type: 'image/svg+xml;charset=utf-8' });
+const svgUrl = URL.createObjectURL(svgBlob);
+this.load.image(playerData.id, svgUrl);
+this.load.once('complete', () => {
+//INVALIDAR IMAGEN DESPEUS DE CARGARLA
+URL.revokeObjectURL(svgUrl);
+const player = new Player(this, playerData.id, playerData.name, playerData.x, playerData.y, 10, playerData.skin, greenCirclesGroup, playerData.puntos,playerData.color);
+players[playerData.id] = player;
+console.log('SE CREA PLAYER', players[playerData.id]);
+if(socket.id===playerData.id)
+socket.emit('crearTopPlayers');
+});
+this.load.start();
+} else {
+const player = new Player(this, playerData.id, playerData.name, playerData.x, playerData.y, 10, playerData.skin, greenCirclesGroup, playerData.puntos,playerData.color);
+players[playerData.id] = player;
+}
+}
+}
+});
+
+
+///ANIMATE PLAYER MOVE // MOVE PLAYER FROM SERVER - ///ANIMATE PLAYER MOVE // MOVE PLAYER FROM SERVER - 
+///ANIMATE PLAYER MOVE // MOVE PLAYER FROM SERVER - ///ANIMATE PLAYER MOVE // MOVE PLAYER FROM SERVER - 
+///ANIMATE PLAYER MOVE // MOVE PLAYER FROM SERVER - ///ANIMATE PLAYER MOVE // MOVE PLAYER FROM SERVER - 
+///ANIMATE PLAYER MOVE // MOVE PLAYER FROM SERVER - ///ANIMATE PLAYER MOVE // MOVE PLAYER FROM SERVER - 
+socket.on('animatePlayer', animationData => {
+    
+    const playerId = animationData.playerId;
+    const player = players[playerId];
+	const data = animationData.data;
+    const endX = data.end.x;
+    const endY = data.end.y;
+    
+this.tweens.add({
+                targets: [player.circle],
+               	x: { value: endX, duration: data.speed, ease: 'Power2' },
+    			y: { value: endY, duration: data.speed, ease: 'Power2' },
+                duration: data.speed,
+                ease: 'Power2',
+                onUpdate: function(tween) {
+				player.text.setPosition(player.circle.x, player.circle.y - 20);
+              		},
+               	onComplete: function() {
+               	if(socket.id === playerId){
+        		updateRedVertices.call(this, endX, endY);
+        		socket.emit('updatePosition', { x: endX, y: endY });
+        		noMover = false;
+        		        
+        		        
+        		if(Cam===2){  
+        		   
+        		//INTENTO LIMITES CAMARA NO MARK:
+        		let cameraX = this.cameras.main.scrollX;
+        		let cameraY = this.cameras.main.scrollY;
+        		let rightLimit = window.innerWidth * 0.7;
+        		let leftLimit = window.innerWidth * 0.3;
+        		let bottomLimit = window.innerHeight * 0.7;
+        		let topLimit = window.innerHeight * 0.3;
+        		let playerRelativeX = -cameraX + player.circle.x;
+        		let playerRelativeY = -cameraY + player.circle.y;
+				const playerLocal = players[socket.id];
+				
+				//DERECHA
+				if (playerRelativeX >= rightLimit) {      
+					console.log(`70% ALCANZADO RIGHT`);
+						playerLocal.moveCameraToCenter();
+				}     
+				
+				//IZQUIERDA
+				if (playerRelativeX <= leftLimit) {    
+										playerLocal.moveCameraToCenter();
+  
+					console.log(`30% ALCANZADO LEFT`);
+				} 
+				
+				//BOTTOM
+				if (playerRelativeY >= bottomLimit) { 
+										playerLocal.moveCameraToCenter();
+     
+					console.log(`70% ALCANZADO BOTTOM`);
+				} 
+				
+				//TOP
+				if (playerRelativeY <= topLimit) {    
+										playerLocal.moveCameraToCenter();
+  
+					console.log(`30% ALCANZADO TOP`);
+				} 
+				
+				
+				
+				
+				
+				
+				
+				//END INTENTO LIMITES CAMARA NO MARK:
+				}
+				
+				
+        		        
+
+				}
+    			},
+                onCompleteScope: this
+  });
+  
+      
+});    
+///END ANIMATE PLAYER MOVE
+
+			
+//RECIBIR GREENCIRCLESS FROM SERVER
+
+socket.on('greenCirclesS', function(greenCirclesS) {
+    console.log('Recibido greenCircles:', greenCirclesS);
+    drawGreenCircles.call(this, greenCirclesS); // Usar call para establecer el contexto correcto
+}.bind(this));	
+
+
+
+
+
+//ELIMINAR VERDE ACTIVADO DESDE EL SERVER. DESDE EL SERVER ESTA FUNCION
+socket.on('eliminarGreenServer', (collisionIndex, myID) => {
+    	console.log(`eliminarGreenServer`);
+    	
+    	if(myID!=socket.id){
+    	greenCirclesGroup.children.each((greenCircle) => {
+        if (greenCircle.z === collisionIndex) {
+        
+
+                        textOnDestroy(this, greenCircle.x, greenCircle.y, '+1 points', '20px', '#00ff00');
+
+		if(greenCircle.type === 'blue'){
+       	 
+       	 		textOnDestroy(this, greenCircle.x, greenCircle.y, '+speed', '20px', '#0000ff');
+
+       	 console.log(`SPEED ACTIVATED.`);
+
+       	}
+            
+            console.log(`Green circle with z = ${collisionIndex} found and destroyed.`);
+            greenCircle.destroy();
+            
+
+            
+        }
+    });
+    }
+});
+
+
+
+
+
+
+
+        
+        
+        
+
+//ELIMINAR PLAYER ACTIVADO DESDE EL SERVER. DESDE EL SERVER ESTA FUNCION
+socket.on('eliminarPlayerServer', (collisionIndex) => {
+    	console.log(`eliminarPlayerServer`);
+    	
+    	if(collisionIndex!=socket.id){
+   
+
+   
+			const otherPlayer = players[collisionIndex];
+			
+			       	console.log(`playerEliminado:`, otherPlayer);
+
+			
+			textOnDestroy(this, otherPlayer.x, otherPlayer.y, otherPlayer.name +' eliminated!', '20px', '#ff0000');
+
+    		otherPlayer.destroyPlayer(collisionIndex);
+    		
+    		
+    		socket.emit('crearTopPlayers');
+
+
+    
+    
+    
+    }
+}); 
+
 	
         }
 
