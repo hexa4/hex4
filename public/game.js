@@ -147,7 +147,7 @@ worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10,
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 20); 
 
 
-fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - rightText.width - 10, worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
+fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText6.width - 10, worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
 
 
 
