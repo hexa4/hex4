@@ -2,13 +2,16 @@
 
 startGame("hehe");
 
-nameForm.style.display = 'none';
+
 
     let playerName;
     let playerNameInput = document.getElementById('playerName');
     let errorMessage = document.getElementById('errorMessage');
     let submitButton = document.getElementById('submitButton');
 	const nameForm = document.getElementById('nameForm');
+
+nameForm.style.display = 'none';
+
 
 //FUNCION DEL BOTON JUGAR PLAY SE INICIA JUEGO
     submitButton.addEventListener('click', function() {
