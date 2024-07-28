@@ -71,7 +71,6 @@ requestAnimationFrame(function() {
 
 	let greenCirclesGroup;	
 	let noMover = false;
-	let fixedText7;
 	let checkSecure = 0;
 	let Cam = 1;
 	let fixedText1, fixedText2, fixedText3, fixedText4, fixedText5, fixedText6, fixedText7;
