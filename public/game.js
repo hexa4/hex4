@@ -1,20 +1,14 @@
  const socket = io();
 
-
 const dpi = window.devicePixelRatio;
-        const width = window.innerWidth * dpi;
-        const height = window.innerHeight * dpi;
-
-
+const width = window.innerWidth * dpi;
+const height = window.innerHeight * dpi;
 
     let playerName;
     let playerNameInput = document.getElementById('playerName');
     let errorMessage = document.getElementById('errorMessage');
     let submitButton = document.getElementById('submitButton');
-	const nameForm = document.getElementById('nameForm');
-
-
-
+const nameForm = document.getElementById('nameForm');
 
 //FUNCION DEL BOTON JUGAR PLAY SE INICIA JUEGO
     submitButton.addEventListener('click', function() {
@@ -29,11 +23,9 @@ nameForm.style.display = 'none';
 
 
 requestAnimationFrame(function() {
-        startGame("hehe");
+        startGame(playerName);
     });
 		
-//startGame("hehe");
-
 
         
     });
@@ -74,6 +66,15 @@ requestAnimationFrame(function() {
         let hexagonGroup;
         let playerNameCircle;
 
+
+		             const hexagonMap = [
+        [{ direction: 'NE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }],
+        [{ direction: 'SW' }, { direction: 'ES' } ,{ direction: 'E' }, { direction: 'ES' }, { direction: 'E' }],
+        [{ direction: 'SW' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }]
+    ];
+    
+    
+
         function preload() {
             // Cargar recursos si es necesario
         }
@@ -88,16 +89,21 @@ requestAnimationFrame(function() {
             hexagonGroup = this.add.group();
               
             // Crear el mapa hexagonal
-            for (let y = 0; y < 12; y++) {
-                for (let x = 0; x < 12; x++) {
-                    let hexX = x * hexagonWidth * 0.75;
-                    let hexY = y * hexagonHeight + (x % 2 === 0 ? 0 : hexagonHeight / 2);
-                    drawHexagon(hexX, hexY, hexagonSize);
-                    hexagons.push({ x: hexX, y: hexY });
-                    vertices.push(...getHexVertices(hexX, hexY));
-                    hexagonGroup.add(hexagonGraphics); // Añadir el gráfico del hexágono al grupo
-                }
-            }
+     for (let y = 0; y < hexagonMap.length; y++) {
+    for (let x = 0; x < hexagonMap[y].length; x++) {
+        let hexX = x * hexagonWidth * 0.75;
+        let hexY = y * hexagonHeight + (x % 2 === 0 ? 0 : hexagonHeight / 2);
+
+        // Opcional: Usa la dirección del hexágono si es necesario
+        let direction = hexagonMap[y][x].direction;
+        console.log(`Hexágono en (${x}, ${y}) tiene dirección: ${direction}`);
+
+        drawHexagon(hexX, hexY, hexagonSize);
+        hexagons.push({ x: hexX, y: hexY });
+        vertices.push(...getHexVertices(hexX, hexY));
+        hexagonGroup.add(hexagonGraphics); // Añadir el gráfico del hexágono al grupo
+    }
+}
 
             // Crear el jugador en un vértice aleatorio
             const randomHex = hexagons[Phaser.Math.Between(0, hexagons.length - 1)];
