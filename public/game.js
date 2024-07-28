@@ -930,6 +930,66 @@ socket.on('borrarTodosGreen', () => {
 });
 		
 
+
+
+
+
+///TEXTO VELOCIDAD EN EL MEDIO PANTALLA
+  function llamarTextoSpeed(scene) {
+        const width = scene.scale.width;
+        const height = scene.scale.height;
+
+        const text = scene.add.text(width / 2, height / 2, '+speed!', {
+            fontSize: '48px',
+            fill: '#0000ff'
+        }).setOrigin(0.5, 0.5);
+
+        text.setScrollFactor(0);
+
+
+        scene.tweens.add({
+            targets: text,
+            scaleX: 2,
+            scaleY: 2,
+            duration: 500,
+            ease: 'Power2',
+            yoyo: scene, // Para hacer que el tween vuelva al tamaño original
+            onComplete: () => {
+                scene.time.addEvent({
+                    delay: 500,
+                    callback: () => {
+                        text.destroy();
+                    }
+                });
+            }
+        });
+    }
+
+
+function textOnDestroy(scene, x, y, texto, size, color) {
+
+            
+            const text = scene.add.text(x, y, texto, {
+                    fontSize: size,
+                    fill: color
+            });
+            
+               text.setOrigin(0.5, 0.5); // Establece el origen del texto en su centro
+    text.setPosition(x, y); // Reposiciona el texto
+            
+             scene.time.addEvent({
+                    delay: 1200,
+                    callback: () => {
+                        text.destroy();
+                    }
+            });
+
+
+}
+
+
+
+
 		
 
         
