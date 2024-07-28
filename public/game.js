@@ -37,6 +37,12 @@ requestAnimationFrame(function() {
             type: Phaser.AUTO,
             width: width,
             height: height,
+		physics: {
+        	default: 'arcade',
+        	arcade: {
+            gravity: { y: 0 }, // Puedes ajustar la gravedad según lo necesites
+            debug: false // Puedes activar esto para ver los cuerpos de colisión
+        			} },
             backgroundColor: '#0a0a0a',
             scale: {
                 mode: Phaser.Scale.FIT,
