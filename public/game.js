@@ -74,7 +74,7 @@ requestAnimationFrame(function() {
 	let fixedText7;
 	let checkSecure = 0;
 	let Cam = 1;
-	let fixedText1, fixedText2, fixedText3, fixedText4, fixedText5, fixedText6;
+	let fixedText1, fixedText2, fixedText3, fixedText4, fixedText5, fixedText6, fixedText7;
 	const players = {}; // Usaremos un objeto para almacenar los jugadores
 	let topplayers = [];	
 		
@@ -159,7 +159,28 @@ socket.emit('newPlayer', { name: playerName, x: randomVertex.x, y: randomVertex.
 	        	socket.emit('LlamargreenCirclesS');
 
 
+fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff' });
+         fixedText2 = this.add.text(10, 30, '', { fontSize: '16px', fill: '#ffffff' });
+         fixedText3 = this.add.text(10, 50, '', { fontSize: '16px', fill: '#ffffff' });
+         fixedText4 = this.add.text(10, 70, '', { fontSize: '16px', fill: '#ffffff' });
+         fixedText5 = this.add.text(10, 90, '', { fontSize: '16px', fill: '#ffffff' });
+		 fixedText6 = this.add.text(window.innerWidth - 10, 10, 'Points: 0', { fontSize: '16px', fill: '#ffffff' });
+		
 
+		
+		
+		fixedText6.setOrigin(1, 0); 
+		//VELOCIDAD TOP RIGHT TEXT
+		fixedText7 = this.add.text(window.innerWidth - 10, 30, '', { fontSize: '16px', fill: '#0000ff' });
+		fixedText7.setOrigin(1, 0); 
+        // Hace que los textos no se muevan con la cámara
+        fixedText1.setScrollFactor(0);
+        fixedText2.setScrollFactor(0);
+        fixedText3.setScrollFactor(0);
+        fixedText4.setScrollFactor(0);
+        fixedText5.setScrollFactor(0);
+        fixedText6.setScrollFactor(0);
+		fixedText7.setScrollFactor(0);
 
 
 //RECIBIR UPDATE POINTS AND SIZE Of PLAYER
