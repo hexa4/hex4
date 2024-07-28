@@ -67,6 +67,7 @@ requestAnimationFrame(function() {
         let hexagons = [];
         let vertices = [];
         let redVertices = [];
+		let ZoomOut = 1;
 
 	let greenCirclesGroup;	
 	let noMover = false;
@@ -577,6 +578,215 @@ location.reload();
 
 
 }
+
+
+
+//DRAW GREEN CIRCLES!!!!!!
+function drawGreenCircles(greenCirclesS) {
+console.log('GREEN CIRCLES DRAW');
+    let index = 0;
+
+
+      for (const circle of greenCirclesS) {
+        const circleGraphics = this.add.graphics(); // 'this' debería ser la escena de Phaser.js
+       // circleGraphics.fillStyle(0x00ff00, 0.5); // Color verde con opacidad del 50%
+      
+      
+      
+      //COLISION    
+      
+       //GREEN POINTS
+       if(index<15){
+     		let graphics = this.add.graphics({ fillStyle: { color: 0x00ff00 } });
+            let greenCircle = graphics.fillCircle(0, 0, 5);
+            let greenCirclePhysics = this.physics.add.existing(greenCircle);
+            greenCirclePhysics.body.setCircle(5);
+            greenCirclePhysics.body.setCollideWorldBounds(true);
+            greenCirclePhysics.x = circle.x;
+            greenCirclePhysics.y = circle.y;
+            greenCirclePhysics.z = circle.z;
+                                    greenCirclePhysics.type = 'green';
+
+            greenCirclesGroup.add(greenCirclePhysics);  
+ 
+        
+        //BLUE SPEED
+        }else{
+        let graphics = this.add.graphics({ fillStyle: { color: 0x0000ff } });
+            let greenCircle = graphics.fillCircle(0, 0, 3);
+            let greenCirclePhysics = this.physics.add.existing(greenCircle);
+            greenCirclePhysics.body.setCircle(3);
+            greenCirclePhysics.body.setCollideWorldBounds(true);
+            greenCirclePhysics.x = circle.x;
+            greenCirclePhysics.y = circle.y;
+            greenCirclePhysics.z = circle.z;
+                        greenCirclePhysics.type = 'blue';
+
+            greenCirclesGroup.add(greenCirclePhysics);   
+
+        
+        }
+        
+        
+    
+            index++;
+
+    }
+}
+
+
+
+//CLASE PLAYER 
+//CLASE PLAYER  
+//CLASE PLAYER   
+  class Player {
+    constructor(scene, id, name, x, y, size, skin, greenCirclesGroup, puntos,color) {
+        this.scene = scene;
+        this.id = id;
+        this.name = name;
+        this.size = size;
+        this.x = x;
+        this.y = y;
+        this.skin = skin;
+        this.greenCirclesGroup = greenCirclesGroup; 
+        this.puntos = puntos;
+        this.color = color;
+        
+        //TAMANO DEL JUGADOR
+        //TAMANO DEL JUGADOR
+        //TAMANO DEL JUGADOR
+        const sizeCalc = (0.01 * puntos) + 0.2;		
+
+
+		//this.circle = this.scene.add.image(x, y, 'player');
+		this.circle = this.scene.physics.add.image(x, y, id);
+        this.circle.setScale(sizeCalc); 
+        
+        this.circle.setInteractive();
+
+        // Texto encima del jugador
+        this.text = this.scene.add.text(x, y - 20, name + ' (' + puntos + ')', { fontSize: '12px', fill: '#ffffff' });
+        this.text.setOrigin(0.5);
+        
+		//CAMARA PARA CLIENTE INDIVIDUAL
+        if (id === socket.id) {
+            // código adicional para el jugador local
+           this.scene.cameras.main.startFollow(this.circle);
+            this.scene.physics.add.overlap(this.circle, greenCirclesGroup, collectGreenCircle, null, this.scene);
+
+
+			//COLISION PLAYERS PRUEBA
+
+
+						
+
+
+        }
+        
+        			this.circle.type = 'player';
+					this.circle.id = id;
+                    greenCirclesGroup.add(this.circle);  
+
+        
+        
+        
+        //COLISION NUEVA
+
+        
+    }
+    
+    
+    stopCameraFollow() {
+        // Detener el seguimiento de la cámara
+        this.scene.cameras.main.stopFollow();
+    }
+    
+      fontSizePlayer(number) {
+        // Detener el seguimiento de la cámara
+        this.text.setFontSize(number); // Cambia el tamaño de la fuente a 48px
+    }
+    
+    startCameraFollow() {
+        // Detener el seguimiento de la cámara
+            this.scene.cameras.main.startFollow(this.circle);
+    }
+    
+    // Método para actualizar la posición del jugador
+    setPosition(x, y) {
+        this.circle.setPosition(x, y);
+        this.text.setPosition(x, y - 20);
+        this.x = x;
+        this.y = y;
+    }
+
+    updateGraphicsPosition() {
+        // Actualizar la posición del círculo y el texto
+        if (this.circle && this.text) {
+            this.circle.x = this.x;
+            this.circle.y = this.y;
+            this.text.x = this.x;
+            this.text.y = this.y - 20;
+        }
+    }
+    
+    
+    
+    //MOVER CAMARA A CENTRO CUANDO 30% y 70% LIMITE
+    moveCameraToCenter() {
+        // Si ya está siguiendo la cámara, no hacer nada
+        if (this.followingCamera) {
+            return;
+        }
+
+        // Obtener las coordenadas del jugador
+        const playerX = this.circle.x;
+        const playerY = this.circle.y;
+
+        // Usar un tween para mover la cámara suavemente hacia el jugador
+        this.scene.tweens.add({
+            targets: this.scene.cameras.main,
+            scrollX: playerX - this.scene.scale.width / 2,
+            scrollY: playerY - this.scene.scale.height / 2,
+            duration: 1000, // Duración del tween en milisegundos
+            ease: 'Power2',
+            onComplete: () => {
+               // this.startCameraFollow();
+            }
+        });
+    }   
+    
+    
+        destroyPlayer(suID) {
+        // Detener el seguimiento de la cámara si es necesario
+        if (this.id === socket.id) {
+            this.stopCameraFollow();
+        }
+
+        // Eliminar el círculo del jugador
+        if (this.circle) {
+            this.circle.destroy();
+        }
+
+        // Eliminar el texto del jugador
+        if (this.text) {
+            this.text.destroy();
+        }
+
+        // Eliminar el jugador del grupo de círculos verdes si es necesario
+        if (this.greenCirclesGroup) {
+            this.greenCirclesGroup.remove(this.circle);
+        }
+        
+        
+                delete players[suID];
+
+        
+    } 
+
+}
+		
+
+		
 
         
 }  
