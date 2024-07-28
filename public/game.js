@@ -134,7 +134,7 @@ fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff' });
 
 this.cameras.main.setZoom(8 / dpi);
 
-let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 8, this.cameras.main.height / 8);
+let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width * (8/dpi), this.cameras.main.height * (8/ dpi));
 
 fixedText1.setFontSize(32); 
  fixedText1.setPosition(
