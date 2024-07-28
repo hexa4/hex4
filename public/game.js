@@ -102,7 +102,7 @@ requestAnimationFrame(function() {
 
 
 
-            this.cameras.main.setZoom(8 / dpi);
+            
 
 
 fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff' });
@@ -128,7 +128,7 @@ fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff' });
         fixedText6.setScrollFactor(0);
 		fixedText7.setScrollFactor(0);
 
-
+this.cameras.main.setZoom(8 / dpi);
 
             hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x0099ff } });
 
