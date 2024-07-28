@@ -101,6 +101,8 @@ requestAnimationFrame(function() {
 
 this.cameras.main.setZoom(8 / dpi);
 
+let zoomFactor = this.cameras.main.zoom; 
+
 let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
             
 
