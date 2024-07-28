@@ -99,10 +99,13 @@ requestAnimationFrame(function() {
 
 
 
+this.cameras.main.setZoom(8 / dpi);
 
-
-
+let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
             
+
+
+//TEXTOS POSICION START
 
 
 fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff' });
@@ -115,10 +118,10 @@ fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff' });
 
 		
 		
-		fixedText6.setOrigin(1, 0); 
+	//	fixedText6.setOrigin(1, 0); 
 		//VELOCIDAD TOP RIGHT TEXT
 		fixedText7 = this.add.text(window.innerWidth - 10, 30, '', { fontSize: '16px', fill: '#0000ff' });
-		fixedText7.setOrigin(1, 0); 
+		//fixedText7.setOrigin(1, 0); 
         // Hace que los textos no se muevan con la cámara
         fixedText1.setScrollFactor(0);
         fixedText2.setScrollFactor(0);
@@ -131,16 +134,27 @@ fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff' });
 
 
 
+fixedText1.setPosition( 	
+worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10); 
 
-this.cameras.main.setZoom(8 / dpi);
 
-let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width * (8/dpi), this.cameras.main.height * (8/ dpi));
 
-fixedText1.setFontSize(32); 
- fixedText1.setPosition(
-        -worldPoint.x +20,
-        -worldPoint.y +20
-    );
+fixedText2.setPosition( 	
+worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 20); 
+
+
+fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - rightText.width - 10, worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
+
+
+
+
+//TEXTOS POSICION END
+
+
+
+
 
 
             hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x0099ff } });
