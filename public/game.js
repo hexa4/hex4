@@ -128,7 +128,20 @@ fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff' });
         fixedText6.setScrollFactor(0);
 		fixedText7.setScrollFactor(0);
 
-//this.cameras.main.setZoom(8 / dpi);
+
+
+
+
+this.cameras.main.setZoom(8 / dpi);
+
+let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 8, this.cameras.main.height / 8);
+
+fixedText1.setFontSize(32); 
+ fixedText1.setPosition(
+        -worldPoint.x +20,
+        -worldPoint.y +20
+    );
+
 
             hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x0099ff } });
 
