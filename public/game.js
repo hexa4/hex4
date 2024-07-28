@@ -23,8 +23,13 @@
 
 
 nameForm.style.display = 'none';
+
+
+requestAnimationFrame(function() {
+        startGame("hehe");
+    });
 		
-startGame("hehe");
+//startGame("hehe");
 
 
         
