@@ -20,10 +20,13 @@
             errorMessage.style.display = 'block';
             return;
         }
+
+
+nameForm.style.display = 'none';
 		
 startGame("hehe");
 
-nameForm.style.display = 'none';
+
         
     });
     
