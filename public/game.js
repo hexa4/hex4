@@ -110,7 +110,7 @@ fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff' });
          fixedText3 = this.add.text(10, 50, '', { fontSize: '16px', fill: '#ffffff' });
          fixedText4 = this.add.text(10, 70, '', { fontSize: '16px', fill: '#ffffff' });
          fixedText5 = this.add.text(10, 90, '', { fontSize: '16px', fill: '#ffffff' });
-		 fixedText6 = this.add.text(window.innerWidth - 10, 10, 'Points: 0', { fontSize: '16px', fill: '#ffffff' });
+		 fixedText6 = this.add.text(window.innerWidth * dpi - 10, 10, 'Points: 0', { fontSize: '16px', fill: '#ffffff' });
 		
 
 		
