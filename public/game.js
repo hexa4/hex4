@@ -623,7 +623,7 @@ createCheckbox(this);
         let direction = hexagonMap[y][x].direction;
         console.log(`Hexágono en (${x}, ${y}) tiene dirección: ${direction}`);
 
-        drawHexagon(hexX, hexY, hexagonSize);
+        drawHexagon2(hexX, hexY, hexagonSize);
         hexagons.push({ x: hexX, y: hexY });
         vertices.push(...getHexVertices(hexX, hexY));
         hexagonGroup2.add(hexagonGraphics2); // Añadir el gráfico del hexágono al grupo
@@ -906,6 +906,11 @@ socket.on('eliminarPlayerServer', (collisionIndex) => {
         function drawHexagon(x, y, size) {
             const points = getHexVertices(x, y, size);
             hexagonGraphics.strokePoints(points, true);
+        }
+
+		function drawHexagon2(x, y, size) {
+            const points = getHexVertices(x, y, size);
+            hexagonGraphics2.strokePoints(points, true);
         }
 
         function getHexVertices(x, y, size = hexagonSize) {
