@@ -165,7 +165,7 @@ fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor
 
 //CHECKBOX CAM MOVE
            // Tamaño y posición del checkbox
-/*
+
 let lineWidth = 2; 	
 
         let checkboxSize = 20;
@@ -251,7 +251,7 @@ let lineWidth = 2;
         // Muestra el estado inicial del checkbox
         console.log('Checkbox initial state: checked, Cam =', Cam);
 		
-		  
+	/*	  
 let updateCheckboxPositionAndSize = (newX, newY, newSize, factor, fontsize) => {
     checkboxX = newX;
     checkboxY = newY;
