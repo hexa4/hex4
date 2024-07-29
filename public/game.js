@@ -198,16 +198,16 @@ socket.emit('newPlayer', { name: playerName, x: randomVertex.x, y: randomVertex.
          //   playerName = this.add.text(randomVertex.x, randomVertex.y - 20, 'Player', { fontSize: '12px', fill: '#ffffff' });
            
            
-            playerNameCircle = this.add.text(randomVertex.x, randomVertex.y - 20, 'Player', { fontSize: '12px', fill: '#ffffff', resolution: dpi });
+     //       playerNameCircle = this.add.text(randomVertex.x, randomVertex.y - 20, 'Player', { fontSize: '12px', fill: '#ffffff', resolution: dpi });
            
            
-            playerNameCircle.setOrigin(0.5);
+       //     playerNameCircle.setOrigin(0.5);
 
             // Centrar la cámara en el jugador
-            this.cameras.main.startFollow(player);
+            //this.cameras.main.startFollow(player);
 
-            player.setInteractive();
-            player.vertices = [];
+        //    player.setInteractive();
+        //    player.vertices = [];
           
             updateRedVertices.call(this, randomVertex.x, randomVertex.y); 
 
@@ -736,7 +736,7 @@ console.log('GREEN CIRCLES DRAW');
         this.circle.setInteractive();
 
         // Texto encima del jugador
-        this.text = this.scene.add.text(x, y - 20, name + ' (' + puntos + ')', { fontSize: '12px', fill: '#ffffff' });
+        this.text = this.scene.add.text(x, y - 20, name + ' (' + puntos + ')', { fontSize: '12px', fill: '#ffffff'  , resolution: dpi   });
         this.text.setOrigin(0.5);
         
 		//CAMARA PARA CLIENTE INDIVIDUAL
