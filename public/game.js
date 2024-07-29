@@ -162,7 +162,128 @@ fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor
 
 
 
+
+//CHECKBOX CAM MOVE
+           // Tamaño y posición del checkbox
+        let checkboxSize = 20;
+        let checkboxX =   worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10 ;
+        let checkboxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - bottomLeftText.height - 10);
+
+        // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
+        let textOffsetY = checkboxSize / 2;
+        let fixedText = this.add.text(checkboxX + checkboxSize + 10, checkboxY + textOffsetY, 'Centered Cam', { fontSize: '16px', fill: '#ffffff' });
+        fixedText.setOrigin(0, 0.5); // Ajuste vertical para centrar con el checkbox
+        fixedText.setScrollFactor(0); // Esto fija el texto para que no se desplace con la cámara
+
+        // Crear el gráfico del checkbox
+        let checkbox = this.add.graphics();
+
+        // Dibujar el checkbox
+        checkbox.fillStyle(0x00ff00); // Color verde
+        checkbox.fillRect(checkboxX, checkboxY, checkboxSize, checkboxSize);
+
+        // Estado inicial del checkbox
+        let isChecked = true;
+
+        // Función para dibujar o borrar la "X"
+        let drawCheck = (isChecked) => {
+            checkbox.clear();
+            checkbox.fillStyle(0x00ff00); // Color verde
+            checkbox.fillRect(checkboxX, checkboxY, checkboxSize, checkboxSize);
+
+            if (isChecked) {
+                checkbox.lineStyle(lineWidth, 0x000000); // Color negro para la "X"
+                checkbox.beginPath();
+                checkbox.moveTo(checkboxX, checkboxY);
+                checkbox.lineTo(checkboxX + checkboxSize, checkboxY + checkboxSize);
+                checkbox.moveTo(checkboxX + checkboxSize, checkboxY);
+                checkbox.lineTo(checkboxX, checkboxY + checkboxSize);
+                checkbox.strokePath();
+            }
+        };
+
+        // Dibujar el estado inicial del checkbox
+        drawCheck(isChecked);
+
+        // Hacer que el checkbox sea interactivo
+        let hitArea = new Phaser.Geom.Rectangle(checkboxX, checkboxY, checkboxSize, checkboxSize);
+        checkbox.setInteractive(hitArea, Phaser.Geom.Rectangle.Contains);
+
+        let toggleCheckbox = () => {
+            isChecked = !isChecked;
+            drawCheck(isChecked);
+            
+            checkSecure = 1;
+    let playerLocal = players[socket.id];
+
+
+            if (isChecked) {
+                Cam = 1;
+                console.log('Checkbox checked, Cam =', Cam);
+                playerLocal.startCameraFollow();
+
+            } else {
+                Cam = 2;
+                console.log('Checkbox unchecked, Cam =', Cam);
+                playerLocal.stopCameraFollow();
+
+            }
+        };
+
+        checkbox.on('pointerdown', toggleCheckbox);
+
+        // Hacer que el texto sea interactivo y reaccione de la misma manera que el checkbox
+        fixedText.setInteractive();
+        fixedText.on('pointerdown', toggleCheckbox);
+
+        // Fijar el checkbox y el texto para que no se desplacen con la cámara
+        checkbox.setScrollFactor(0);
+        fixedText.setScrollFactor(0);
+
+        // Muestra el estado inicial del checkbox
+        console.log('Checkbox initial state: checked, Cam =', Cam);
+
+
+
+        // Muestra el estado inicial del checkbox
+        console.log('Checkbox initial state: checked, Cam =', Cam);
+		
+		  
+let updateCheckboxPositionAndSize = (newX, newY, newSize, factor, fontsize) => {
+    checkboxX = newX;
+    checkboxY = newY;
+    checkboxSize = newSize;
+
+    // Actualizar hit area
+    hitArea.setSize(checkboxSize, checkboxSize);
+    hitArea.setPosition(checkboxX, checkboxY);
+
+    // Redibujar el checkbox en la nueva posición y tamaño
+    drawCheck(isChecked);
+
+    // Actualizar la interactividad del checkbox con la nueva hit area
+    checkbox.setInteractive(hitArea, Phaser.Geom.Rectangle.Contains);
+
+    // Actualizar la posición del texto
+    fixedText.setPosition(checkboxX + checkboxSize + 10*factor, checkboxY + textOffsetY*factor);
+        fixedText.setFontSize(fontsize);
+
+
+
+
 createCheckbox(this);
+
+
+};
+		  
+		  
+		            
+
+
+
+
+
+
 
             hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x0099ff } });
 
@@ -588,73 +709,6 @@ console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
 
 
 
-function createCheckbox(scene) {
-    // Crear el gráfico del checkbox
-    checkbox = scene.add.graphics();
-
-    // Dibujar el checkbox
-    checkbox.fillStyle(0x00ff00); // Color verde
-    checkbox.fillRect(0, 0, checkboxSize, checkboxSize);
-
-    // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
-    let textOffsetY = checkboxSize / 2;
-    fixedText = scene.add.text(checkboxSize + 10, textOffsetY, 'Centered Cam', { fontSize: '16px', fill: '#ffffff' });
-    fixedText.setOrigin(0, 0.5); // Ajuste vertical para centrar con el checkbox
-    fixedText.setScrollFactor(0); // Esto fija el texto para que no se desplace con la cámara
-
-    // Estado inicial del checkbox
-    let isChecked = true;
-
-    // Función para dibujar o borrar la "X"
-    let drawCheck = (isChecked) => {
-        checkbox.clear();
-        checkbox.fillStyle(0x00ff00); // Color verde
-        checkbox.fillRect(0, 0, checkboxSize, checkboxSize);
-
-        if (isChecked) {
-            checkbox.lineStyle(2, 0x000000); // Color negro para la "X"
-            checkbox.beginPath();
-            checkbox.moveTo(0, 0);
-            checkbox.lineTo(checkboxSize, checkboxSize);
-            checkbox.moveTo(checkboxSize, 0);
-            checkbox.lineTo(0, checkboxSize);
-            checkbox.strokePath();
-        }
-    };
-
-    // Dibujar el estado inicial del checkbox
-    drawCheck(isChecked);
-
-    // Hacer que el checkbox sea interactivo
-    hitArea = new Phaser.Geom.Rectangle(0, 0, checkboxSize, checkboxSize);
-    checkbox.setInteractive(hitArea, Phaser.Geom.Rectangle.Contains);
-
-    let toggleCheckbox = () => {
-        isChecked = !isChecked;
-        drawCheck(isChecked);
-
-        let playerLocal = players[socket.id];
-        if (isChecked) {
-            Cam = 1;
-            console.log('Checkbox checked, Cam =', Cam);
-            playerLocal.startCameraFollow();
-        } else {
-            Cam = 2;
-            console.log('Checkbox unchecked, Cam =', Cam);
-            playerLocal.stopCameraFollow();
-        }
-    };
-
-    checkbox.on('pointerdown', toggleCheckbox);
-
-    // Hacer que el texto sea interactivo y reaccione de la misma manera que el checkbox
-    fixedText.setInteractive();
-    fixedText.on('pointerdown', toggleCheckbox);
-
-    // Fijar el checkbox y el texto para que no se desplacen con la cámara
-    checkbox.setScrollFactor(0);
-    fixedText.setScrollFactor(0);
-}
 
 
 
