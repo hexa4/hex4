@@ -158,15 +158,306 @@ fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor
 
 
 //TEXTOS POSICION END
+let lineWidth = 2; 	
+		
+
+		  
+		            
+//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM
+//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM
+//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM
+//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM
+//CHECKBOX PARA ZOOM MAPA
+let boxSize = 20;
+let boxX = 10;
+let boxY = this.scale.height - 70;
+
+// Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
+let textYOffset = boxSize / 2;
+let staticText = this.add.text(boxX + boxSize + 10, boxY + textYOffset, 'Zoom', { fontSize: '16px', fill: '#ffffff' });
+staticText.setOrigin(0, 0.5); // Ajuste vertical para centrar con el checkbox
+staticText.setScrollFactor(0); // Esto fija el texto para que no se desplace con la cámara
+
+// Crear el gráfico del checkbox
+let box = this.add.graphics();
+
+// Dibujar el checkbox
+box.fillStyle(0x00ff00); // Color verde
+box.fillRect(boxX, boxY, boxSize, boxSize);
+
+// Estado inicial del checkbox
+let isBoxChecked = true;
+
+// Función para dibujar o borrar la "X"
+let drawBoxCheck = (isBoxChecked) => {
+    box.clear();
+    box.fillStyle(0x00ff00); // Color verde
+    box.fillRect(boxX, boxY, boxSize, boxSize);
+
+    if (isBoxChecked) {
+        box.lineStyle(lineWidth, 0x000000); // Color negro para la "X"
+        box.beginPath();
+        box.moveTo(boxX, boxY);
+        box.lineTo(boxX + boxSize, boxY + boxSize);
+        box.moveTo(boxX + boxSize, boxY);
+        box.lineTo(boxX, boxY + boxSize);
+        box.strokePath();
+    }
+};
+
+// Dibujar el estado inicial del checkbox
+drawBoxCheck(isBoxChecked);
+
+// Hacer que el checkbox sea interactivo
+let hitAreaBox = new Phaser.Geom.Rectangle(boxX, boxY, boxSize, boxSize);
+box.setInteractive(hitAreaBox, Phaser.Geom.Rectangle.Contains);
+
+let toggleBox = () => {
+    isBoxChecked = !isBoxChecked;
+    drawBoxCheck(isBoxChecked);
+    
+    checkSecure = 1;
+    
+    
+    		 ZoomOut = 1;
+
+    //const localPlayer = players[socket.id];
+let playerLocal = players[socket.id];
+
+    if (isBoxChecked) {
+        this.cameras.main.setZoom(1.0);
+        
+        
+        lineWidth = 2;
+        
+      updateCheckboxPositionAndSize( 10, window.innerHeight-40, 20, 1, 16);
+
+updateBoxPositionAndSize( 10, window.innerHeight-70, 20, 1, 16);  
+        
+
+fixedText.setPosition(
+        checkboxX + checkboxSize + 10, checkboxY + textOffsetY
+    );
+    fixedText.setFontSize(16);
+        
+        
+ staticText.setPosition(
+        boxX + boxSize + 10, boxY + textYOffset
+    );
+    staticText.setFontSize(16);       
+        
+        
+fixedText1.setFontSize(16); // Cambia el tamaño de la fuente a 48px
+ fixedText1.setPosition(
+         10,
+        10);
+        
+        
+ fixedText2.setFontSize(16); // Cambia el tamaño de la fuente a 48px
+ fixedText2.setPosition(
+         10,
+        30);       
+    
+    
+  fixedText3.setFontSize(16); // Cambia el tamaño de la fuente a 48px
+ fixedText3.setPosition(
+         10,
+        50);         
+    
+    
+      fixedText4.setFontSize(16); // Cambia el tamaño de la fuente a 48px
+ fixedText4.setPosition(
+         10,
+        70);   
+        
+        
+          fixedText5.setFontSize(16); // Cambia el tamaño de la fuente a 48px
+ fixedText5.setPosition(
+         10,
+        90);   
+     
+fixedText6.setFontSize(16); // Cambia el tamaño de la fuente a 48px
+ fixedText6.setPosition(
+        window.innerWidth-10,
+        10);
+    
+    
+    fixedText7.setFontSize(16); // Cambia el tamaño de la fuente a 48px
+ fixedText7.setPosition(
+        window.innerWidth-10,
+        30);
+    
+    
+playerLocal.fontSizePlayer(12);
+
+
+    } else {
+    
+     		 ZoomOut = 2;
+
+
+                playerLocal.stopCameraFollow();
+
+
+ this.cameras.main.setZoom(0.5);
+ 
+ 
+ 
+  this.cameras.main.scrollX = 0;
+        this.cameras.main.scrollY = 0;
+
+
+
+ let cameraX = this.cameras.main.scrollX;
+    	let cameraY = this.cameras.main.scrollY;
+    	
+
+let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
+
+console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
+
+
+        lineWidth = 4;
+
+
+updateCheckboxPositionAndSize( -worldPoint.x +20, worldPoint.y+window.innerHeight-80, 40, 2, 32);
+
+updateBoxPositionAndSize( -worldPoint.x +20, worldPoint.y+window.innerHeight-140, 40, 2, 32);
+
+
+
+       /* let textOffsetY2 = checkboxSize;
+
+fixedText.setPosition(
+        -worldPoint.x + checkboxX*2 + checkboxSize*2 + 20,
+        worldPoint.y+window.innerHeight-80 + textOffsetY2
+    );
+    fixedText.setFontSize(32);
+
+
+
+let textYOffset2 = boxSize;
+
+staticText.setPosition(
+        -worldPoint.x + boxX*2 + boxSize*2 +20,
+        worldPoint.y+window.innerHeight-140+textYOffset2
+    );
+    staticText.setFontSize(32);
+    */
+    
+    
+    
+    
+
+fixedText1.setFontSize(32); 
+ fixedText1.setPosition(
+        -worldPoint.x +20,
+        -worldPoint.y +20
+    );
+    
+    
+    
+    fixedText2.setFontSize(32); 
+ fixedText2.setPosition(
+        -worldPoint.x +20,
+        -worldPoint.y +60
+    );
+    
+    
+    fixedText3.setFontSize(32); 
+ fixedText3.setPosition(
+        -worldPoint.x +20,
+        -worldPoint.y +100
+    );
+    
+    fixedText4.setFontSize(32); 
+ fixedText4.setPosition(
+        -worldPoint.x +20,
+        -worldPoint.y +140
+    );
+    
+    fixedText5.setFontSize(32); 
+ fixedText5.setPosition(
+        -worldPoint.x +20,
+        -worldPoint.y +180
+    );
+    
+    
+    
+    
+    
+    
+    fixedText6.setFontSize(32); 
+ fixedText6.setPosition(
+        worldPoint.x +window.innerWidth-20,
+        -worldPoint.y +20
+    );
+    
+
+   fixedText7.setFontSize(32); 
+ fixedText7.setPosition(
+        worldPoint.x +window.innerWidth-20,
+        -worldPoint.y +60
+    );
+
+playerLocal.fontSizePlayer(24);
+    
+playerLocal.startCameraFollow();
+
+   
+
+    
+
+    }
+};
+
+
+
+let updateBoxPositionAndSize = (newX, newY, newSize, factor, fontsize) => {
+    boxX = newX;
+    boxY = newY;
+    boxSize = newSize;
+
+    // Actualizar hit area
+    hitAreaBox.setSize(boxSize, boxSize);
+    hitAreaBox.setPosition(boxX, boxY);
+
+    // Redibujar el checkbox en la nueva posición y tamaño
+    drawBoxCheck(isBoxChecked);
+
+    // Actualizar la interactividad del checkbox con la nueva hit area
+    box.setInteractive(hitAreaBox, Phaser.Geom.Rectangle.Contains);
+
+    // Actualizar la posición del texto
+    staticText.setPosition(boxX + boxSize + 10*factor, boxY + textYOffset*factor);
+    
+        staticText.setFontSize(fontsize);
+
+};
+
+
+
+box.on('pointerdown', toggleBox);
+
+// Hacer que el texto sea interactivo y reaccione de la misma manera que el checkbox
+staticText.setInteractive();
+staticText.on('pointerdown', toggleBox);
+
+// Fijar el checkbox y el texto para que no se desplacen con la cámara
+box.setScrollFactor(0);
+staticText.setScrollFactor(0);
 
 
 
 
 
-//CHECKBOX CAM MOVE
+
+
+
+//CHECKBOX CAM MOVE//////////////////
            // Tamaño y posición del checkbox
 
-let lineWidth = 2; 	
+
 
         let checkboxSize = 20;
         let checkboxX =   worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10 ;
