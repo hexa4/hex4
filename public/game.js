@@ -63,7 +63,7 @@ requestAnimationFrame(function() {
         const game = new Phaser.Game(config);
 
         let player;
-        let hexagonGraphics;
+        let hexagonGraphics,hexagonGraphics2;
         let hexagonSize = 50;
         let hexagonWidth = hexagonSize * 2;
         let hexagonHeight = Math.sqrt(3) * hexagonSize;
@@ -81,7 +81,7 @@ requestAnimationFrame(function() {
 	let topplayers = [];	
 		
         let redCirclesGroup;
-        let hexagonGroup;
+        let hexagonGroup,hexagonGroup2;
         let playerNameCircle;
 
 
