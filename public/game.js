@@ -106,7 +106,7 @@ let checkbox, fixedText, hitArea;
             // Escalar gráficos según la densidad de píxeles
 
 
-const zoomLevel = isMobile ? 8 / dpi : 1 / dpi; // Menos zoom en PC
+const zoomLevel = isMobile ? 8 / dpi : 2 / dpi; // Menos zoom en PC
         this.cameras.main.setZoom(zoomLevel);
 //this.cameras.main.setZoom(8 / dpi);
 
@@ -579,7 +579,6 @@ createCheckbox(this);
 		  
 	*/	            
 
-hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 4, color: 0x0077ff, alpha: 0.2 } });
 
 		        //    hexagonGroup2 = this.add.group();
 
@@ -588,6 +587,8 @@ hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 4, color: 0x0077ff, a
 
 
             hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x0099ff } });
+		hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 4, color: 0x0077ff, alpha: 0.2 } });
+
             redCirclesGroup = this.add.group();
             hexagonGroup = this.add.group();
 
