@@ -46,7 +46,7 @@ requestAnimationFrame(function() {
             gravity: { y: 0 }, // Puedes ajustar la gravedad según lo necesites
             debug: false // Puedes activar esto para ver los cuerpos de colisión
         			} },
-            backgroundColor: '#0a0a0a',
+            backgroundColor: '#0B1E00',
             scale: {
                 mode: Phaser.Scale.FIT,
                 autoCenter: Phaser.Scale.CENTER_BOTH
@@ -579,16 +579,18 @@ createCheckbox(this);
 		  
 	*/	            
 
+hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 4, color: 0x0077ff, alpha: 0.2 } });
 
+		        //    hexagonGroup2 = this.add.group();
 
 
 
 
 
             hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x0099ff } });
-
             redCirclesGroup = this.add.group();
             hexagonGroup = this.add.group();
+
 	greenCirclesGroup = this.physics.add.group();
               
             // Crear el mapa hexagonal
@@ -607,6 +609,16 @@ createCheckbox(this);
         hexagonGroup.add(hexagonGraphics); // Añadir el gráfico del hexágono al grupo
     }
 }
+
+
+		//MAPA2
+		for (let y = 0; y < 12; y++) {
+        for (let x = 0; x < 12; x++) {
+            let hexX = x * hexagonWidth * 0.75;
+            let hexY = y * hexagonHeight + (x % 2 === 0 ? 0 : hexagonHeight / 2);
+            drawHexagon(hexagonGraphics2, hexX, hexY, hexagonSize);
+        }
+    }
 
 	
 
