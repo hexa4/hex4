@@ -110,19 +110,19 @@ let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, th
 //TEXTOS POSICION START
 
 
-fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff' });
-         fixedText2 = this.add.text(10, 30, '', { fontSize: '16px', fill: '#ffffff' });
-         fixedText3 = this.add.text(10, 50, '', { fontSize: '16px', fill: '#ffffff' });
-         fixedText4 = this.add.text(10, 70, '', { fontSize: '16px', fill: '#ffffff' });
-         fixedText5 = this.add.text(10, 90, '', { fontSize: '16px', fill: '#ffffff' });
-		 fixedText6 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'Points: 0', { fontSize: '16px', fill: '#ffffff' });
+fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  });
+         fixedText2 = this.add.text(10, 30, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi   });
+         fixedText3 = this.add.text(10, 50, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  });
+         fixedText4 = this.add.text(10, 70, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi   });
+         fixedText5 = this.add.text(10, 90, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi   });
+		 fixedText6 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'Points: 0', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi  });
 		
 
 		
 		
 	//	fixedText6.setOrigin(1, 0); 
 		//VELOCIDAD TOP RIGHT TEXT
-		fixedText7 = this.add.text(window.innerWidth - 10, 30, '', { fontSize: '16px', fill: '#0000ff' });
+		fixedText7 = this.add.text(window.innerWidth - 10, 30, '', { fontSize: '16px', fill: '#0000ff'   , resolution: dpi   });
 		//fixedText7.setOrigin(1, 0); 
         // Hace que los textos no se muevan con la cámara
         fixedText1.setScrollFactor(0);
