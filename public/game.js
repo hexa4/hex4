@@ -1010,6 +1010,8 @@ socket.on('borrarTodosGreen', () => {
         const text = scene.add.text(width / 2, height / 2, '+speed!', {
             fontSize: '48px',
             fill: '#0000ff'
+, resolution: dpi 
+
         }).setOrigin(0.5, 0.5);
 
         text.setScrollFactor(0);
@@ -1039,7 +1041,8 @@ function textOnDestroy(scene, x, y, texto, size, color) {
             
             const text = scene.add.text(x, y, texto, {
                     fontSize: size,
-                    fill: color
+                    fill: color, 
+resolution: dpi 
             });
             
                text.setOrigin(0.5, 0.5); // Establece el origen del texto en su centro
