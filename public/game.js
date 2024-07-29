@@ -1065,7 +1065,7 @@ socket.on('updateTopPlayers', () =>  {
 topplayers = [];
 for (const playerId in players) {
 const player = players[playerId];
-//console.log(`ID: ${playerId}, Nombre: ${player.name}, Puntos: ${player.puntos}`);
+console.log(`ID: ${playerId}, Nombre: ${player.name}, Puntos: ${player.puntos}`);
 addPlayer(players[playerId].name, players[playerId].puntos, players[playerId].color);
 }
 const topPlayers = getTopPlayers();
