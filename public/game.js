@@ -736,7 +736,7 @@ console.log('GREEN CIRCLES DRAW');
         this.circle.setInteractive();
 
         // Texto encima del jugador
-        this.text = this.scene.add.text(x, y - 20, name + ' (' + puntos + ')', { fontSize: '12px', fill: '#ffffff'  , resolution: dpi   });
+        this.text = this.scene.add.text(x, y - 20, name + ' (' + puntos + ')', { fontSize: '12px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto'});
         this.text.setOrigin(0.5);
         
 		//CAMARA PARA CLIENTE INDIVIDUAL
@@ -878,7 +878,7 @@ function collectGreenCircle(player, greenCircle) {
 
        	        greenCircle.destroy();
 
-       	    	textOnDestroy(this, greenCircle.x, greenCircle.y, '+1 points', '20px', '#00ff00');
+       	    	textOnDestroy(this, greenCircle.x, greenCircle.y, '+1 points', '10px', '#00ff00');
 
        	       	socket.emit('greenCircleEaten');
        	}
@@ -893,7 +893,7 @@ function collectGreenCircle(player, greenCircle) {
        	  llamarTextoSpeed(this);
        	 
        	 
-       	 		textOnDestroy(this, greenCircle.x, greenCircle.y, '+speed', '20px', '#0000ff');
+       	 		textOnDestroy(this, greenCircle.x, greenCircle.y, '+speed', '10px', '#0000ff');
 
        	 console.log(`SPEED ACTIVATED.`);
 
@@ -1008,7 +1008,7 @@ socket.on('borrarTodosGreen', () => {
         const height = scene.scale.height;
 
         const text = scene.add.text(width / 2, height / 2, '+speed!', {
-            fontSize: '48px',
+            fontSize: '40px',
             fill: '#0000ff'
 , resolution: dpi , fontFamily: 'Roboto'
 
@@ -1026,7 +1026,7 @@ socket.on('borrarTodosGreen', () => {
             yoyo: scene, // Para hacer que el tween vuelva al tamaño original
             onComplete: () => {
                 scene.time.addEvent({
-                    delay: 500,
+                    delay: 200,
                     callback: () => {
                         text.destroy();
                     }
@@ -1049,7 +1049,7 @@ resolution: dpi , fontFamily: 'Roboto'
     text.setPosition(x, y); // Reposiciona el texto
             
              scene.time.addEvent({
-                    delay: 1200,
+                    delay: 500,
                     callback: () => {
                         text.destroy();
                     }
