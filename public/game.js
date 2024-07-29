@@ -106,7 +106,7 @@ let checkbox, fixedText, hitArea;
             // Escalar gráficos según la densidad de píxeles
 
 
-const zoomLevel = isMobile ? 8 / dpi : 2 / dpi; // Menos zoom en PC
+const zoomLevel = isMobile ? 8 / dpi : 1 / dpi; // Menos zoom en PC
         this.cameras.main.setZoom(zoomLevel);
 //this.cameras.main.setZoom(8 / dpi);
 
