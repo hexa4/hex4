@@ -82,6 +82,11 @@ requestAnimationFrame(function() {
         let playerNameCircle;
 
 
+let checkbox, fixedText, hitArea;
+        let checkboxSize = 20;
+        let isChecked = true;
+
+
 		             const hexagonMap = [
         [{ direction: 'NE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }],
         [{ direction: 'SW' }, { direction: 'ES' } ,{ direction: 'E' }, { direction: 'ES' }, { direction: 'E' }],
