@@ -120,7 +120,13 @@ let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, th
 
 
 fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi , fontFamily: 'Roboto' });
+fixedText1.setShadow(2, 2, 'blue', 5);
+
+
          fixedText2 = this.add.text(10, 30, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
+fixedText2.setShadow(2, 2, 'blue', 5);
+
+
          fixedText3 = this.add.text(10, 50, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi , fontFamily: 'Roboto' });
          fixedText4 = this.add.text(10, 70, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
          fixedText5 = this.add.text(10, 90, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
@@ -180,7 +186,11 @@ let boxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - boxSize*
 
 // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
 let textYOffset = boxSize / 2;
-let staticText = this.add.text(boxX + boxSize + 10, boxY + textYOffset, 'Zoom', { fontSize: '16px', fill: '#ffffff' });
+let staticText = this.add.text(boxX + boxSize + 10, boxY + textYOffset, 'Zoom', { fontSize: '16px', fill: '#ffffff' , fontFamily: 'Roboto'   });
+
+
+staticText.setShadow(2, 2, 'blue', 5);
+
 staticText.setOrigin(0, 0.5); // Ajuste vertical para centrar con el checkbox
 staticText.setScrollFactor(0); // Esto fija el texto para que no se desplace con la cámara
 
@@ -472,6 +482,11 @@ staticText.setScrollFactor(0);
         // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
         let textOffsetY = checkboxSize / 2;
         let fixedText = this.add.text(checkboxX + checkboxSize + 10, checkboxY + textOffsetY, 'Centered Cam', { fontSize: '16px', fill: '#ffffff' , resolution: dpi  , fontFamily: 'Roboto'});
+
+fixedText.setShadow(2, 2, 'blue', 5);
+
+
+
         fixedText.setOrigin(0, 0.5); // Ajuste vertical para centrar con el checkbox
         fixedText.setScrollFactor(0); // Esto fija el texto para que no se desplace con la cámara
 
