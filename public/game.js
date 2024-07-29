@@ -170,7 +170,7 @@ let lineWidth = 2;
 
         let checkboxSize = 20;
         let checkboxX =   worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10 ;
-        let checkboxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - bottomLeftText.height - 10);
+        let checkboxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - bottomLeftText.height - 10;
 
         // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
         let textOffsetY = checkboxSize / 2;
