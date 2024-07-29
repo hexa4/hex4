@@ -187,7 +187,7 @@ fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor
             // Crear el jugador en un vértice aleatorio
             const randomHex = hexagons[Phaser.Math.Between(0, hexagons.length - 1)];
             const randomVertex = getHexVertices(randomHex.x, randomHex.y)[Phaser.Math.Between(0, 5)];
-            player = this.add.circle(randomVertex.x, randomVertex.y, 10, 0xffffff);
+            player = this.add.circle(randomVertex.x, randomVertex.y, 0, 0xffffff);
 
 socket.emit('newPlayer', { name: playerName, x: randomVertex.x, y: randomVertex.y, skin: skinCode });
 
