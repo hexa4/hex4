@@ -130,6 +130,8 @@ fixedText2.setShadow(2, 2, 'blue', 5);
          fixedText3 = this.add.text(10, 50, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi , fontFamily: 'Roboto' });
          fixedText4 = this.add.text(10, 70, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
          fixedText5 = this.add.text(10, 90, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
+
+
 		 fixedText6 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'Points: 0', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi , fontFamily: 'Roboto' });
 		
 
@@ -137,7 +139,13 @@ fixedText2.setShadow(2, 2, 'blue', 5);
 		
 	//	fixedText6.setOrigin(1, 0); 
 		//VELOCIDAD TOP RIGHT TEXT
-		fixedText7 = this.add.text(window.innerWidth - 10, 30, '', { fontSize: '16px', fill: '#0000ff'   , resolution: dpi  , fontFamily: 'Roboto' });
+
+
+		fixedText7 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'Points: 0', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi , fontFamily: 'Roboto' });
+		
+
+
+
 		//fixedText7.setOrigin(1, 0); 
         // Hace que los textos no se muevan con la cámara
         fixedText1.setScrollFactor(0);
@@ -179,11 +187,11 @@ worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 90);
 
 
 
-fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText6.width - 30, 
+fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText6.width - 20, 
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
 
 
-fixedText7.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText7.width - 30, 
+fixedText7.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText7.width - 20, 
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 30);
 
 
@@ -202,7 +210,7 @@ let lineWidth = 2;
 		
 let boxSize = 20;
 let boxX = worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10;
-let boxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - boxSize*2 - 30;
+let boxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - boxSize*2 - 20;
 
 // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
 let textYOffset = boxSize / 2;
