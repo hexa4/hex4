@@ -162,7 +162,8 @@ worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10,
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 20); 
 
 
-fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText6.width - 10, worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
+fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText6.width - 20, 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
 
 
 
@@ -186,7 +187,7 @@ let boxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - boxSize*
 
 // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
 let textYOffset = boxSize / 2;
-let staticText = this.add.text(boxX + boxSize + 10, boxY + textYOffset, 'Zoom', { fontSize: '16px', fill: '#ffffff' , fontFamily: 'Roboto'   });
+let staticText = this.add.text(boxX + boxSize + 10, boxY + textYOffset, 'Zoom', { fontSize: '16px', fill: '#ffffff' , resolution: dpi, fontFamily: 'Roboto'   });
 
 
 staticText.setShadow(2, 2, 'blue', 5);
