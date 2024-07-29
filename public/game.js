@@ -162,10 +162,29 @@ worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10,
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 30); 
 
 
-fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText6.width - 20, 
+fixedText3.setPosition( 	
+worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 50); 
+
+
+
+fixedText4.setPosition( 	
+worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 70); 
+
+
+fixedText5.setPosition( 	
+worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 90); 
+
+
+
+fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText6.width - 30, 
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
 
 
+fixedText7.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText7.width - 30, 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 30);
 
 
 //TEXTOS POSICION END
@@ -183,7 +202,7 @@ let lineWidth = 2;
 		
 let boxSize = 20;
 let boxX = worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10;
-let boxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - boxSize*2 - 10;
+let boxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - boxSize*2 - 30;
 
 // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
 let textYOffset = boxSize / 2;
@@ -318,8 +337,9 @@ playerLocal.fontSizePlayer(12);
     
  let zoomFactor = this.cameras.main.zoom; 
 
-  
 let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
+            
+
 
 console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
 
@@ -342,10 +362,10 @@ worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
 
 fixedText2.setPosition( 	
 worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 20); 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 30); 
 
 
-fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText6.width - 20, 
+fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText6.width - 30, 
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
 
     
