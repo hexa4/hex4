@@ -168,9 +168,11 @@ let lineWidth = 2;
 //CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM
 //CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM
 //CHECKBOX PARA ZOOM MAPA
+
+		
 let boxSize = 20;
-let boxX = 10;
-let boxY = this.scale.height - 70;
+let boxX = worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10;
+let boxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - checkboxSize*2 - 10;
 
 // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
 let textYOffset = boxSize / 2;
