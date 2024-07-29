@@ -110,19 +110,19 @@ let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, th
 //TEXTOS POSICION START
 
 
-fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  });
-         fixedText2 = this.add.text(10, 30, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi   });
-         fixedText3 = this.add.text(10, 50, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  });
-         fixedText4 = this.add.text(10, 70, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi   });
-         fixedText5 = this.add.text(10, 90, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi   });
-		 fixedText6 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'Points: 0', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi  });
+fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi , fontFamily: 'Roboto' });
+         fixedText2 = this.add.text(10, 30, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
+         fixedText3 = this.add.text(10, 50, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi , fontFamily: 'Roboto' });
+         fixedText4 = this.add.text(10, 70, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
+         fixedText5 = this.add.text(10, 90, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
+		 fixedText6 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'Points: 0', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi , fontFamily: 'Roboto' });
 		
 
 		
 		
 	//	fixedText6.setOrigin(1, 0); 
 		//VELOCIDAD TOP RIGHT TEXT
-		fixedText7 = this.add.text(window.innerWidth - 10, 30, '', { fontSize: '16px', fill: '#0000ff'   , resolution: dpi   });
+		fixedText7 = this.add.text(window.innerWidth - 10, 30, '', { fontSize: '16px', fill: '#0000ff'   , resolution: dpi  , fontFamily: 'Roboto' });
 		//fixedText7.setOrigin(1, 0); 
         // Hace que los textos no se muevan con la cámara
         fixedText1.setScrollFactor(0);
@@ -1010,7 +1010,7 @@ socket.on('borrarTodosGreen', () => {
         const text = scene.add.text(width / 2, height / 2, '+speed!', {
             fontSize: '48px',
             fill: '#0000ff'
-, resolution: dpi 
+, resolution: dpi , fontFamily: 'Roboto'
 
         }).setOrigin(0.5, 0.5);
 
@@ -1042,7 +1042,7 @@ function textOnDestroy(scene, x, y, texto, size, color) {
             const text = scene.add.text(x, y, texto, {
                     fontSize: size,
                     fill: color, 
-resolution: dpi 
+resolution: dpi , fontFamily: 'Roboto'
             });
             
                text.setOrigin(0.5, 0.5); // Establece el origen del texto en su centro
