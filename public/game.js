@@ -587,7 +587,6 @@ createCheckbox(this);
 
 
             hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x0099ff } });
-		hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 4, color: 0x0077ff, alpha: 0.2 } });
 
             redCirclesGroup = this.add.group();
             hexagonGroup = this.add.group();
@@ -611,13 +610,15 @@ createCheckbox(this);
     }
 }
 
+		hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 4, color: 0x0077ff, alpha: 0.2 } });
 
 		//MAPA2
-		for (let y = 0; y < 12; y++) {
-        for (let x = 0; x < 12; x++) {
+		 for (let y = 0; y < hexagonMap.length; y++) {
+    for (let x = 0; x < hexagonMap[y].length; x++) {
             let hexX = x * hexagonWidth * 0.75;
             let hexY = y * hexagonHeight + (x % 2 === 0 ? 0 : hexagonHeight / 2);
-            drawHexagon(hexagonGraphics2, hexX, hexY, hexagonSize);
+        drawHexagon(hexX, hexY, hexagonSize);
+	   let  hexagonGroup.add(hexagonGraphics);
         }
     }
 
