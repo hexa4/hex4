@@ -584,6 +584,7 @@ createCheckbox(this);
 
 
 
+		//hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 4, color: 0x0077ff, alpha: 0.2 } });
 
 
             hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x0099ff } });
@@ -610,18 +611,8 @@ createCheckbox(this);
     }
 }
 
-		hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 4, color: 0x0077ff, alpha: 0.2 } });
 
-		//MAPA2
-		 for (let y = 0; y < hexagonMap.length; y++) {
-    for (let x = 0; x < hexagonMap[y].length; x++) {
-            let hexX = x * hexagonWidth * 0.75;
-            let hexY = y * hexagonHeight + (x % 2 === 0 ? 0 : hexagonHeight / 2);
-        drawHexagon(hexX, hexY, hexagonSize);
-	   let  hexagonGroup.add(hexagonGraphics);
-        }
-    }
-
+	
 	
 
             // Crear el jugador en un vértice aleatorio
