@@ -174,7 +174,7 @@ let lineWidth = 2;
 
         // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
         let textOffsetY = checkboxSize / 2;
-        let fixedText = this.add.text(checkboxX + checkboxSize + 10, checkboxY + textOffsetY, 'Centered Cam', { fontSize: '16px', fill: '#ffffff' });
+        let fixedText = this.add.text(checkboxX + checkboxSize + 10, checkboxY + textOffsetY, 'Centered Cam', { fontSize: '16px', fill: '#ffffff' , resolution: dpi  , fontFamily: 'Roboto'});
         fixedText.setOrigin(0, 0.5); // Ajuste vertical para centrar con el checkbox
         fixedText.setScrollFactor(0); // Esto fija el texto para que no se desplace con la cámara
 
