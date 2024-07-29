@@ -584,16 +584,34 @@ createCheckbox(this);
 
 
 
-		hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 4, color: 0x0077ff, alpha: 0.2 } });
+		hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 6, color: 0x0077ff, alpha: 0.2 } });
             hexagonGroup2 = this.add.group();
 
 
-            hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x0099ff } });
+            hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x808080 } });
 
             redCirclesGroup = this.add.group();
             hexagonGroup = this.add.group();
 
 	greenCirclesGroup = this.physics.add.group();
+
+
+		     for (let y = 0; y < hexagonMap.length; y++) {
+    for (let x = 0; x < hexagonMap[y].length; x++) {
+        let hexX = x * hexagonWidth * 0.75;
+        let hexY = y * hexagonHeight + (x % 2 === 0 ? 0 : hexagonHeight / 2);
+
+        // Opcional: Usa la dirección del hexágono si es necesario
+        let direction = hexagonMap[y][x].direction;
+        console.log(`Hexágono en (${x}, ${y}) tiene dirección: ${direction}`);
+
+        drawHexagon2(hexX, hexY, hexagonSize);
+        hexagons.push({ x: hexX, y: hexY });
+        vertices.push(...getHexVertices(hexX, hexY));
+        hexagonGroup2.add(hexagonGraphics2); // Añadir el gráfico del hexágono al grupo
+    }
+}
+		
               
             // Crear el mapa hexagonal
      for (let y = 0; y < hexagonMap.length; y++) {
@@ -614,21 +632,7 @@ createCheckbox(this);
 
 
 
-		     for (let y = 0; y < hexagonMap.length; y++) {
-    for (let x = 0; x < hexagonMap[y].length; x++) {
-        let hexX = x * hexagonWidth * 0.75;
-        let hexY = y * hexagonHeight + (x % 2 === 0 ? 0 : hexagonHeight / 2);
 
-        // Opcional: Usa la dirección del hexágono si es necesario
-        let direction = hexagonMap[y][x].direction;
-        console.log(`Hexágono en (${x}, ${y}) tiene dirección: ${direction}`);
-
-        drawHexagon2(hexX, hexY, hexagonSize);
-        hexagons.push({ x: hexX, y: hexY });
-        vertices.push(...getHexVertices(hexX, hexY));
-        hexagonGroup2.add(hexagonGraphics2); // Añadir el gráfico del hexágono al grupo
-    }
-}
 
 	
 	
