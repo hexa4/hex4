@@ -141,7 +141,7 @@ fixedText2.setShadow(2, 2, 'blue', 5);
 		//VELOCIDAD TOP RIGHT TEXT
 
 
-		fixedText7 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'Points: 0', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi , fontFamily: 'Roboto' });
+		fixedText7 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'X2 SPEED - 5 s', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi , fontFamily: 'Roboto' });
 		
 
 
@@ -193,7 +193,7 @@ worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
 
 fixedText7.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText7.width - 20, 
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 30);
-
+fixedText7.setText("");
 
 //TEXTOS POSICION END
 let lineWidth = 2; 	
