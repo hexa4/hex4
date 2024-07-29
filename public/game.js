@@ -165,6 +165,9 @@ fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor
 
 //CHECKBOX CAM MOVE
            // Tamaño y posición del checkbox
+
+let lineWidth = 2; 	
+
         let checkboxSize = 20;
         let checkboxX =   worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10 ;
         let checkboxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - bottomLeftText.height - 10);
