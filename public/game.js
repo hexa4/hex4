@@ -165,7 +165,7 @@ fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor
 
 //CHECKBOX CAM MOVE
            // Tamaño y posición del checkbox
-
+/*
 let lineWidth = 2; 	
 
         let checkboxSize = 20;
@@ -280,7 +280,7 @@ createCheckbox(this);
 };
 		  
 		  
-		            
+	*/	            
 
 
 
