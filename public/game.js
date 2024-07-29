@@ -159,7 +159,7 @@ worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
 
 fixedText2.setPosition( 	
 worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 20); 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 50); 
 
 
 fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText6.width - 20, 
@@ -242,8 +242,10 @@ let toggleBox = () => {
 let playerLocal = players[socket.id];
 
     if (isBoxChecked) {
-        this.cameras.main.setZoom(1.0);
-        
+        this.cameras.main.setZoom(4 / dpi);
+    
+        let zoomFactor = this.cameras.main.zoom; 
+
         
         lineWidth = 2;
         
@@ -310,25 +312,13 @@ playerLocal.fontSizePlayer(12);
 
     } else {
     
-     		 ZoomOut = 2;
+     		 
 
+ this.cameras.main.setZoom(4 / dpi);
+    
+ let zoomFactor = this.cameras.main.zoom; 
 
-                playerLocal.stopCameraFollow();
-
-
- this.cameras.main.setZoom(0.5);
- 
- 
- 
-  this.cameras.main.scrollX = 0;
-        this.cameras.main.scrollY = 0;
-
-
-
- let cameraX = this.cameras.main.scrollX;
-    	let cameraY = this.cameras.main.scrollY;
-    	
-
+  
 let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
 
 console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
@@ -343,43 +333,29 @@ updateBoxPositionAndSize( -worldPoint.x +20, worldPoint.y+window.innerHeight-140
 
 
 
-       /* let textOffsetY2 = checkboxSize;
 
-fixedText.setPosition(
-        -worldPoint.x + checkboxX*2 + checkboxSize*2 + 20,
-        worldPoint.y+window.innerHeight-80 + textOffsetY2
-    );
-    fixedText.setFontSize(32);
+ fixedText1.setPosition( 	
+worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10); 
 
 
 
-let textYOffset2 = boxSize;
+fixedText2.setPosition( 	
+worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 20); 
 
-staticText.setPosition(
-        -worldPoint.x + boxX*2 + boxSize*2 +20,
-        worldPoint.y+window.innerHeight-140+textYOffset2
-    );
-    staticText.setFontSize(32);
-    */
-    
-    
-    
+
+fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText6.width - 20, 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
+
     
 
 fixedText1.setFontSize(32); 
- fixedText1.setPosition(
-        -worldPoint.x +20,
-        -worldPoint.y +20
-    );
-    
+ 
     
     
     fixedText2.setFontSize(32); 
- fixedText2.setPosition(
-        -worldPoint.x +20,
-        -worldPoint.y +60
-    );
-    
+ 
     
     fixedText3.setFontSize(32); 
  fixedText3.setPosition(
@@ -397,19 +373,11 @@ fixedText1.setFontSize(32);
  fixedText5.setPosition(
         -worldPoint.x +20,
         -worldPoint.y +180
-    );
-    
-    
-    
-    
+    ); 
     
     
     fixedText6.setFontSize(32); 
- fixedText6.setPosition(
-        worldPoint.x +window.innerWidth-20,
-        -worldPoint.y +20
-    );
-    
+ 
 
    fixedText7.setFontSize(32); 
  fixedText7.setPosition(
@@ -419,7 +387,7 @@ fixedText1.setFontSize(32);
 
 playerLocal.fontSizePlayer(24);
     
-playerLocal.startCameraFollow();
+
 
    
 
