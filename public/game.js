@@ -10,6 +10,9 @@ const height = window.innerHeight * dpi;
     let submitButton = document.getElementById('submitButton');
 const nameForm = document.getElementById('nameForm');
 
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+
 //FUNCION DEL BOTON JUGAR PLAY SE INICIA JUEGO
     submitButton.addEventListener('click', function() {
          playerName = playerNameInput.value.trim();      
@@ -103,8 +106,9 @@ let checkbox, fixedText, hitArea;
             // Escalar gráficos según la densidad de píxeles
 
 
-
-this.cameras.main.setZoom(8 / dpi);
+const zoomLevel = isMobile ? 8 / dpi : 2 / dpi; // Menos zoom en PC
+        this.cameras.main.setZoom(zoomLevel);
+//this.cameras.main.setZoom(8 / dpi);
 
 let zoomFactor = this.cameras.main.zoom; 
 
