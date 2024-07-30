@@ -351,7 +351,7 @@ let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, th
 
 console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
 
-
+/*
         lineWidth = 4;
 
 
@@ -418,7 +418,7 @@ playerLocal.fontSizePlayer(24);
 
 
    
-
+*/
     
 
     }
