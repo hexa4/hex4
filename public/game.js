@@ -269,7 +269,7 @@ let toggleBox = () => {
 let playerLocal = players[socket.id];
 
     if (isBoxChecked) {
-        this.cameras.main.setZoom(4 / dpi);
+        this.cameras.main.setZoom(8 / dpi);
     
         let zoomFactor = this.cameras.main.zoom; 
 
