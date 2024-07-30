@@ -342,18 +342,17 @@ playerLocal.fontSizePlayer(12);
      		 
 
  this.cameras.main.setZoom(4 / dpi);
-    
- let zoomFactor = this.cameras.main.zoom; 
 
-let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
-            
-console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
+        let zoomFactor = this.cameras.main.zoom;
+        let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
 
-
-
-const fixedText66 = this.add.text(worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 1 , 'HOLA', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi , fontFamily: 'Roboto' });
-fixedText66.setShadow(2, 2, 'blue', 5);
-
+        // Actualiza la posición del nuevo texto
+        const fixedText66 = this.add.text(worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 1, 'HOLA', {
+            fontSize: '16px',
+            fill: '#ffffff',
+            resolution: dpi,
+            fontFamily: 'Roboto'
+        });
 
 
 /*
