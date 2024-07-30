@@ -354,6 +354,9 @@ playerLocal.fontSizePlayer(12);
             fontFamily: 'Roboto'
         });
 
+fixedText66.setScrollFactor(0);
+
+
 
 /*
         lineWidth = 4;
