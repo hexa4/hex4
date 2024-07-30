@@ -347,7 +347,7 @@ playerLocal.fontSizePlayer(12);
         let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
 
         // Actualiza la posición del nuevo texto
-        const fixedText66 = this.add.text(worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 1, 'HOLA', {
+        const fixedText66 = this.add.text(worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 100, worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 100, 'HOLA', {
             fontSize: '16px',
             fill: '#ffffff',
             resolution: dpi,
