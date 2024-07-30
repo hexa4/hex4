@@ -343,21 +343,32 @@ playerLocal.fontSizePlayer(12);
 
  this.cameras.main.setZoom(4 / dpi);
 
-        let zoomFactor = this.cameras.main.zoom;
-        let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
-
-        // Actualiza la posición del nuevo texto
-        const fixedText66 = this.add.text(worldPoint.x +100, 
- worldPoint.y + 100, 'HOLA', {
-            fontSize: '16px',
-            fill: '#ffffff',
-            resolution: dpi,
-            fontFamily: 'Roboto'
-        });
-
-fixedText66.setScrollFactor(0);
+        playerLocal.stopCameraFollow();
 
 
+// this.cameras.main.setZoom(0.5);
+ 
+ 
+ 
+  this.cameras.main.scrollX = 0;
+        this.cameras.main.scrollY = 0;
+
+
+
+ let cameraX = this.cameras.main.scrollX;
+    	let cameraY = this.cameras.main.scrollY;
+    	
+
+let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
+
+console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
+
+
+ fixedText1.setPosition(
+        -worldPoint.x +20,
+        -worldPoint.y +20
+    );
+    
 
 /*
         lineWidth = 4;
