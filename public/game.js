@@ -359,7 +359,7 @@ playerLocal.fontSizePlayer(12);
     	let cameraY = this.cameras.main.scrollY;
     	
 
-let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
+let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 4, this.cameras.main.height / 4);
 
 console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
 
