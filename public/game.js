@@ -374,9 +374,9 @@ console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
         lineWidth = 4;
 
 
-updateCheckboxPositionAndSize( -worldPoint.x +20, worldPoint.y+window.innerHeight-80, 40, 2, 32);
+updateCheckboxPositionAndSize( -worldPoint.x +20, worldPoint.y+window.innerHeight * dpi -80, 40, 2, 32);
 
-updateBoxPositionAndSize( -worldPoint.x +20, worldPoint.y+window.innerHeight-140, 40, 2, 32);
+updateBoxPositionAndSize( -worldPoint.x +20, worldPoint.y+window.innerHeight * dpi -140, 40, 2, 32);
 
 
 
