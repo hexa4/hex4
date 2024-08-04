@@ -460,8 +460,8 @@ updateBoxPositionAndSize( -worldPoint.x +20, worldPoint.y+window.innerHeight * d
 
 
  fixedText1.setPosition( 	
-worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10); 
+worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 100, 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 100); 
 
 
 
