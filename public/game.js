@@ -364,6 +364,17 @@ let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width , this.
 console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
 
 
+
+console.log('option1 :',  worldPoint.x +  this.cameras.main.width/2,
+        worldPoint.y + this.cameras.main.height/2
+     );
+
+
+console.log('option2 :',  worldPoint.x - this.cameras.main.width/2,
+        worldPoint.y - this.cameras.main.height/2
+     );
+
+
  fixedText1.setPosition(
         worldPoint.x +  this.cameras.main.width/2,
         worldPoint.y + this.cameras.main.height/2
