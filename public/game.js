@@ -442,10 +442,16 @@ console.log('option15 :',  worldPoint.x + (this.cameras.main.width ) / zoomFacto
 worldPoint.y + (this.cameras.main.height ) / zoomFactor + 10
      );
 
- fixedText1.setPosition(
-        250,450
-    );
-    
+let ac = this.cameras.main.scrollX;
+
+let ac2 = this.cameras.main.scrollY;
+
+console.log('optionAC:',  ac,ac2
+     );
+
+
+fixedText1.setPosition(this.cameras.main.scrollX, this.cameras.main.scrollY);
+
 
 /*
         lineWidth = 4;
