@@ -406,6 +406,19 @@ console.log('option8 :',  worldPoint.x / 2 - this.cameras.main.width,
      );
 
 
+console.log('option9 :',  worldPoint.x,
+        worldPoint.y
+     );
+
+
+console.log('option10 :',  -worldPoint.x,
+        -worldPoint.y
+     );
+
+console.log('option11 :',  worldPoint.x/2,
+        worldPoint.y/2
+     );
+
 
  fixedText1.setPosition(
         worldPoint.x +  this.cameras.main.width/2,
