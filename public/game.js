@@ -481,7 +481,7 @@ console.log('optionAC:',  ac,ac2
      );
 
 
-let worldPos = screenToWorld.call(this, 0, 0);
+let worldPos = screenToWorld.call(this, 100, 100);
     console.log('World Position:', worldPos.x, worldPos.y);
 
 
