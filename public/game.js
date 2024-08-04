@@ -343,15 +343,15 @@ playerLocal.fontSizePlayer(12);
 
  this.cameras.main.setZoom(4 / dpi);
 
-     //   playerLocal.stopCameraFollow();
+      playerLocal.stopCameraFollow();
 
 
 // this.cameras.main.setZoom(0.5);
  
  
  
-// this.cameras.main.scrollX = 0;
- //     this.cameras.main.scrollY = 0;
+this.cameras.main.scrollX = 0;
+    this.cameras.main.scrollY = 0;
 
 let zoomFactor = this.cameras.main.zoom; 
 
