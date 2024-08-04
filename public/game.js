@@ -443,7 +443,7 @@ worldPoint.y + (this.cameras.main.height ) / zoomFactor + 10
      );
 
  fixedText1.setPosition(
-        200,200
+        250,450
     );
     
 
