@@ -365,8 +365,8 @@ console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
 
 
  fixedText1.setPosition(
-        worldPoint.x +20,
-        worldPoint.y +20
+        worldPoint.x +  this.cameras.main.width,
+        worldPoint.y + this.cameras.main.height
     );
     
 
