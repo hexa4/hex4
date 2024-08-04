@@ -423,7 +423,7 @@ console.log('option11 :',  worldPoint.x/2,
 
 
 console.log('option12 :',  worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10)
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10
      );
 
 
@@ -431,15 +431,15 @@ worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10)
 
 
 console.log('option13 :',  worldPoint.x - (this.cameras.main.width ) / zoomFactor + 10, 
-worldPoint.y - (this.cameras.main.height ) / zoomFactor + 10)
+worldPoint.y - (this.cameras.main.height ) / zoomFactor + 10
      );
 
 console.log('option14 :',  worldPoint.x + (this.cameras.main.width / 2) / zoomFactor + 10, 
-worldPoint.y + (this.cameras.main.height / 2) / zoomFactor + 10)
+worldPoint.y + (this.cameras.main.height / 2) / zoomFactor + 10
      );
 
 console.log('option15 :',  worldPoint.x + (this.cameras.main.width ) / zoomFactor + 10, 
-worldPoint.y + (this.cameras.main.height ) / zoomFactor + 10)
+worldPoint.y + (this.cameras.main.height ) / zoomFactor + 10
      );
 
  fixedText1.setPosition(
