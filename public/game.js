@@ -353,7 +353,7 @@ playerLocal.fontSizePlayer(12);
     
      		 
 
- this.cameras.main.setZoom(4 / dpi);
+ //this.cameras.main.setZoom(4 / dpi);
 
       playerLocal.stopCameraFollow();
 
@@ -465,7 +465,7 @@ console.log('optionAC:',  ac,ac2
 fixedText1.setPosition(this.cameras.main.scrollX, this.cameras.main.scrollY);
 
 
-const dpi = window.devicePixelRatio;
+
     this.cameras.main.setZoom(4 / dpi);
 
     // Actualizar la posición del texto después de aplicar el zoom
@@ -550,8 +550,6 @@ playerLocal.fontSizePlayer(24);
 
 
 // También puedes usar la función update del juego para asegurarte de que el texto se actualice en cada frame
-this.events.on('update', updateTextPosition, this);
-
 
 
 
@@ -593,6 +591,8 @@ box.setScrollFactor(0);
 staticText.setScrollFactor(0);
 
 
+
+this.events.on('update', updateTextPosition, this);
 
 
 
