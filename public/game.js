@@ -195,6 +195,25 @@ fixedText7.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 30);
 fixedText7.setText("");
 
+
+
+function screenToWorld(screenX, screenY) {
+    let cam = this.cameras.main;
+    let zoom = cam.zoom;
+    let scrollX = cam.scrollX;
+    let scrollY = cam.scrollY;
+
+    // Convertir coordenadas de pantalla a coordenadas del mundo
+    let worldX = (screenX / zoom) + scrollX;
+    let worldY = (screenY / zoom) + scrollY;
+
+    return { x: worldX, y: worldY };
+}
+
+
+
+
+
 //TEXTOS POSICION END
 let lineWidth = 2; 	
 		
@@ -460,6 +479,11 @@ let ac2 = this.cameras.main.scrollY;
 
 console.log('optionAC:',  ac,ac2
      );
+
+
+let worldPos = screenToWorld.call(this, 0, 0);
+    console.log('World Position:', worldPos.x, worldPos.y);
+
 
 
 fixedText1.setPosition(this.cameras.main.scrollX, this.cameras.main.scrollY);
