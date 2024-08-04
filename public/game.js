@@ -375,6 +375,38 @@ console.log('option2 :',  worldPoint.x - this.cameras.main.width/2,
      );
 
 
+console.log('option3 :',  worldPoint.x - this.cameras.main.width,
+        worldPoint.y - this.cameras.main.height
+     );
+
+
+
+console.log('option4 :',  worldPoint.x + this.cameras.main.width,
+        worldPoint.y + this.cameras.main.height
+     );
+
+
+console.log('option5 :',  worldPoint.x / 2 - this.cameras.main.width/2,
+        worldPoint.y / 2 - this.cameras.main.height/2
+     );
+
+
+console.log('option6 :',  worldPoint.x / 2 + this.cameras.main.width/2,
+        worldPoint.y / 2 + this.cameras.main.height/2
+     );
+
+
+console.log('option7 :',  worldPoint.x / 2+ this.cameras.main.width,
+        worldPoint.y / 2 + this.cameras.main.height
+     );
+
+
+console.log('option8 :',  worldPoint.x / 2 - this.cameras.main.width,
+        worldPoint.y / 2 - this.cameras.main.height
+     );
+
+
+
  fixedText1.setPosition(
         worldPoint.x +  this.cameras.main.width/2,
         worldPoint.y + this.cameras.main.height/2
