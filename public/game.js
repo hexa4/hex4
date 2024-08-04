@@ -452,6 +452,19 @@ console.log('optionAC:',  ac,ac2
 
 fixedText1.setPosition(this.cameras.main.scrollX, this.cameras.main.scrollY);
 
+let texto = this.add.text(0, 0, 'Hello World', { font: '16px Arial', fill: '#ffffff' });
+
+// Posicionar el texto en la esquina superior izquierda de la vista de la cámara
+texto.setPosition(this.cameras.main.scrollX, this.cameras.main.scrollY);
+
+// Asegúrate de actualizar la posición del texto en cada frame
+this.cameras.main.on('cameraupdate', function (camera) {
+    texto.setPosition(camera.scrollX, camera.scrollY);
+}, this);
+
+
+
+
 
 /*
         lineWidth = 4;
