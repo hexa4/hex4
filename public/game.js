@@ -490,9 +490,9 @@ console.log('optionAC:',  ac,ac2
 
 
     let transformMatrix = cam.matrix;
-        let worldPoint = transformMatrix.transformPoint(0, 0);
+        let worldPoint2 = transformMatrix.transformPoint(0, 0);
 
-        console.log('Transformed World Position:', worldPoint.x, worldPoint.y);
+        console.log('Transformed World Position:', worldPoint2.x, worldPoint2.y);
 
 
 fixedText1.setPosition(this.cameras.main.scrollX, this.cameras.main.scrollY);
