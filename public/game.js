@@ -489,6 +489,21 @@ console.log('optionAC:',  ac,ac2
      );
 
 
+console.log('option11B :',  worldPoint.x/3,
+        worldPoint.y/3
+     );
+
+console.log('option11C :',  worldPoint.x/4,
+        worldPoint.y/4
+     );
+console.log('option11D :',  worldPoint.x/ zoomFactor ,
+        worldPoint.y/zoomFactor
+     );
+
+
+
+
+
 
 let cam = this.cameras.main;
     let transformMatrix = cam.matrix;
