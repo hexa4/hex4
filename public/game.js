@@ -370,6 +370,8 @@ console.log('option9o9999 :',  (4 / dpi),
         (8 / dpi)
      );
 
+
+ let factorR = 4 / dpi;
     
      		 this.cameras.main.setZoom(4 / dpi);
 
@@ -536,7 +538,7 @@ let worldPoint4 = cam.getWorldPoint(0, 0);
 
 
 
-fixedText1.setPosition(   worldPoint.x/2, worldPoint.y/2 );
+fixedText1.setPosition(   worldPoint.x/  factorR , worldPoint.y/   factorR );
 
 
 
