@@ -516,7 +516,7 @@ let worldPoint4 = cam.getWorldPoint(0, 0);
 
 
 
-fixedText1.setPosition(   worldPoint4.x, worldPoint4.y );
+fixedText1.setPosition(   worldPoint.x/2, worldPoint.y/2 );
 
 
 
