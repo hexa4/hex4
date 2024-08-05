@@ -370,7 +370,7 @@ playerLocal.fontSizePlayer(12);
 
     } else {
     
-     		 
+     		 this.cameras.main.setZoom(4 / dpi);
 
  //this.cameras.main.setZoom(4 / dpi);
 
@@ -490,7 +490,7 @@ fixedText1.setPosition(this.cameras.main.scrollX, this.cameras.main.scrollY);
 
 
 
-    this.cameras.main.setZoom(4 / dpi);
+    
 
     // Actualizar la posición del texto después de aplicar el zoom
     updateTextPosition.call(this);
