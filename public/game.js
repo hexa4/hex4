@@ -499,7 +499,7 @@ let cam = this.cameras.main;
 
 
 
-let cam = this.cameras.main;
+//let cam = this.cameras.main;
 
         // Calcular las coordenadas del mundo basándonos en la escala de la cámara
         let worldX = cam.scrollX + (0 / cam.scaleManager.scaleX);
