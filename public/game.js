@@ -489,6 +489,8 @@ console.log('optionAC:',  ac,ac2
      );
 
 
+
+let cam = this.cameras.main;
     let transformMatrix = cam.matrix;
         let worldPoint2 = transformMatrix.transformPoint(0, 0);
 
