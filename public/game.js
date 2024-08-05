@@ -497,6 +497,19 @@ let cam = this.cameras.main;
         console.log('Transformed World Position:', worldPoint2.x, worldPoint2.y);
 
 
+
+
+let cam = this.cameras.main;
+
+        // Calcular las coordenadas del mundo basándonos en la escala de la cámara
+        let worldX = cam.scrollX + (0 / cam.scaleManager.scaleX);
+        let worldY = cam.scrollY + (0 / cam.scaleManager.scaleY);
+
+        console.log('Scaled World Position:', worldX, worldY);
+
+
+
+
 fixedText1.setPosition(this.cameras.main.scrollX, this.cameras.main.scrollY);
 
 
