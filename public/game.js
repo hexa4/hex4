@@ -489,20 +489,11 @@ console.log('optionAC:',  ac,ac2
      );
 
 
-    this.cameras.main.once('cameraupdate', () => {
-        // Coordenadas de la esquina superior izquierda de la pantalla
-        let screenX = 0; // esquina superior izquierda en X
-        let screenY = 0; // esquina superior izquierda en Y
+    let transformMatrix = cam.matrix;
+        let worldPoint = transformMatrix.transformPoint(0, 0);
 
-        // Obtener las coordenadas del mundo
-        let worldPos = screenToWorld.call(this, screenX, screenY);
-        console.log('Camera ScrollX:', this.cameras.main.scrollX);
-        console.log('Camera ScrollY:', this.cameras.main.scrollY);
-        console.log('World Position:', worldPos.x, worldPos.y);
+        console.log('Transformed World Position:', worldPoint.x, worldPoint.y);
 
-        // Posicionar el texto en las coordenadas del mundo calculadas
-        texto.setPosition(worldPos.x, worldPos.y);
-    });
 
 fixedText1.setPosition(this.cameras.main.scrollX, this.cameras.main.scrollY);
 
