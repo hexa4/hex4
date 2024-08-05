@@ -510,6 +510,12 @@ let cam = this.cameras.main;
 
 
 
+let worldPoint4 = cam.getWorldPoint(0, 0);
+        console.log('World Position4:', worldPoint4.x, worldPoint4.y);
+
+
+
+
 fixedText1.setPosition(this.cameras.main.scrollX, this.cameras.main.scrollY);
 
 
