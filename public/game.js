@@ -365,6 +365,11 @@ playerLocal.fontSizePlayer(12);
 
 
     } else {
+
+console.log('option9o9999 :',  (4 / dpi,
+        (8 / dpi
+     );
+
     
      		 this.cameras.main.setZoom(4 / dpi);
 
