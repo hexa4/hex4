@@ -516,7 +516,7 @@ let worldPoint4 = cam.getWorldPoint(0, 0);
 
 
 
-fixedText1.setPosition(this.cameras.main.scrollX, this.cameras.main.scrollY);
+fixedText1.setPosition(   worldPoint4.x, worldPoint4.y );
 
 
 
