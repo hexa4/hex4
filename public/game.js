@@ -493,10 +493,20 @@ console.log('optionAC:',  ac,ac2
      );
 
 
-let worldPos = screenToWorld.call(this, 100, 100);
-    console.log('World Position:', worldPos.x, worldPos.y);
+    this.cameras.main.once('cameraupdate', () => {
+        // Coordenadas de la esquina superior izquierda de la pantalla
+        let screenX = 0; // esquina superior izquierda en X
+        let screenY = 0; // esquina superior izquierda en Y
 
+        // Obtener las coordenadas del mundo
+        let worldPos = screenToWorld.call(this, screenX, screenY);
+        console.log('Camera ScrollX:', this.cameras.main.scrollX);
+        console.log('Camera ScrollY:', this.cameras.main.scrollY);
+        console.log('World Position:', worldPos.x, worldPos.y);
 
+        // Posicionar el texto en las coordenadas del mundo calculadas
+        texto.setPosition(worldPos.x, worldPos.y);
+    });
 
 fixedText1.setPosition(this.cameras.main.scrollX, this.cameras.main.scrollY);
 
