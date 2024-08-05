@@ -197,20 +197,16 @@ fixedText7.setText("");
 
 
 
-function screenToWorld(screenX, screenY) {
-    let cam = this.cameras.main;
-    let zoom = cam.zoom;
-    let scrollX = cam.scrollX;
-    let scrollY = cam.scrollY;
+function manualScreenToWorld(screenX, screenY) {
+    const dpi = window.devicePixelRatio;
+    const zoomLevel = 4 / dpi;
 
-    // Convertir coordenadas de pantalla a coordenadas del mundo
-    let worldX = (screenX / zoom) + scrollX;
-    let worldY = (screenY / zoom) + scrollY;
+    // Invertimos el cálculo
+    let worldX = screenX * zoomLevel;
+    let worldY = screenY * zoomLevel;
 
     return { x: worldX, y: worldY };
 }
-
-
 
 
 
