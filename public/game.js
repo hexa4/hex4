@@ -33,34 +33,22 @@ requestAnimationFrame(function() {
         
     });
     
-        function startGame(playerName) {
+function startGame(playerName) {
 
-        
-        const config = {
-            type: Phaser.AUTO,
-            width: width,
-            height: height,
-		physics: {
-        	default: 'arcade',
-        	arcade: {
-            gravity: { y: 0 }, // Puedes ajustar la gravedad según lo necesites
-            debug: false // Puedes activar esto para ver los cuerpos de colisión
-        			} },
-            backgroundColor: '#0B1E00',
-            scale: {
-                mode: Phaser.Scale.FIT,
-                autoCenter: Phaser.Scale.CENTER_BOTH
-            },
-            scene: {
-                preload: preload,
-                create: create,
-                update: update
-            },
-            pixelArt: true,
-            roundPixels: true
-        };
+///GAMESCENE///////!?!?!?!?!?!??!?!?!?!?!?!?!?!?!?!?!?!?!??!	
 
-        const game = new Phaser.Game(config);
+class GameScene extends Phaser.Scene {
+            constructor() {
+                super({ key: 'GameScene' });
+            }
+
+
+
+          preload() {
+                // Cargar recursos si es necesario
+            }
+       	
+
 
         let player;
         let hexagonGraphics,hexagonGraphics2;
@@ -98,11 +86,9 @@ let checkbox, fixedText, hitArea;
     
     
 
-        function preload() {
-            // Cargar recursos si es necesario
-        }
+    
 
-        function create() {
+         create() {
             // Escalar gráficos según la densidad de píxeles
 
 
@@ -1769,8 +1755,68 @@ fixedText5.setText(topPlayers.length >= 5 ? `#5 ${topPlayers[4].name}: ${topPlay
 if (topPlayers[4] && topPlayers[4].color) {
 fixedText5.setFill(topPlayers[4].color); }
 });	
-	
-		
 
+
+}  ///GAMESCENE END !!!/!?!?!?!?!?!?!?!?!?!?	
+
+
+//UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
+//UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
+//UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
+//UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
+//UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
+//UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
+//UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
+//UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 		
+class UIScene extends Phaser.Scene {
+        constructor() {super({ key: 'UIScene' });}
         
-}  
+         create() {
+         console.log(`INICIADO UISCENE!!!!`);
+
+
+
+
+		 
+                
+          }
+            
+        update() {}
+        preload() {}
+         
+}
+//END UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
+//END UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
+//END UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
+//END UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
+//END UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
+//END UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
+	
+
+
+//CONFIG SCENEN/////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        const config = {
+            type: Phaser.AUTO,
+            width: width,
+            height: height,
+		physics: {
+        	default: 'arcade',
+        	arcade: {
+            gravity: { y: 0 }, // Puedes ajustar la gravedad según lo necesites
+            debug: false // Puedes activar esto para ver los cuerpos de colisión
+        			} },
+            backgroundColor: '#0B1E00',
+            scale: {
+                mode: Phaser.Scale.FIT,
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            },
+        	scene: [GameScene, UIScene],
+            pixelArt: true,
+            roundPixels: true
+        };
+
+        const game = new Phaser.Game(config);
+	game.scene.start('GameScene');
+
+	
+}  //END FUNCTION START GAME!!!!
