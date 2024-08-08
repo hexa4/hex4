@@ -1112,21 +1112,21 @@ socket.on('eliminarPlayerServer', (collisionIndex) => {
 	
         }
 
-        function update() {
+         update() {
             // Lógica de actualización
         }
 
-        function drawHexagon(x, y, size) {
+         drawHexagon(x, y, size) {
             const points = getHexVertices(x, y, size);
             hexagonGraphics.strokePoints(points, true);
         }
 
-		function drawHexagon2(x, y, size) {
+		 drawHexagon2(x, y, size) {
             const points = getHexVertices(x, y, size);
             hexagonGraphics2.strokePoints(points, true);
         }
 
-        function getHexVertices(x, y, size = hexagonSize) {
+         getHexVertices(x, y, size = hexagonSize) {
             const points = [];
             for (let i = 0; i < 6; i++) {
                 const angle = Phaser.Math.DegToRad(60 * i);
@@ -1137,7 +1137,7 @@ socket.on('eliminarPlayerServer', (collisionIndex) => {
             return points;
         }
 
-        function updateRedVertices() {
+         updateRedVertices() {
             clearRedVertices.call(this); 
 
             const verticesInRadius = getVerticesInRadius(player.x, player.y, 60); // Radio de 60 píxeles
@@ -1150,7 +1150,7 @@ socket.on('eliminarPlayerServer', (collisionIndex) => {
             });
         }
 
-        function getVerticesInRadius(x, y, radius) {
+         getVerticesInRadius(x, y, radius) {
             return vertices.filter(vertex => {
                 let distance = Phaser.Math.Distance.Between(x, y, vertex.x, vertex.y);
                 return distance <= radius && distance > 20;
@@ -1160,7 +1160,7 @@ socket.on('eliminarPlayerServer', (collisionIndex) => {
 //CLICK EN LA PANTALLA  
 //CLICK EN LA PANTALLA            
 //CLICK EN LA PANTALLA                      
-        function onPointerDown(pointer) {
+         onPointerDown(pointer) {
         
         
 
@@ -1229,7 +1229,7 @@ console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
    //FIND CLOSEST RED VERTEX  
 //FIND CLOSEST RED VERTEX            
 //FIND CLOSEST RED VERTEX                              
-        function findClosestRedVertexToClick(x, y) {
+         findClosestRedVertexToClick(x, y) {
             let closestVertex = null;
             let minDistance = Infinity;
             redVertices.forEach(vertex => {
@@ -1261,7 +1261,7 @@ console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
 //CLEAR RED VERTEX   
 //CLEAR RED VERTEX                                      
 //CLEAR RED VERTEX                                                                         
-function clearRedVertices() {
+ clearRedVertices() {
              redCirclesGroup.clear(true, true);  // Borra todos los elementos del grupo redCirclesGroup
     redVertices = []; 
         }
@@ -1269,7 +1269,7 @@ function clearRedVertices() {
 //UPDATE RED VERTEX POINTS
 //UPDATE RED VERTEX POINTS
 //UPDATE RED VERTEX POINTS        
-	function updateRedVertices(x, y) {
+	 updateRedVertices(x, y) {
 		//console.log(`UPDATE RED VERTICES: (${x}) `);	
 
 	clearRedVertices.call(this);  
@@ -1296,11 +1296,11 @@ function clearRedVertices() {
 
 
 	///TOP PLATERS SYSTEM
-function addPlayer(name, puntos, color) {
+ addPlayer(name, puntos, color) {
 	const nuevoJugador = { name: name, puntos: puntos, color: color };
 	topplayers.push(nuevoJugador);
 }
-function getTopPlayers() {
+ getTopPlayers() {
 const sortedPlayers = topplayers.sort((a, b) => b.puntos - a.puntos);
 const topPlayersx = sortedPlayers.slice(0, 5);
 topPlayersx.forEach(topplayer => { });
@@ -1308,7 +1308,7 @@ return topPlayersx;
 }	
 
 
-function gameOver(){
+ gameOver(){
 
 document.getElementById("retryBox").style.visibility = "visible";
 var retryButton = document.getElementById("retryButton");
@@ -1323,7 +1323,7 @@ location.reload();
 
 
 //DRAW GREEN CIRCLES!!!!!!
-function drawGreenCircles(greenCirclesS) {
+ drawGreenCircles(greenCirclesS) {
 console.log('GREEN CIRCLES DRAW');
     let index = 0;
 
