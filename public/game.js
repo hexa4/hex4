@@ -34,23 +34,7 @@ requestAnimationFrame(function() {
     });
     
 function startGame(playerName) {
-
-///GAMESCENE///////!?!?!?!?!?!??!?!?!?!?!?!?!?!?!?!?!?!?!??!	
-
-class GameScene extends Phaser.Scene {
-            constructor() {
-                super({ key: 'GameScene' });
-            }
-
-
-
-          preload() {
-                // Cargar recursos si es necesario
-            }
-       	
-
-
-        let player;
+   let player;
         let hexagonGraphics,hexagonGraphics2;
         let hexagonSize = 50;
         let hexagonWidth = hexagonSize * 2;
@@ -83,6 +67,25 @@ let checkbox, fixedText, hitArea;
         [{ direction: 'SW' }, { direction: 'ES' } ,{ direction: 'E' }, { direction: 'ES' }, { direction: 'E' }],
         [{ direction: 'SW' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }]
     ];
+
+	
+
+///GAMESCENE///////!?!?!?!?!?!??!?!?!?!?!?!?!?!?!?!?!?!?!??!	
+
+class GameScene extends Phaser.Scene {
+            constructor() {
+                super({ key: 'GameScene' });
+            }
+
+
+
+          preload() {
+                // Cargar recursos si es necesario
+            }
+       	
+
+
+     
     
     
 
