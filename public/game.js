@@ -62,6 +62,11 @@ let checkbox, fixedText, hitArea;
         let isChecked = true;
 
 
+let Velocidad = false;
+let segundosRestantes = 5;
+let intervalo;
+
+
 		             const hexagonMap = [
         [{ direction: 'NE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }],
         [{ direction: 'SW' }, { direction: 'ES' } ,{ direction: 'E' }, { direction: 'ES' }, { direction: 'E' }],
@@ -1622,11 +1627,9 @@ collectGreenCircle(player, greenCircle) {
 
 
 
-let Velocidad = false;
-let segundosRestantes = 5;
-let intervalo;
+
 ///ACTIVAR VELOCIDAD TEXTO
-function activarVelocidad() {
+activarVelocidad() {
 clearInterval(intervalo);
 
     Velocidad = true;
