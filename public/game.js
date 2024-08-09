@@ -1531,7 +1531,7 @@ console.log('GREEN CIRCLES DRAW');
 
 
 //COLISION CON GREEN CIRCLES
-function collectGreenCircle(player, greenCircle) {
+collectGreenCircle(player, greenCircle) {
 
 		    //	console.log(`COLISION!!!!!!!!!!.`);
 
