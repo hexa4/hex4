@@ -1656,6 +1656,9 @@ clearInterval(intervalo);
 
 
 
+
+/*
+
 //BORRA TODOS CIRCULOS VERDES PARA VOLVER A GENERAR (DESDE SERVER ACCIONADO)
 socket.on('borrarTodosGreen', () => {
 	console.log('BORRAR GREEN CIRCLES.');
@@ -1675,7 +1678,7 @@ socket.on('borrarTodosGreen', () => {
 		
 
 
-
+*/
 
 
 ///TEXTO VELOCIDAD EN EL MEDIO PANTALLA
