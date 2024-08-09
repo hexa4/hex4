@@ -1676,7 +1676,7 @@ socket.on('borrarTodosGreen', () => {
 
 
 ///TEXTO VELOCIDAD EN EL MEDIO PANTALLA
-  function llamarTextoSpeed(scene) {
+  llamarTextoSpeed(scene) {
         const width = scene.scale.width;
         const height = scene.scale.height;
 
@@ -1709,7 +1709,7 @@ socket.on('borrarTodosGreen', () => {
     }
 
 
-function textOnDestroy(scene, x, y, texto, size, color) {
+textOnDestroy(scene, x, y, texto, size, color) {
 
             
             const text = scene.add.text(x, y, texto, {
