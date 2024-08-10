@@ -257,6 +257,11 @@ class GameScene extends Phaser.Scene {
             // Escalar gráficos según la densidad de píxeles
 
 
+
+this.socket = null;
+
+
+
 const zoomLevel = isMobile ? 8 / dpi : 2 / dpi; // Menos zoom en PC
         this.cameras.main.setZoom(zoomLevel);
 //this.cameras.main.setZoom(8 / dpi);
