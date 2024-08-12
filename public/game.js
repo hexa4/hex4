@@ -1257,7 +1257,7 @@ this.tweens.add({
 
 socket.on('greenCirclesS', function(greenCirclesS) {
     console.log('Recibido greenCircles:', greenCirclesS);
-    drawGreenCircles.call(this, greenCirclesS); // Usar call para establecer el contexto correcto
+    this.drawGreenCircles.call(this, greenCirclesS); // Usar call para establecer el contexto correcto
 }.bind(this));	
 
 
