@@ -1416,16 +1416,16 @@ let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, th
 
 console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
 
-		 let closestRedVertex = findClosestRedVertexToClick(pointer.x + cameraX, pointer.y + cameraY, cameraX, cameraY);
+		 let closestRedVertex = this.findClosestRedVertexToClick(pointer.x + cameraX, pointer.y + cameraY, cameraX, cameraY);
 
 
 		if(ZoomOut === 1){
-		 closestRedVertex = findClosestRedVertexToClick(pointer.x + cameraX, pointer.y + cameraY, cameraX, cameraY);
+		 closestRedVertex = this.findClosestRedVertexToClick(pointer.x + cameraX, pointer.y + cameraY, cameraX, cameraY);
         }
     	if(ZoomOut === 2){
     	let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
 
-		 closestRedVertex = findClosestRedVertexToClick(pointer.x + worldPoint.x, pointer.y + worldPoint.y, cameraX, cameraY);
+		 closestRedVertex = this.findClosestRedVertexToClick(pointer.x + worldPoint.x, pointer.y + worldPoint.y, cameraX, cameraY);
 		}
         
         
