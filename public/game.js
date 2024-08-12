@@ -1,20 +1,14 @@
-//const socket = io();
-
-
-//console.log(socket);
-
 const dpi = window.devicePixelRatio;
 const width = window.innerWidth * dpi;
 const height = window.innerHeight * dpi;
 
-    let playerName;
-    let playerNameInput = document.getElementById('playerName');
-    let errorMessage = document.getElementById('errorMessage');
-    let submitButton = document.getElementById('submitButton');
+let playerName;
+let playerNameInput = document.getElementById('playerName');
+let errorMessage = document.getElementById('errorMessage');
+let submitButton = document.getElementById('submitButton');
 const nameForm = document.getElementById('nameForm');
 
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
 
 //FUNCION DEL BOTON JUGAR PLAY SE INICIA JUEGO
     submitButton.addEventListener('click', function() {
@@ -37,9 +31,6 @@ requestAnimationFrame(function() {
     });
     
 function startGame(playerName) {
-
-//const socket = io();
-
 
    let player;
         let hexagonGraphics,hexagonGraphics2;
@@ -105,8 +96,7 @@ let intervalo;
         const sizeCalc = (0.01 * puntos) + 0.2;		
 
 
-		//this.circle = this.scene.add.image(x, y, 'player');
-		this.circle = this.scene.physics.add.image(x, y, id);
+	this.circle = this.scene.physics.add.image(x, y, id);
         this.circle.setScale(sizeCalc); 
         
         this.circle.setInteractive();
@@ -123,20 +113,12 @@ let intervalo;
 
 
 			//COLISION PLAYERS PRUEBA
-
-
-						
-
-
         }
         
         			this.circle.type = 'player';
 					this.circle.id = id;
                     greenCirclesGroup.add(this.circle);  
 
-        
-        
-        
         //COLISION NUEVA
 
         
@@ -249,13 +231,6 @@ class GameScene extends Phaser.Scene {
             }
        	
 
-
-     
-    
-    
-
-    
-
          create() {
 
 
@@ -306,22 +281,11 @@ fixedText5.setFill(topPlayers[4].color); }
 });	
 
 
-
-
-            // Escalar gráficos según la densidad de píxeles
-
-
-
-//this.socket = null;
-
-
-
 const zoomLevel = isMobile ? 8 / dpi : 2 / dpi; // Menos zoom en PC
         this.cameras.main.setZoom(zoomLevel);
 //this.cameras.main.setZoom(8 / dpi);
 
 let zoomFactor = this.cameras.main.zoom; 
-
 let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
             
 
@@ -331,32 +295,13 @@ let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, th
 
 fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi , fontFamily: 'Roboto' });
 fixedText1.setShadow(2, 2, 'blue', 5);
-
-
-         fixedText2 = this.add.text(10, 30, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
+fixedText2 = this.add.text(10, 30, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
 fixedText2.setShadow(2, 2, 'blue', 5);
-
-
-         fixedText3 = this.add.text(10, 50, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi , fontFamily: 'Roboto' });
-         fixedText4 = this.add.text(10, 70, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
-         fixedText5 = this.add.text(10, 90, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
-
-
-		 fixedText6 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'Points: 0', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi , fontFamily: 'Roboto' });
-		
-
-		
-		
-	//	fixedText6.setOrigin(1, 0); 
-		//VELOCIDAD TOP RIGHT TEXT
-
-
-		fixedText7 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'X2 SPEED - 5 s', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi , fontFamily: 'Roboto' });
-		
-
-
-
-		//fixedText7.setOrigin(1, 0); 
+fixedText3 = this.add.text(10, 50, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi , fontFamily: 'Roboto' });
+fixedText4 = this.add.text(10, 70, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
+fixedText5 = this.add.text(10, 90, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
+fixedText6 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'Points: 0', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi , fontFamily: 'Roboto' });
+fixedText7 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'X2 SPEED - 5 s', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi , fontFamily: 'Roboto' });
         // Hace que los textos no se muevan con la cámara
         fixedText1.setScrollFactor(0);
         fixedText2.setScrollFactor(0);
@@ -406,20 +351,6 @@ worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 30);
 fixedText7.setText("");
 
 
-
-function manualScreenToWorld(screenX, screenY) {
-    const dpi = window.devicePixelRatio;
-    const zoomLevel = 4 / dpi;
-
-    // Invertimos el cálculo
-    let worldX = screenX * zoomLevel;
-    let worldY = screenY * zoomLevel;
-
-    return { x: worldX, y: worldY };
-}
-
-
-
 //TEXTOS POSICION END
 let lineWidth = 2; 	
 		
@@ -439,10 +370,6 @@ function updateTextPosition() {
     let cam = this.cameras.main;
     texto.setPosition(cam.scrollX, cam.scrollY);
 }
-
-
-
-
 
 		
 let boxSize = 20;
@@ -510,359 +437,17 @@ let playerLocal = players[socket.id];
     
         let zoomFactor = this.cameras.main.zoom; 
 
-        
-        lineWidth = 2;
-        
-      updateCheckboxPositionAndSize( 10, window.innerHeight-40, 20, 1, 16);
-
-updateBoxPositionAndSize( 10, window.innerHeight-70, 20, 1, 16);  
-        
-
-fixedText.setPosition(
-        checkboxX + checkboxSize + 10, checkboxY + textOffsetY
-    );
-    fixedText.setFontSize(16);
-        
-        
- staticText.setPosition(
-        boxX + boxSize + 10, boxY + textYOffset
-    );
-    staticText.setFontSize(16);       
-        
-        
-fixedText1.setFontSize(16); // Cambia el tamaño de la fuente a 48px
- fixedText1.setPosition(
-         10,
-        10);
-        
-        
- fixedText2.setFontSize(16); // Cambia el tamaño de la fuente a 48px
- fixedText2.setPosition(
-         10,
-        30);       
-    
-    
-  fixedText3.setFontSize(16); // Cambia el tamaño de la fuente a 48px
- fixedText3.setPosition(
-         10,
-        50);         
-    
-    
-      fixedText4.setFontSize(16); // Cambia el tamaño de la fuente a 48px
- fixedText4.setPosition(
-         10,
-        70);   
-        
-        
-          fixedText5.setFontSize(16); // Cambia el tamaño de la fuente a 48px
- fixedText5.setPosition(
-         10,
-        90);   
-     
-fixedText6.setFontSize(16); // Cambia el tamaño de la fuente a 48px
- fixedText6.setPosition(
-        window.innerWidth-10,
-        10);
-    
-    
-    fixedText7.setFontSize(16); // Cambia el tamaño de la fuente a 48px
- fixedText7.setPosition(
-        window.innerWidth-10,
-        30);
-    
-    
 playerLocal.fontSizePlayer(12);
 
 
     } else {
-
-console.log('option9o9999 :',  (4 / dpi),
-        (8 / dpi)
-     );
-
-
- let factorR = 4 / dpi;
-    
+  
      		 this.cameras.main.setZoom(4 / dpi);
-
- //this.cameras.main.setZoom(4 / dpi);
-
-      playerLocal.stopCameraFollow();
-
-
-// this.cameras.main.setZoom(0.5);
- 
- 
- 
-this.cameras.main.scrollX = 0;
-    this.cameras.main.scrollY = 0;
-
-let zoomFactor = this.cameras.main.zoom; 
-
-
- let cameraX = this.cameras.main.scrollX;
-    	let cameraY = this.cameras.main.scrollY;
-    	
-    this.cameras.main.once('cameraupdate', () => {
-        // Coordenadas de la esquina superior izquierda de la pantalla
-        let screenX = 0; // esquina superior izquierda en X
-        let screenY = 0; // esquina superior izquierda en Y
-
-        // Obtener las coordenadas del mundo
-        let worldPos = screenToWorld.call(this, screenX, screenY);
-        console.log('Camera ScrollX:', this.cameras.main.scrollX);
-        console.log('Camera ScrollY:', this.cameras.main.scrollY);
-        console.log('World Position:', worldPos.x, worldPos.y);
-
-        // Posicionar el texto en las coordenadas del mundo calculadas
-        texto.setPosition(worldPos.x, worldPos.y);
-    });
-
-console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
-
-
-
-console.log('option1 :',  worldPoint.x +  this.cameras.main.width/2,
-        worldPoint.y + this.cameras.main.height/2
-     );
-
-
-console.log('option2 :',  worldPoint.x - this.cameras.main.width/2,
-        worldPoint.y - this.cameras.main.height/2
-     );
-
-
-console.log('option3 :',  worldPoint.x - this.cameras.main.width,
-        worldPoint.y - this.cameras.main.height
-     );
-
-
-
-console.log('option4 :',  worldPoint.x + this.cameras.main.width,
-        worldPoint.y + this.cameras.main.height
-     );
-
-
-console.log('option5 :',  worldPoint.x / 2 - this.cameras.main.width/2,
-        worldPoint.y / 2 - this.cameras.main.height/2
-     );
-
-
-console.log('option6 :',  worldPoint.x / 2 + this.cameras.main.width/2,
-        worldPoint.y / 2 + this.cameras.main.height/2
-     );
-
-
-console.log('option7 :',  worldPoint.x / 2+ this.cameras.main.width,
-        worldPoint.y / 2 + this.cameras.main.height
-     );
-
-
-console.log('option8 :',  worldPoint.x / 2 - this.cameras.main.width,
-        worldPoint.y / 2 - this.cameras.main.height
-     );
-
-
-console.log('option9 :',  worldPoint.x,
-        worldPoint.y
-     );
-
-
-console.log('option10 :',  -worldPoint.x,
-        -worldPoint.y
-     );
-
-console.log('option11 :',  worldPoint.x/2,
-        worldPoint.y/2
-     );
-
-
-
-console.log('option12 :',  worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10
-     );
-
-
-
-
-
-console.log('option13 :',  worldPoint.x - (this.cameras.main.width ) / zoomFactor + 10, 
-worldPoint.y - (this.cameras.main.height ) / zoomFactor + 10
-     );
-
-console.log('option14 :',  worldPoint.x + (this.cameras.main.width / 2) / zoomFactor + 10, 
-worldPoint.y + (this.cameras.main.height / 2) / zoomFactor + 10
-     );
-
-console.log('option15 :',  worldPoint.x + (this.cameras.main.width ) / zoomFactor + 10, 
-worldPoint.y + (this.cameras.main.height ) / zoomFactor + 10
-     );
-
-let ac = this.cameras.main.scrollX;
-
-let ac2 = this.cameras.main.scrollY;
-
-console.log('optionAC:',  ac,ac2
-     );
-
-
-console.log('option11B :',  worldPoint.x/3,
-        worldPoint.y/3
-     );
-
-console.log('option11C :',  worldPoint.x/4,
-        worldPoint.y/4
-     );
-console.log('option11D :',  worldPoint.x/ zoomFactor ,
-        worldPoint.y/zoomFactor
-     );
-
-
-
-
-
-
-let cam = this.cameras.main;
-    let transformMatrix = cam.matrix;
-        let worldPoint2 = transformMatrix.transformPoint(0, 0);
-
-        console.log('Transformed World Position:', worldPoint2.x, worldPoint2.y);
-
-
-
-
-//let cam = this.cameras.main;
-
-        // Calcular las coordenadas del mundo basándonos en la escala de la cámara
-        let worldX = cam.scrollX + (0 / cam.scaleManager.scaleX);
-        let worldY = cam.scrollY + (0 / cam.scaleManager.scaleY);
-
-        console.log('Scaled World Position:', worldX, worldY);
-
-
-
-
-let worldPoint4 = cam.getWorldPoint(0, 0);
-        console.log('World Position4:', worldPoint4.x, worldPoint4.y);
-
-
-
-
-fixedText1.setPosition(   worldPoint.x/  factorR , worldPoint.y/   factorR );
-
-
-
-    
-
-    // Actualizar la posición del texto después de aplicar el zoom
-    updateTextPosition.call(this);
-
-
-
-
-/*
-        lineWidth = 4;
-
-
-updateCheckboxPositionAndSize( -worldPoint.x +20, worldPoint.y+window.innerHeight * dpi -80, 40, 2, 32);
-
-updateBoxPositionAndSize( -worldPoint.x +20, worldPoint.y+window.innerHeight * dpi -140, 40, 2, 32);
-
-
-
-
- fixedText1.setPosition( 	
-worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 100, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 100); 
-
-
-
-fixedText2.setPosition( 	
-worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 30); 
-
-
-fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText6.width - 30, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
-
-    
-
-fixedText1.setFontSize(32); 
- 
-    
-    
-    fixedText2.setFontSize(32); 
- 
-    
-    fixedText3.setFontSize(32); 
- fixedText3.setPosition(
-        -worldPoint.x +20,
-        -worldPoint.y +100
-    );
-    
-    fixedText4.setFontSize(32); 
- fixedText4.setPosition(
-        -worldPoint.x +20,
-        -worldPoint.y +140
-    );
-    
-    fixedText5.setFontSize(32); 
- fixedText5.setPosition(
-        -worldPoint.x +20,
-        -worldPoint.y +180
-    ); 
-    
-    
-    fixedText6.setFontSize(32); 
- 
-
-   fixedText7.setFontSize(32); 
- fixedText7.setPosition(
-        worldPoint.x +window.innerWidth-20,
-        -worldPoint.y +60
-    );
-
-playerLocal.fontSizePlayer(24);
-    
-
-
-   
-*/
-    
 
     }
 };
 
 
-
-// También puedes usar la función update del juego para asegurarte de que el texto se actualice en cada frame
-
-
-
-
-
-
-let updateBoxPositionAndSize = (newX, newY, newSize, factor, fontsize) => {
-    boxX = newX;
-    boxY = newY;
-    boxSize = newSize;
-
-    // Actualizar hit area
-    hitAreaBox.setSize(boxSize, boxSize);
-    hitAreaBox.setPosition(boxX, boxY);
-
-    // Redibujar el checkbox en la nueva posición y tamaño
-    drawBoxCheck(isBoxChecked);
-
-    // Actualizar la interactividad del checkbox con la nueva hit area
-    box.setInteractive(hitAreaBox, Phaser.Geom.Rectangle.Contains);
-
-    // Actualizar la posición del texto
-    staticText.setPosition(boxX + boxSize + 10*factor, boxY + textYOffset*factor);
-    
-        staticText.setFontSize(fontsize);
-
-};
 
 
 
@@ -879,10 +464,6 @@ staticText.setScrollFactor(0);
 
 
 this.events.on('update', updateTextPosition, this);
-
-
-
-
 
 
 //CHECKBOX CAM MOVE//////////////////
@@ -977,44 +558,9 @@ fixedText.setShadow(2, 2, 'blue', 5);
 
         // Muestra el estado inicial del checkbox
         console.log('Checkbox initial state: checked, Cam =', Cam);
-		
-	/*	  
-let updateCheckboxPositionAndSize = (newX, newY, newSize, factor, fontsize) => {
-    checkboxX = newX;
-    checkboxY = newY;
-    checkboxSize = newSize;
-
-    // Actualizar hit area
-    hitArea.setSize(checkboxSize, checkboxSize);
-    hitArea.setPosition(checkboxX, checkboxY);
-
-    // Redibujar el checkbox en la nueva posición y tamaño
-    drawCheck(isChecked);
-
-    // Actualizar la interactividad del checkbox con la nueva hit area
-    checkbox.setInteractive(hitArea, Phaser.Geom.Rectangle.Contains);
-
-    // Actualizar la posición del texto
-    fixedText.setPosition(checkboxX + checkboxSize + 10*factor, checkboxY + textOffsetY*factor);
-        fixedText.setFontSize(fontsize);
 
 
-
-
-createCheckbox(this);
-
-
-};
-		  
-		  
-	*/	            
-
-
-		        //    hexagonGroup2 = this.add.group();
-
-
-
-		hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 6, color: 0x0077ff, alpha: 0.2 } });
+	hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 6, color: 0x0077ff, alpha: 0.2 } });
             hexagonGroup2 = this.add.group();
 
 
@@ -1061,12 +607,6 @@ createCheckbox(this);
 }
 
 
-
-
-
-	
-	
-
             // Crear el jugador en un vértice aleatorio
             const randomHex = hexagons[Phaser.Math.Between(0, hexagons.length - 1)];
             const randomVertex = this.getHexVertices(randomHex.x, randomHex.y)[Phaser.Math.Between(0, 5)];
@@ -1074,35 +614,15 @@ createCheckbox(this);
 
 socket.emit('newPlayer', { name: playerName, x: randomVertex.x, y: randomVertex.y, skin: skinCode });
 
-            // Añadir texto encima del jugador
-           
-           
-           
-         //   playerName = this.add.text(randomVertex.x, randomVertex.y - 20, 'Player', { fontSize: '12px', fill: '#ffffff' });
-           
-           
-     //       playerNameCircle = this.add.text(randomVertex.x, randomVertex.y - 20, 'Player', { fontSize: '12px', fill: '#ffffff', resolution: dpi });
-           
-           
-       //     playerNameCircle.setOrigin(0.5);
 
-            // Centrar la cámara en el jugador
-            //this.cameras.main.startFollow(player);
-
-        //    player.setInteractive();
-        //    player.vertices = [];
           
-            this.updateRedVertices.call(this, randomVertex.x, randomVertex.y); 
+this.updateRedVertices.call(this, randomVertex.x, randomVertex.y); 
 console.log("COORDS", randomVertex.x,randomVertex.y);
 
-
-// Llamar a updateRedVertices con el contexto correcto
           
             this.input.on('pointerdown', this.onPointerDown, this);
 
 	        	socket.emit('LlamargreenCirclesS');
-
-
 
 
 //RECIBIR UPDATE POINTS AND SIZE Of PLAYER
@@ -1144,10 +664,7 @@ players[playerData.id] = player;
 console.log('SE CREA PLAYER', players[playerData.id]);
 
 console.log("Ejecutar Top Players 1111", playerData.id);
-
-
 console.log("Ejecutar Top Players2222", socket.id);
-
 
 if(socket.id===playerData.id){
 
@@ -1601,6 +1118,10 @@ console.log('GREEN CIRCLES DRAW');
             index++;
 
     }
+
+	 		    	console.log(`GreenSize!.`, greenCirclesGroup.size() );
+
+	 greenCirclesGroup
 }
 
 
@@ -1608,7 +1129,7 @@ console.log('GREEN CIRCLES DRAW');
 //COLISION CON GREEN CIRCLES
 collectGreenCircle(player, greenCircle) {
 
-		    //	console.log(`COLISION!!!!!!!!!!.`);
+		    	console.log(`COLISION!!!!!!!!!!.`);
 
 
         // Acceder a las propiedades del círculo verde
@@ -1694,10 +1215,6 @@ collectGreenCircle(player, greenCircle) {
 }
 
 
-
-
-
-
 ///ACTIVAR VELOCIDAD TEXTO
 activarVelocidad() {
 clearInterval(intervalo);
@@ -1726,16 +1243,6 @@ clearInterval(intervalo);
 
 
 
-
-/*
-
-
-		
-
-
-*/
-
-
 ///TEXTO VELOCIDAD EN EL MEDIO PANTALLA
   llamarTextoSpeed(scene) {
         const width = scene.scale.width;
@@ -1751,19 +1258,11 @@ clearInterval(intervalo);
         text.setScrollFactor(0);
 
 
-        scene.tweens.add({
-            targets: text,
-            scaleX: 2,
-            scaleY: 2,
-            duration: 500,
-            ease: 'Power2',
-            yoyo: scene, // Para hacer que el tween vuelva al tamaño original
+scene.tweens.add({ targets: text, scaleX: 2, scaleY: 2, duration: 500, ease: 'Power2', yoyo: scene, 
             onComplete: () => {
                 scene.time.addEvent({
                     delay: 200,
-                    callback: () => {
-                        text.destroy();
-                    }
+                    callback: () => { text.destroy();  }
                 });
             }
         });
@@ -1771,8 +1270,6 @@ clearInterval(intervalo);
 
 
 textOnDestroy(scene, x, y, texto, size, color) {
-
-            
             const text = scene.add.text(x, y, texto, {
                     fontSize: size,
                     fill: color, 
