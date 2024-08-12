@@ -1097,7 +1097,7 @@ socket.emit('newPlayer', { name: playerName, x: randomVertex.x, y: randomVertex.
 
 // Llamar a updateRedVertices con el contexto correcto
           
-            this.input.on('pointerdown', onPointerDown, this);
+            this.input.on('pointerdown', this.onPointerDown, this);
 
 	        	socket.emit('LlamargreenCirclesS');
 
@@ -1387,7 +1387,7 @@ socket.on('eliminarPlayerServer', (collisionIndex) => {
 //CLICK EN LA PANTALLA  
 //CLICK EN LA PANTALLA            
 //CLICK EN LA PANTALLA                      
-         this.onPointerDown(pointer) {
+         onPointerDown(pointer) {
         
         
 
