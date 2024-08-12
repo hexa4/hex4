@@ -1035,7 +1035,7 @@ createCheckbox(this);
         let direction = hexagonMap[y][x].direction;
         console.log(`Hexágono en (${x}, ${y}) tiene dirección: ${direction}`);
 
-        drawHexagon2(hexX, hexY, hexagonSize);
+        this.drawHexagon2(hexX, hexY, hexagonSize);
         hexagons.push({ x: hexX, y: hexY });
         vertices.push(...getHexVertices(hexX, hexY));
         hexagonGroup2.add(hexagonGraphics2); // Añadir el gráfico del hexágono al grupo
