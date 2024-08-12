@@ -1344,7 +1344,7 @@ socket.on('eliminarPlayerServer', (collisionIndex) => {
         }
 
          drawHexagon(x, y, size) {
-            const points = getHexVertices(x, y, size);
+            const points = this.getHexVertices(x, y, size);
             hexagonGraphics.strokePoints(points, true);
         }
 
