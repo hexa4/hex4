@@ -1,7 +1,7 @@
-const socket = io();
+//const socket = io();
 
 
-console.log(socket);
+//console.log(socket);
 
 const dpi = window.devicePixelRatio;
 const width = window.innerWidth * dpi;
