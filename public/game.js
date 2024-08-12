@@ -260,7 +260,22 @@ class GameScene extends Phaser.Scene {
 
 
 
-
+//BORRA TODOS CIRCULOS VERDES PARA VOLVER A GENERAR (DESDE SERVER ACCIONADO)
+socket.on('borrarTodosGreen', () => {
+	console.log('BORRAR GREEN CIRCLES.');
+	
+	
+    	    greenCirclesGroup.getChildren().forEach(circle => {
+        // Verificar si el tipo no es 'player'
+        if (circle.type !== 'player') {
+            // Eliminar el círculo
+            circle.destroy();
+        }
+    });
+    	    
+    	    
+    	    
+});
    
     
     	
@@ -1317,6 +1332,12 @@ socket.on('eliminarPlayerServer', (collisionIndex) => {
 
 	
         }
+	//END CREATE GAME SCENE END CREATE
+	//END CREATE GAME SCENE END CREATE
+	//END CREATE GAME SCENE END CREATE
+	//END CREATE GAME SCENE END CREATE
+	//END CREATE GAME SCENE END CREATE
+	
 
          update() {
             // Lógica de actualización
@@ -1707,22 +1728,7 @@ clearInterval(intervalo);
 
 /*
 
-//BORRA TODOS CIRCULOS VERDES PARA VOLVER A GENERAR (DESDE SERVER ACCIONADO)
-socket.on('borrarTodosGreen', () => {
-	console.log('BORRAR GREEN CIRCLES.');
-	
-	
-    	    greenCirclesGroup.getChildren().forEach(circle => {
-        // Verificar si el tipo no es 'player'
-        if (circle.type !== 'player') {
-            // Eliminar el círculo
-            circle.destroy();
-        }
-    });
-    	    
-    	    
-    	    
-});
+
 		
 
 
