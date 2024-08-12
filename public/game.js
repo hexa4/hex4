@@ -1502,7 +1502,7 @@ console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
 
 	this.clearRedVertices.call(this);  
 
-    const verticesInRadius = getVerticesInRadius(x, y, 60); // Radio de 60 píxeles
+    const verticesInRadius = this.getVerticesInRadius(x, y, 60); // Radio de 60 píxeles
     verticesInRadius.forEach(vertex => { 
     redVertices.push({ x: vertex.x, y: vertex.y });
     //console.log(`redVertex: (${vertex.x}, ${vertex.y}) `);	
