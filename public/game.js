@@ -1092,7 +1092,7 @@ socket.emit('newPlayer', { name: playerName, x: randomVertex.x, y: randomVertex.
         //    player.setInteractive();
         //    player.vertices = [];
           
-            updateRedVertices.call(this, randomVertex.x, randomVertex.y); 
+            this.updateRedVertices.call(this, randomVertex.x, randomVertex.y); 
 
 
 // Llamar a updateRedVertices con el contexto correcto
