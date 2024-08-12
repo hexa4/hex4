@@ -1187,7 +1187,7 @@ this.tweens.add({
               		},
                	onComplete: function() {
                	if(socket.id === playerId){
-        		updateRedVertices.call(this, endX, endY);
+        		this.updateRedVertices.call(this, endX, endY);
         		socket.emit('updatePosition', { x: endX, y: endY });
         		noMover = false;
         		        
