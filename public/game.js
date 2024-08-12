@@ -287,7 +287,7 @@ const player = players[playerId];
 console.log(`ID: ${playerId}, Nombre: ${player.name}, Puntos: ${player.puntos}`);
 this.addPlayer(players[playerId].name, players[playerId].puntos, players[playerId].color);
 }
-const topPlayers = getTopPlayers();
+const topPlayers = this.getTopPlayers();
 fixedText1.setText(topPlayers.length >= 1 ? `#1 ${topPlayers[0].name}: ${topPlayers[0].puntos}` : '');
 if (topPlayers[0] && topPlayers[0].color) {
 fixedText1.setFill(topPlayers[0].color); }
