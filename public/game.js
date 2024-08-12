@@ -1119,7 +1119,7 @@ console.log('GREEN CIRCLES DRAW');
 
     }
 
-	 		    	console.log(`GreenSize!.`, greenCirclesGroup.size() );
+	 		    	console.log(`GreenSize!.`, greenCirclesGroup.size );
 
 	 greenCirclesGroup
 }
