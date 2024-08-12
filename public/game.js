@@ -257,11 +257,47 @@ class GameScene extends Phaser.Scene {
     
 
          create() {
+
+
+
+
+   
+    
+    	
+//RECIBIR UPDATE TOP PLAYERS
+socket.on('updateTopPlayers', () =>  {
+topplayers = [];
+for (const playerId in players) {
+const player = players[playerId];
+console.log(`ID: ${playerId}, Nombre: ${player.name}, Puntos: ${player.puntos}`);
+addPlayer(players[playerId].name, players[playerId].puntos, players[playerId].color);
+}
+const topPlayers = getTopPlayers();
+fixedText1.setText(topPlayers.length >= 1 ? `#1 ${topPlayers[0].name}: ${topPlayers[0].puntos}` : '');
+if (topPlayers[0] && topPlayers[0].color) {
+fixedText1.setFill(topPlayers[0].color); }
+fixedText2.setText(topPlayers.length >= 2 ? `#2 ${topPlayers[1].name}: ${topPlayers[1].puntos}` : '');
+if (topPlayers[1] && topPlayers[1].color) {
+fixedText2.setFill(topPlayers[1].color); }
+fixedText3.setText(topPlayers.length >= 3 ? `#3 ${topPlayers[2].name}: ${topPlayers[2].puntos}` : '');
+if (topPlayers[2] && topPlayers[2].color) {
+fixedText3.setFill(topPlayers[2].color); }
+fixedText4.setText(topPlayers.length >= 4 ? `#4 ${topPlayers[3].name}: ${topPlayers[3].puntos}` : '');
+if (topPlayers[3] && topPlayers[3].color) {
+fixedText4.setFill(topPlayers[3].color); }
+fixedText5.setText(topPlayers.length >= 5 ? `#5 ${topPlayers[4].name}: ${topPlayers[4].puntos}` : '');
+if (topPlayers[4] && topPlayers[4].color) {
+fixedText5.setFill(topPlayers[4].color); }
+});	
+
+
+
+
             // Escalar gráficos según la densidad de píxeles
 
 
 
-this.socket = null;
+//this.socket = null;
 
 
 
@@ -1750,35 +1786,6 @@ resolution: dpi , fontFamily: 'Roboto'
 }
 
 
-
-   
-    
-    	
-//RECIBIR UPDATE TOP PLAYERS
-socket.on('updateTopPlayers', () =>  {
-topplayers = [];
-for (const playerId in players) {
-const player = players[playerId];
-console.log(`ID: ${playerId}, Nombre: ${player.name}, Puntos: ${player.puntos}`);
-addPlayer(players[playerId].name, players[playerId].puntos, players[playerId].color);
-}
-const topPlayers = getTopPlayers();
-fixedText1.setText(topPlayers.length >= 1 ? `#1 ${topPlayers[0].name}: ${topPlayers[0].puntos}` : '');
-if (topPlayers[0] && topPlayers[0].color) {
-fixedText1.setFill(topPlayers[0].color); }
-fixedText2.setText(topPlayers.length >= 2 ? `#2 ${topPlayers[1].name}: ${topPlayers[1].puntos}` : '');
-if (topPlayers[1] && topPlayers[1].color) {
-fixedText2.setFill(topPlayers[1].color); }
-fixedText3.setText(topPlayers.length >= 3 ? `#3 ${topPlayers[2].name}: ${topPlayers[2].puntos}` : '');
-if (topPlayers[2] && topPlayers[2].color) {
-fixedText3.setFill(topPlayers[2].color); }
-fixedText4.setText(topPlayers.length >= 4 ? `#4 ${topPlayers[3].name}: ${topPlayers[3].puntos}` : '');
-if (topPlayers[3] && topPlayers[3].color) {
-fixedText4.setFill(topPlayers[3].color); }
-fixedText5.setText(topPlayers.length >= 5 ? `#5 ${topPlayers[4].name}: ${topPlayers[4].puntos}` : '');
-if (topPlayers[4] && topPlayers[4].color) {
-fixedText5.setFill(topPlayers[4].color); }
-});	
 
 
 }  ///GAMESCENE END !!!/!?!?!?!?!?!?!?!?!?!?	
