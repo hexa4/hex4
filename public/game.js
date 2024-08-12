@@ -1368,7 +1368,7 @@ socket.on('eliminarPlayerServer', (collisionIndex) => {
          updateRedVertices() {
             this.clearRedVertices.call(this); 
 
-            const verticesInRadius = getVerticesInRadius(player.x, player.y, 60); // Radio de 60 píxeles
+            const verticesInRadius = this.getVerticesInRadius(player.x, player.y, 60); // Radio de 60 píxeles
             verticesInRadius.forEach(vertex => {
                 redVertices.push({ x: vertex.x, y: vertex.y });
                 const graphics = this.add.graphics();
