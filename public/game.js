@@ -1,4 +1,4 @@
-// const socket = io();
+const socket = io();
 
 const dpi = window.devicePixelRatio;
 const width = window.innerWidth * dpi;
@@ -35,7 +35,7 @@ requestAnimationFrame(function() {
     
 function startGame(playerName) {
 
-const socket = io();
+//const socket = io();
 
 
    let player;
