@@ -1093,6 +1093,7 @@ socket.emit('newPlayer', { name: playerName, x: randomVertex.x, y: randomVertex.
         //    player.vertices = [];
           
             this.updateRedVertices.call(this, randomVertex.x, randomVertex.y); 
+console.log("COORDS", randomVertex.x,randomVertex.y);
 
 
 // Llamar a updateRedVertices con el contexto correcto
