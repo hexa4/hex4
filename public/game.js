@@ -1055,7 +1055,7 @@ createCheckbox(this);
 
         this.drawHexagon(hexX, hexY, hexagonSize);
         hexagons.push({ x: hexX, y: hexY });
-        vertices.push(...getHexVertices(hexX, hexY));
+        vertices.push(...this.getHexVertices(hexX, hexY));
         hexagonGroup.add(hexagonGraphics); // Añadir el gráfico del hexágono al grupo
     }
 }
