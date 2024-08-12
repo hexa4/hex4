@@ -285,7 +285,7 @@ topplayers = [];
 for (const playerId in players) {
 const player = players[playerId];
 console.log(`ID: ${playerId}, Nombre: ${player.name}, Puntos: ${player.puntos}`);
-addPlayer(players[playerId].name, players[playerId].puntos, players[playerId].color);
+this.addPlayer(players[playerId].name, players[playerId].puntos, players[playerId].color);
 }
 const topPlayers = getTopPlayers();
 fixedText1.setText(topPlayers.length >= 1 ? `#1 ${topPlayers[0].name}: ${topPlayers[0].puntos}` : '');
