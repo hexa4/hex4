@@ -117,7 +117,7 @@ let intervalo;
         
         			this.circle.type = 'player';
 					this.circle.id = id;
-                    greenCirclesGroup.add(this.circle);  
+                    this.greenCirclesGroup.add(this.circle);  
 
         //COLISION NUEVA
 
