@@ -117,7 +117,7 @@ let intervalo;
         
         			this.circle.type = 'player';
 					this.circle.id = id;
-                    greenCirclesGroup.add(this.circle);  
+                    this.greenCirclesGroup.add(this.circle);  
 
         //COLISION NUEVA
 
@@ -1093,7 +1093,7 @@ console.log('GREEN CIRCLES DRAW');
             greenCirclePhysics.z = circle.z;
                                     greenCirclePhysics.type = 'green';
 
-            greenCirclesGroup.add(greenCirclePhysics);  
+            this.greenCirclesGroup.add(greenCirclePhysics);  
  
         
         //BLUE SPEED
