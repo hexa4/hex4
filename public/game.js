@@ -117,7 +117,7 @@ let intervalo;
         
         			this.circle.type = 'player';
 					this.circle.id = id;
-                    this.greenCirclesGroup.add(this.circle);  
+                    greenCirclesGroup.add(this.circle);  
 
         //COLISION NUEVA
 
@@ -569,7 +569,7 @@ fixedText.setShadow(2, 2, 'blue', 5);
             redCirclesGroup = this.add.group();
             hexagonGroup = this.add.group();
 
-	this.greenCirclesGroup = this.physics.add.group();
+	greenCirclesGroup = this.physics.add.group();
 
 
 		     for (let y = 0; y < hexagonMap.length; y++) {
