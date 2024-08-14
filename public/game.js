@@ -1108,7 +1108,7 @@ console.log('GREEN CIRCLES DRAW');
             greenCirclePhysics.z = circle.z;
                         greenCirclePhysics.type = 'blue';
 
-            greenCirclesGroup.add(greenCirclePhysics);   
+            this.greenCirclesGroup.add(greenCirclePhysics);   
 
         
         }
