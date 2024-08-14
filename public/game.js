@@ -1110,12 +1110,12 @@ console.log('GREEN CIRCLES DRAW');
                         greenCirclePhysics.type = 'blue';
 
             this.greenCirclesGroup.add(greenCirclePhysics);   
+console.log(`Circle ${index} has body:`, !!greenCirclePhysics.body);
 
         
         }
         
-        console.log(`Circle ${index} has body:`, !!greenCirclePhysics.body);
-
+        
     
             index++;
 
