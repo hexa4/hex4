@@ -1114,7 +1114,8 @@ console.log('GREEN CIRCLES DRAW');
         
         }
         
-        
+        console.log(`Circle ${index} has body:`, !!greenCirclePhysics.body);
+
     
             index++;
 
@@ -1123,6 +1124,8 @@ console.log('GREEN CIRCLES DRAW');
 	 		    	let groupSize = this.greenCirclesGroup.getChildren().length;
     console.log(`GreenSize! ${groupSize}`);
 
+let groupSize = this.greenCirclesGroup.getChildren().length;
+    console.log(`GreenSize! ${groupSize}`);
 
 }
 
