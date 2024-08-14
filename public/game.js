@@ -1119,7 +1119,7 @@ console.log('GREEN CIRCLES DRAW');
 
     }
 
-	 		    	let groupSize = greenCirclesGroup.getChildren().length;
+	 		    	let groupSize = this.greenCirclesGroup.getChildren().length;
     console.log(`GreenSize! ${groupSize}`);
 
 
