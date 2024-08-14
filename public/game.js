@@ -109,7 +109,7 @@ let intervalo;
         if (id === socket.id) {
             // código adicional para el jugador local
            this.scene.cameras.main.startFollow(this.circle);
-            this.scene.physics.add.overlap(this.circle, this.greenCirclesGroup, this.collectGreenCircle, null, this.scene);
+            this.scene.physics.add.overlap(this.circle, greenCirclesGroup, this.collectGreenCircle, null, this.scene);
 
 
 			//COLISION PLAYERS PRUEBA
