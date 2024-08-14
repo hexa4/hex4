@@ -109,7 +109,7 @@ let intervalo;
         if (id === socket.id) {
             // código adicional para el jugador local
            this.scene.cameras.main.startFollow(this.circle);
-            this.scene.physics.add.overlap(this.circle, greenCirclesGroup, this.collectGreenCircle, null, this.scene);
+            this.scene.physics.add.overlap(this.circle, this.greenCirclesGroup, this.collectGreenCircle, null, this.scene);
 
 
 			//COLISION PLAYERS PRUEBA
@@ -117,7 +117,7 @@ let intervalo;
         
         			this.circle.type = 'player';
 					this.circle.id = id;
-                    greenCirclesGroup.add(this.circle);  
+                    this.greenCirclesGroup.add(this.circle);  
 
         //COLISION NUEVA
 
@@ -232,6 +232,7 @@ class GameScene extends Phaser.Scene {
        	
 
          create() {
+	this.greenCirclesGroup = this.physics.add.group();
 
 
 
@@ -569,7 +570,7 @@ fixedText.setShadow(2, 2, 'blue', 5);
             redCirclesGroup = this.add.group();
             hexagonGroup = this.add.group();
 
-	this.greenCirclesGroup = this.physics.add.group();
+	//this.greenCirclesGroup = this.physics.add.group();
 
 
 		     for (let y = 0; y < hexagonMap.length; y++) {
@@ -659,7 +660,7 @@ this.load.image(playerData.id, svgUrl);
 this.load.once('complete', () => {
 //INVALIDAR IMAGEN DESPEUS DE CARGARLA
 URL.revokeObjectURL(svgUrl);
-const player = new Player(this, playerData.id, playerData.name, playerData.x, playerData.y, 10, playerData.skin, greenCirclesGroup, playerData.puntos,playerData.color);
+const player = new Player(this, playerData.id, playerData.name, playerData.x, playerData.y, 10, playerData.skin, this.greenCirclesGroup, playerData.puntos,playerData.color);
 players[playerData.id] = player;
 console.log('SE CREA PLAYER', players[playerData.id]);
 
@@ -673,7 +674,7 @@ socket.emit('crearTopPlayers');}
 });
 this.load.start();
 } else {
-const player = new Player(this, playerData.id, playerData.name, playerData.x, playerData.y, 10, playerData.skin, greenCirclesGroup, playerData.puntos,playerData.color);
+const player = new Player(this, playerData.id, playerData.name, playerData.x, playerData.y, 10, playerData.skin, this.greenCirclesGroup, playerData.puntos,playerData.color);
 players[playerData.id] = player;
 }
 }
