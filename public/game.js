@@ -101,6 +101,15 @@ let intervalo;
         
         this.circle.setInteractive();
 
+
+
+if (this.circle.body) {
+            console.log('El jugador tiene un cuerpo físico:', this.circle.body);
+        } else {
+            console.log('El jugador NO tiene un cuerpo físico');
+        }
+
+
         // Texto encima del jugador
         this.text = this.scene.add.text(x, y - 20, name + ' (' + puntos + ')', { fontSize: '12px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto'});
         this.text.setOrigin(0.5);
