@@ -89,9 +89,7 @@ function startGame(playerName) {
         this.greenCirclesGroup.add(this.circle);  
     }
 
-
  collectGreenCircle2(player, greenCircle) {
-	console.log(`COLISION!!!!!!!!!!.`);
 	 
        	if(greenCircle.type === 'green'){
        	socket.emit('eliminarGreen', greenCircle.z, socket.id);
@@ -127,28 +125,28 @@ function startGame(playerName) {
 	console.log(`COLISION WItH PLAYER`);
 	console.log(`PLAYER `,greenCircle.id );	
        	}
-}
+} //END collectGreenCircle2
     
-    stopCameraFollow() {
+stopCameraFollow() {
         this.scene.cameras.main.stopFollow();
     }
     
-      fontSizePlayer(number) {
+fontSizePlayer(number) {
         this.text.setFontSize(number); 
     }
     
-    startCameraFollow() {
+startCameraFollow() {
         this.scene.cameras.main.startFollow(this.circle);
     }
     
-    setPosition(x, y) {
+setPosition(x, y) {
         this.circle.setPosition(x, y);
         this.text.setPosition(x, y - 20);
         this.x = x;
         this.y = y;
     }
 
-    updateGraphicsPosition() {
+updateGraphicsPosition() {
         if (this.circle && this.text) {
             this.circle.x = this.x;
             this.circle.y = this.y;
@@ -158,16 +156,12 @@ function startGame(playerName) {
     }   
     
     //MOVER CAMARA A CENTRO CUANDO 30% y 70% LIMITE
-    moveCameraToCenter() {
+moveCameraToCenter() {
         // Si ya está siguiendo la cámara, no hacer nada
-        if (this.followingCamera) {
-            return;
-        }
-
+        if (this.followingCamera) { return; }
         // Obtener las coordenadas del jugador
         const playerX = this.circle.x;
         const playerY = this.circle.y;
-
         // Usar un tween para mover la cámara suavemente hacia el jugador
         this.scene.tweens.add({
             targets: this.scene.cameras.main,
@@ -175,46 +169,33 @@ function startGame(playerName) {
             scrollY: playerY - this.scene.scale.height / 2,
             duration: 1000, // Duración del tween en milisegundos
             ease: 'Power2',
-            onComplete: () => {
-               // this.startCameraFollow();
-            }
-        });
+            onComplete: () => { } });
     }   
     
-    
-        destroyPlayer(suID) {
-        // Detener el seguimiento de la cámara si es necesario
+destroyPlayer(suID) {
         if (this.id === socket.id) {
             this.stopCameraFollow();
         }
-
         // Eliminar el círculo del jugador
         if (this.circle) {
             this.circle.destroy();
         }
-
         // Eliminar el texto del jugador
         if (this.text) {
             this.text.destroy();
         }
-
         // Eliminar el jugador del grupo de círculos verdes si es necesario
         if (this.greenCirclesGroup) {
             this.greenCirclesGroup.remove(this.circle);
         }
-        
-        
-                delete players[suID];
+        delete players[suID]; 
+} 
 
-        
-    } 
+} //END PLAYER CLASS
 
-}
-
-
-	
-
-///GAMESCENE///////!?!?!?!?!?!??!?!?!?!?!?!?!?!?!?!?!?!?!??!	
+///GAMESCENE///////!?!?!?!?!?!??!?!?!?!?!?!?!?!?!?!?!?!?!??! /// /// ////// /// ////// /// ////// /// ////// /// ////// /// ////// /// ///
+///GAMESCENE///////!?!?!?!?!?!??!?!?!?!?!?!?!?!?!?!?!?!?!??! /// /// ////// /// ////// /// ////// /// ////// /// ////// /// ////// /// ///
+///GAMESCENE///////!?!?!?!?!?!??!?!?!?!?!?!?!?!?!?!?!?!?!??! /// /// ////// /// ////// /// ////// /// ////// /// ////// /// ////// /// ///
 
 class GameScene extends Phaser.Scene {
             constructor() {
