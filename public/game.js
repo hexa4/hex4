@@ -1132,7 +1132,8 @@ playerLocal.fontSizePlayer(12);
 
     } else {
   
-     		 this.cameras.main.setZoom(4 / dpi);
+     		 //this.cameras.main.setZoom(4 / dpi);
+                    this.scene.get('GameScene').cameras.main.setZoom(4 / dpi);
 
     }
 };
