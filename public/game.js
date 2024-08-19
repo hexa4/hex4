@@ -165,11 +165,11 @@ if (this.circle.body) {
        	         greenCircle.destroy();
 
        	 
-       	 activarVelocidad() ;
-       	  llamarTextoSpeed(this);
+       	 this.activarVelocidad() ;
+       	  this.llamarTextoSpeed(this);
        	 
        	 
-       	 		textOnDestroy(this, greenCircle.x, greenCircle.y, '+speed', '10px', '#0000ff');
+       	 		this.textOnDestroy(this, greenCircle.x, greenCircle.y, '+speed', '10px', '#0000ff');
 
        	 console.log(`SPEED ACTIVATED.`);
 
@@ -205,7 +205,7 @@ if (this.circle.body) {
 			     if(otherPuntos < localPuntos){
 			    
 			    
-				textOnDestroy(this, greenCircle.x, greenCircle.y, otherPlayer.name +' eliminated!', '20px', '#ff0000');
+				this.textOnDestroy(this, greenCircle.x, greenCircle.y, otherPlayer.name +' eliminated!', '20px', '#ff0000');
 
 				otherPlayer.destroyPlayer(greenCircle.id);
 
