@@ -136,12 +136,90 @@ if (this.circle.body) {
 
  collectGreenCircle2(player, greenCircle) {
 
-	 	console.log('BORRAR GREEN CIRCLES.');
+		    	console.log(`COLISION!!!!!!!!!!.`);
 
-        // Aquí puedes manejar lo que sucede cuando el jugador colecta un círculo verde
-        greenCircle.destroy();
-        // Aumentar puntos o cambiar el tamaño del jugador
-    }
+
+        // Acceder a las propiedades del círculo verde
+    	//console.log(`Green circle col. ${greenCircle.z}`);
+    	
+
+		//MANDAR A SERVIDOR PARA EJECUTAR QUE SE ELIMINE EN TODOS CLIENTES
+       	//SUMAR PUNTO
+       	
+       	      // 	 console.log(`TYPE CIRCLE.`, );
+
+       	
+       	if(greenCircle.type === 'green'){
+       			socket.emit('eliminarGreen', greenCircle.z, socket.id);
+
+       	        greenCircle.destroy();
+
+       	    	textOnDestroy(this, greenCircle.x, greenCircle.y, '+1 points', '10px', '#00ff00');
+
+       	       	socket.emit('greenCircleEaten');
+       	}
+       	
+       	 if(greenCircle.type === 'blue'){
+       	 		socket.emit('eliminarGreen', greenCircle.z, socket.id);
+
+       	         greenCircle.destroy();
+
+       	 
+       	 activarVelocidad() ;
+       	  llamarTextoSpeed(this);
+       	 
+       	 
+       	 		textOnDestroy(this, greenCircle.x, greenCircle.y, '+speed', '10px', '#0000ff');
+
+       	 console.log(`SPEED ACTIVATED.`);
+
+       	}
+       	
+       	
+       	
+       	//COLISION WITH PLAYER
+       	if(greenCircle.type === 'player'){
+       	    	//textOnDestroy(this, greenCircle.x, greenCircle.y, '+1 points', '20px', '#00ff00');
+
+
+			    const localPlayer = players[socket.id];
+			    const otherPlayer = players[greenCircle.id];
+			    
+			    const localPuntos = localPlayer.puntos;
+			    const otherPuntos = otherPlayer.puntos;
+			    
+			    
+			    if(otherPuntos > localPuntos){
+			    
+			    				localPlayer.destroyPlayer(socket.id);
+
+			    
+			    socket.emit('eliminarPlayer', socket.id);
+
+			    
+			    
+			    gameOver();
+			    
+			    }
+			    
+			     if(otherPuntos < localPuntos){
+			    
+			    
+				textOnDestroy(this, greenCircle.x, greenCircle.y, otherPlayer.name +' eliminated!', '20px', '#ff0000');
+
+				otherPlayer.destroyPlayer(greenCircle.id);
+
+			    
+			    }
+
+			
+			console.log(`COLISION WItH PLAYER`);
+			console.log(`PLAYER `,greenCircle.id );
+
+			
+       	}
+       
+}
 	  
     
     
