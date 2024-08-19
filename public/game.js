@@ -154,7 +154,7 @@ if (this.circle.body) {
 
        	        greenCircle.destroy();
 
-       	    	textOnDestroy(this, greenCircle.x, greenCircle.y, '+1 points', '10px', '#00ff00');
+       	    	this.textOnDestroy(this, greenCircle.x, greenCircle.y, '+1 points', '10px', '#00ff00');
 
        	       	socket.emit('greenCircleEaten');
        	}
