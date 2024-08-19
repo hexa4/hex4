@@ -372,10 +372,8 @@ socket.on('animatePlayer', animationData => {
         		this.updateRedVertices.call(this, endX, endY);
         		socket.emit('updatePosition', { x: endX, y: endY });
         		noMover = false;
-        		        
-        		        
-        		if(Cam===2){  
-        		   
+             
+        	if(Cam===2){  
         		//INTENTO LIMITES CAMARA NO MARK:
         		let cameraX = this.cameras.main.scrollX;
         		let cameraY = this.cameras.main.scrollY;
@@ -385,167 +383,107 @@ socket.on('animatePlayer', animationData => {
         		let topLimit = window.innerHeight * 0.3;
         		let playerRelativeX = -cameraX + player.circle.x;
         		let playerRelativeY = -cameraY + player.circle.y;
-				const playerLocal = players[socket.id];
+			const playerLocal = players[socket.id];
 				
-				//DERECHA
-				if (playerRelativeX >= rightLimit) {      
-					console.log(`70% ALCANZADO RIGHT`);
-						playerLocal.moveCameraToCenter();
-				}     
-				
-				//IZQUIERDA
-				if (playerRelativeX <= leftLimit) {    
-										playerLocal.moveCameraToCenter();
-  
-					console.log(`30% ALCANZADO LEFT`);
-				} 
-				
-				//BOTTOM
-				if (playerRelativeY >= bottomLimit) { 
-										playerLocal.moveCameraToCenter();
-     
-					console.log(`70% ALCANZADO BOTTOM`);
-				} 
-				
-				//TOP
-				if (playerRelativeY <= topLimit) {    
-										playerLocal.moveCameraToCenter();
-  
-					console.log(`30% ALCANZADO TOP`);
-				} 
-				
-				
-				
-				
-				
-				
-				
-				//END INTENTO LIMITES CAMARA NO MARK:
-				}
-				
-				
-        		        
-
-				}
-    			},
-                onCompleteScope: this
-  });
-  
-      
+			//DERECHA
+			if (playerRelativeX >= rightLimit) {      
+				console.log(`70% ALCANZADO RIGHT`);
+				playerLocal.moveCameraToCenter();
+			}     
+			//IZQUIERDA
+			if (playerRelativeX <= leftLimit) {    
+				playerLocal.moveCameraToCenter();
+  				console.log(`30% ALCANZADO LEFT`);
+			} 
+			//BOTTOM
+			if (playerRelativeY >= bottomLimit) { 
+				playerLocal.moveCameraToCenter();
+     				console.log(`70% ALCANZADO BOTTOM`);
+			} 
+			//TOP
+			if (playerRelativeY <= topLimit) {    
+				playerLocal.moveCameraToCenter();
+  				console.log(`30% ALCANZADO TOP`);
+			} 	
+			//END INTENTO LIMITES CAMARA NO MARK:
+		}
+		}
+    	},
+        onCompleteScope: this
+  	});
 });    
 ///END ANIMATE PLAYER MOVE
-
-			
+		
 //RECIBIR GREENCIRCLESS FROM SERVER
-
 socket.on('greenCirclesS', function(greenCirclesS) {
     console.log('Recibido greenCircles:', greenCirclesS);
     this.drawGreenCircles.call(this, greenCirclesS); // Usar call para establecer el contexto correcto
 }.bind(this));	
 
-
-
-
-
 //ELIMINAR VERDE ACTIVADO DESDE EL SERVER. DESDE EL SERVER ESTA FUNCION
 socket.on('eliminarGreenServer', (collisionIndex, myID) => {
     	console.log(`eliminarGreenServer`);
-    	
     	if(myID!=socket.id){
     	greenCirclesGroup.children.each((greenCircle) => {
         if (greenCircle.z === collisionIndex) {
-        
-
-                        textOnDestroy(this, greenCircle.x, greenCircle.y, '+1 points', '20px', '#00ff00');
-
+        	textOnDestroy(this, greenCircle.x, greenCircle.y, '+1 points', '20px', '#00ff00');
 		if(greenCircle.type === 'blue'){
-       	 
        	 		textOnDestroy(this, greenCircle.x, greenCircle.y, '+speed', '20px', '#0000ff');
-
-       	 console.log(`SPEED ACTIVATED.`);
-
-       	}
-            
+			console.log(`SPEED ACTIVATED.`);
+		}
             console.log(`Green circle with z = ${collisionIndex} found and destroyed.`);
-            greenCircle.destroy();
-            
-
-            
-        }
-    });
+            greenCircle.destroy();   
+        } });
     }
 });
-
-    
 
 //ELIMINAR PLAYER ACTIVADO DESDE EL SERVER. DESDE EL SERVER ESTA FUNCION
 socket.on('eliminarPlayerServer', (collisionIndex) => {
     	console.log(`eliminarPlayerServer`);
-    	
     	if(collisionIndex!=socket.id){
-   
-
-   
-			const otherPlayer = players[collisionIndex];
-			
-			       	console.log(`playerEliminado:`, otherPlayer);
-
-			
-			textOnDestroy(this, otherPlayer.x, otherPlayer.y, otherPlayer.name +' eliminated!', '20px', '#ff0000');
-
+   		const otherPlayer = players[collisionIndex];
+		console.log(`playerEliminado:`, otherPlayer);
+		textOnDestroy(this, otherPlayer.x, otherPlayer.y, otherPlayer.name +' eliminated!', '20px', '#ff0000');
     		otherPlayer.destroyPlayer(collisionIndex);
-    		
-    		
     		socket.emit('crearTopPlayers');
-
-
-    
-    
-    
-    }
+    	}
 }); 
 
-
-		 game.scene.start('UIScene');
+game.scene.start('UIScene');
 game.scene.bringToTop('UIScene');
 
 	
-        }
-	//END CREATE GAME SCENE END CREATE
-	//END CREATE GAME SCENE END CREATE
-	//END CREATE GAME SCENE END CREATE
-	//END CREATE GAME SCENE END CREATE
-	//END CREATE GAME SCENE END CREATE
-	
+}
+//END CREATE GAME SCENE END CREATE
+//END CREATE GAME SCENE END CREATE
+//END CREATE GAME SCENE END CREATE
+//END CREATE GAME SCENE END CREATE
+//END CREATE GAME SCENE END CREATE
 
-         update() {
-            // Lógica de actualización
-        }
+update() { }
 
-         drawHexagon(x, y, size) {
-            const points = this.getHexVertices(x, y, size);
-            hexagonGraphics.strokePoints(points, true);
-        }
+drawHexagon(x, y, size) {
+	const points = this.getHexVertices(x, y, size);
+        hexagonGraphics.strokePoints(points, true);
+}
+drawHexagon2(x, y, size) {
+	const points = this.getHexVertices(x, y, size);
+        hexagonGraphics2.strokePoints(points, true);
+}
 
-		 drawHexagon2(x, y, size) {
-            const points = this.getHexVertices(x, y, size);
-            hexagonGraphics2.strokePoints(points, true);
-        }
-
-         getHexVertices(x, y, size = hexagonSize) {
-            const points = [];
-            for (let i = 0; i < 6; i++) {
+getHexVertices(x, y, size = hexagonSize) {
+        const points = [];
+        for (let i = 0; i < 6; i++) {
                 const angle = Phaser.Math.DegToRad(60 * i);
                 const px = x + size * Math.cos(angle);
                 const py = y + size * Math.sin(angle);
                 points.push(new Phaser.Geom.Point(px, py));
-            }
-            return points;
-        }
+        } return points;
+}
 
-         updateRedVertices() {
+//UPDATE RED VERTICES REDIBUJARLOS	
+updateRedVertices() {
             this.clearRedVertices.call(this); 
-
             const verticesInRadius = this.getVerticesInRadius(player.x, player.y, 60); // Radio de 60 píxeles
             verticesInRadius.forEach(vertex => {
                 redVertices.push({ x: vertex.x, y: vertex.y });
@@ -554,88 +492,58 @@ game.scene.bringToTop('UIScene');
                 graphics.fillCircle(vertex.x, vertex.y, 4); // Dibuja un círculo en la posición (vertex.x, vertex.y) con radio 5
                 redCirclesGroup.add(graphics);
             });
-        }
-
-         getVerticesInRadius(x, y, radius) {
-            return vertices.filter(vertex => {
+}
+getVerticesInRadius(x, y, radius) {
+		return vertices.filter(vertex => {
                 let distance = Phaser.Math.Distance.Between(x, y, vertex.x, vertex.y);
-                return distance <= radius && distance > 20;
-            });
-        }
+                return distance <= radius && distance > 20; });
+}
 
 //CLICK EN LA PANTALLA  
 //CLICK EN LA PANTALLA            
 //CLICK EN LA PANTALLA                      
-         onPointerDown(pointer) {
-        
-        
-
-        
-        if(checkSecure===0){
-        if(noMover===false){
-        
-        noMover = true;
-        
-        //INTENTO DE CUADRAR COORDENADAS AL HACER ZOOM OUT
-     
-           
-        
+onPointerDown(pointer) { 
+	if(checkSecure===0){
+        	if(noMover===false){
+        		noMover = true;
         let cameraX = this.cameras.main.scrollX;
     	let cameraY = this.cameras.main.scrollY;
-    	
-    	///  let zoom = this.cameras.main.zoom;
-
-            // Ajustar las coordenadas del puntero considerando el zoom
-           // let pointerX = pointer.x / zoom + cameraX;
-            //let pointerY = pointer.y / zoom + cameraY;
     	console.log(`Camera coordinates: (${cameraX}, ${cameraY})`); 
-		console.log(`Click: (${pointer.x + cameraX}, ${pointer.y + cameraY}) `);	
-        console.log(`ClickW: (${pointer.worldX + cameraX}, ${pointer.worldY + cameraY}) `);	
-let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
+	console.log(`Click: (${pointer.x + cameraX}, ${pointer.y + cameraY}) `);	
+        //console.log(`ClickW: (${pointer.worldX + cameraX}, ${pointer.worldY + cameraY}) `);	
+	let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
+	console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
+	
+	let closestRedVertex = this.findClosestRedVertexToClick(pointer.x + cameraX, pointer.y + cameraY, cameraX, cameraY);
 
-console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
-
-		 let closestRedVertex = this.findClosestRedVertexToClick(pointer.x + cameraX, pointer.y + cameraY, cameraX, cameraY);
-
-
-		if(ZoomOut === 1){
+	if(ZoomOut === 1){
 		 closestRedVertex = this.findClosestRedVertexToClick(pointer.x + cameraX, pointer.y + cameraY, cameraX, cameraY);
         }
     	if(ZoomOut === 2){
     	let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
-
 		 closestRedVertex = this.findClosestRedVertexToClick(pointer.x + worldPoint.x, pointer.y + worldPoint.y, cameraX, cameraY);
-		}
-        
-        
+	}
         console.log(`Closest Click: (${closestRedVertex.x}, ${closestRedVertex.y}) `);	
 
 	//ENVIAR A SERVER QUE SE EJECUTE MOVIMIENTO EN TODOS
 	const player = players[socket.id];
-	
 	let VelocidadValor = 0;
 	if(Velocidad===true){
 	VelocidadValor = 50;
 	}else if (Velocidad===false){
 		VelocidadValor = 500;
-
 	}
-	
 	socket.emit('animationData', { start: { x: player.x, y: player.y }, end: { x: closestRedVertex.x, y: closestRedVertex.y }, speed: VelocidadValor });
-     
-     
-                 
+              
 	}
 	}
-	
-	
 	checkSecure = 0;
-	}
+} //END POINTER CLICK
 
-   //FIND CLOSEST RED VERTEX  
+//FIND CLOSEST RED VERTEX  
 //FIND CLOSEST RED VERTEX            
 //FIND CLOSEST RED VERTEX                              
-         findClosestRedVertexToClick(x, y) {
+findClosestRedVertexToClick(x, y) {
             let closestVertex = null;
             let minDistance = Infinity;
             redVertices.forEach(vertex => {
@@ -645,101 +553,59 @@ console.log(`World coordinates: (${worldPoint.x}, ${worldPoint.y})`);
                     closestVertex = vertex;
                 }
             });
-           // console.log(`Click: (${x}, ${y})`);
-          //  redVertices.forEach(vertex => console.log(`VERTEX TEST: (${vertex.x}, ${vertex.y})`));
-           // console.log(`Closest Vertex: (${closestVertex.x}, ${closestVertex.y})`);
             return closestVertex;
-        }
-
-      
-////////checkbox
-
-
-
-
-
-
-
-
-
-	//////////////////
-
-//CLEAR RED VERTEX   
-//CLEAR RED VERTEX                                      
+}
+                                     
 //CLEAR RED VERTEX                                                                         
  clearRedVertices() {
-             redCirclesGroup.clear(true, true);  // Borra todos los elementos del grupo redCirclesGroup
-    redVertices = []; 
-        }
+	redCirclesGroup.clear(true, true);  // Borra todos los elementos del grupo redCirclesGroup
+    	redVertices = []; 
+}
 		
-//UPDATE RED VERTEX POINTS
-//UPDATE RED VERTEX POINTS
 //UPDATE RED VERTEX POINTS        
-	 updateRedVertices(x, y) {
-		//console.log(`UPDATE RED VERTICES: (${x}) `);	
-
+updateRedVertices(x, y) {
 	this.clearRedVertices.call(this);  
-
-    const verticesInRadius = this.getVerticesInRadius(x, y, 60); // Radio de 60 píxeles
-    verticesInRadius.forEach(vertex => { 
-    redVertices.push({ x: vertex.x, y: vertex.y });
-    //console.log(`redVertex: (${vertex.x}, ${vertex.y}) `);	
-    
-    const graphics = this.add.graphics();
-    graphics.fillStyle(0xff0000, 1); // Color rojo, opacidad 1
-    graphics.fillCircle(vertex.x, vertex.y, 4); // Dibuja un círculo en la posición (vertex.x, vertex.y) con radio 5
-	
-//textCamera.ignore([redCirclesGroup]);
-
-	
-	redCirclesGroup.add(graphics); 
-                       
-    });
-            
-    }       
+    	const verticesInRadius = this.getVerticesInRadius(x, y, 60); // Radio de 60 píxeles
+    	verticesInRadius.forEach(vertex => { 
+    	redVertices.push({ x: vertex.x, y: vertex.y });
+    	//console.log(`redVertex: (${vertex.x}, ${vertex.y}) `);	
+   	const graphics = this.add.graphics();
+    	graphics.fillStyle(0xff0000, 1); // Color rojo, opacidad 1
+    	graphics.fillCircle(vertex.x, vertex.y, 4); // Dibuja un círculo en la posición (vertex.x, vertex.y) con radio 5
+	redCirclesGroup.add(graphics);                        
+    });         
+}       
 //END UPDATE RED VERTEX POINTS   
 		
-
-
-	///TOP PLATERS SYSTEM
+///TOP PLATERS SYSTEM
  addPlayer(name, puntos, color) {
 	const nuevoJugador = { name: name, puntos: puntos, color: color };
 	topplayers.push(nuevoJugador);
 }
- getTopPlayers() {
-const sortedPlayers = topplayers.sort((a, b) => b.puntos - a.puntos);
-const topPlayersx = sortedPlayers.slice(0, 5);
-topPlayersx.forEach(topplayer => { });
-return topPlayersx;
+getTopPlayers() {
+	const sortedPlayers = topplayers.sort((a, b) => b.puntos - a.puntos);
+	const topPlayersx = sortedPlayers.slice(0, 5);
+	topPlayersx.forEach(topplayer => { });
+	return topPlayersx;
 }	
 
-
- gameOver(){
-
-document.getElementById("retryBox").style.visibility = "visible";
-var retryButton = document.getElementById("retryButton");
-retryButton.onclick = function() {
-console.log("Retry Game.");
-location.reload();
-};	
-
-
+//GAME OVER FUNCTION	
+gameOver(){
+	document.getElementById("retryBox").style.visibility = "visible";
+	var retryButton = document.getElementById("retryButton");
+	retryButton.onclick = function() {
+	console.log("Retry Game.");
+	location.reload();
+	};	
 }
 
-
-
 //DRAW GREEN CIRCLES!!!!!!
- drawGreenCircles(greenCirclesS) {
+drawGreenCircles(greenCirclesS) {
 console.log('GREEN CIRCLES DRAW');
     let index = 0;
-
-
       for (const circle of greenCirclesS) {
         const circleGraphics = this.add.graphics(); // 'this' debería ser la escena de Phaser.js
        // circleGraphics.fillStyle(0x00ff00, 0.5); // Color verde con opacidad del 50%
-      
-      
-      
       //COLISION    
       
        //GREEN POINTS
@@ -775,8 +641,6 @@ console.log(`Circle ${index} has body:`, !!greenCirclePhysics.body);
         
         }
         
-        
-    
             index++;
 
     }
@@ -788,8 +652,6 @@ let groupSize = this.greenCirclesGroup.getChildren().length;
     console.log(`GreenSize! ${groupSize}`);
 
 }
-
-
 
 ///ACTIVAR VELOCIDAD TEXTO
 activarVelocidad() {
@@ -843,7 +705,6 @@ scene.tweens.add({ targets: text, scaleX: 2, scaleY: 2, duration: 500, ease: 'Po
             }
         });
     }
-
 
 textOnDestroy(scene, x, y, texto, size, color) {
             const text = scene.add.text(x, y, texto, {
