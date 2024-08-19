@@ -295,7 +295,6 @@ let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, th
 
 
 //TEXTOS POSICION END
-let lineWidth = 2; 	
 		
 
 		  
@@ -1061,6 +1060,7 @@ fixedText7.setText("");
 
 
 
+let lineWidth = 2; 	
 
 let boxSize = 20;
 let boxX = worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10;
