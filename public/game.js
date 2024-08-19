@@ -1,6 +1,7 @@
 const dpi = window.devicePixelRatio;
 const width = window.innerWidth * dpi;
 const height = window.innerHeight * dpi;
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 let playerName;
 let playerNameInput = document.getElementById('playerName');
@@ -8,31 +9,19 @@ let errorMessage = document.getElementById('errorMessage');
 let submitButton = document.getElementById('submitButton');
 const nameForm = document.getElementById('nameForm');
 
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
 //FUNCION DEL BOTON JUGAR PLAY SE INICIA JUEGO
-    submitButton.addEventListener('click', function() {
-         playerName = playerNameInput.value.trim();      
-        if (playerName.length === 0 || playerName.length > 20) {
-            errorMessage.style.display = 'block';
-            return;
-        }
-
-
+submitButton.addEventListener('click', function() {
+playerName = playerNameInput.value.trim();      
+if (playerName.length === 0 || playerName.length > 20) {
+errorMessage.style.display = 'block';
+return; }
 nameForm.style.display = 'none';
-
-
 requestAnimationFrame(function() {
-        startGame(playerName);
-    });
-		
-
-        
-    });
+startGame(playerName); });
+});
     
 function startGame(playerName) {
-
-   let player;
+   	let player;
         let hexagonGraphics,hexagonGraphics2;
         let hexagonSize = 50;
         let hexagonWidth = hexagonSize * 2;
@@ -40,8 +29,7 @@ function startGame(playerName) {
         let hexagons = [];
         let vertices = [];
         let redVertices = [];
-		let ZoomOut = 1;
-
+	let ZoomOut = 1;
 	let greenCirclesGroup;	
 	let noMover = false;
 	let checkSecure = 0;
@@ -49,36 +37,26 @@ function startGame(playerName) {
 	let fixedText1, fixedText2, fixedText3, fixedText4, fixedText5, fixedText6, fixedText7;
 	const players = {}; // Usaremos un objeto para almacenar los jugadores
 	let topplayers = [];	
-		
         let redCirclesGroup;
         let hexagonGroup,hexagonGroup2;
         let playerNameCircle;
-
-
-let checkbox, fixedText, hitArea;
+	let checkbox, fixedText, hitArea;
         let checkboxSize = 20;
         let isChecked = true;
-
-
-let Velocidad = false;
-let segundosRestantes = 5;
-let intervalo;
-
-
-		             const hexagonMap = [
+	let Velocidad = false;
+	let segundosRestantes = 5;
+	let intervalo;
+	const hexagonMap = [
         [{ direction: 'NE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }],
         [{ direction: 'SW' }, { direction: 'ES' } ,{ direction: 'E' }, { direction: 'ES' }, { direction: 'E' }],
         [{ direction: 'SW' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }]
-    ];
-
-
-
+    	];
 
 //CLASE PLAYER 
 //CLASE PLAYER  
 //CLASE PLAYER   
   class Player {
-    constructor(scene, id, name, x, y, size, skin, greenCirclesGroup, puntos,color) {
+    	constructor(scene, id, name, x, y, size, skin, greenCirclesGroup, puntos,color) {
         this.scene = scene;
         this.id = id;
         this.name = name;
@@ -89,156 +67,80 @@ let intervalo;
         this.greenCirclesGroup = greenCirclesGroup; 
         this.puntos = puntos;
         this.color = color;
-        
-        //TAMANO DEL JUGADOR
-        //TAMANO DEL JUGADOR
         //TAMANO DEL JUGADOR
         const sizeCalc = (0.01 * puntos) + 0.2;		
-
-
+	    
 	this.circle = this.scene.physics.add.image(x, y, id);
         this.circle.setScale(sizeCalc); 
-        
         this.circle.setInteractive();
-
-
-
-if (this.circle.body) {
-            console.log('El jugador tiene un cuerpo físico:', this.circle.body);
-        } else {
-            console.log('El jugador NO tiene un cuerpo físico');
-        }
-
 
         // Texto encima del jugador
         this.text = this.scene.add.text(x, y - 20, name + ' (' + puntos + ')', { fontSize: '12px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto'});
         this.text.setOrigin(0.5);
         
-		//CAMARA PARA CLIENTE INDIVIDUAL
+	//CAMARA PARA CLIENTE INDIVIDUAL
         if (id === socket.id) {
-            // código adicional para el jugador local
-           this.scene.cameras.main.startFollow(this.circle);
-            this.scene.physics.add.overlap(this.circle, this.greenCirclesGroup, this.collectGreenCircle2, null, this.scene);
-
-
-			//COLISION PLAYERS PRUEBA
+        this.scene.cameras.main.startFollow(this.circle);
+        this.scene.physics.add.overlap(this.circle, this.greenCirclesGroup, this.collectGreenCircle2, null, this.scene);
         }
         
-        			this.circle.type = 'player';
-					this.circle.id = id;
-                    this.greenCirclesGroup.add(this.circle);  
-
-        //COLISION NUEVA
-
-        
+	this.circle.type = 'player';
+	this.circle.id = id;
+        this.greenCirclesGroup.add(this.circle);  
     }
 
 
  collectGreenCircle2(player, greenCircle) {
-
-		    	console.log(`COLISION!!!!!!!!!!.`);
-
-
-        // Acceder a las propiedades del círculo verde
-    	//console.log(`Green circle col. ${greenCircle.z}`);
-    	
-
-		//MANDAR A SERVIDOR PARA EJECUTAR QUE SE ELIMINE EN TODOS CLIENTES
-       	//SUMAR PUNTO
-       	
-       	      // 	 console.log(`TYPE CIRCLE.`, );
-
-       	
+	console.log(`COLISION!!!!!!!!!!.`);
+	 
        	if(greenCircle.type === 'green'){
-       			socket.emit('eliminarGreen', greenCircle.z, socket.id);
-
-       	        greenCircle.destroy();
-
-       	    	this.textOnDestroy(this, greenCircle.x, greenCircle.y, '+1 points', '10px', '#00ff00');
-
-       	       	socket.emit('greenCircleEaten');
+       	socket.emit('eliminarGreen', greenCircle.z, socket.id);
+	greenCircle.destroy();
+	this.textOnDestroy(this, greenCircle.x, greenCircle.y, '+1 points', '10px', '#00ff00');
+	socket.emit('greenCircleEaten');
        	}
        	
-       	 if(greenCircle.type === 'blue'){
-       	 		socket.emit('eliminarGreen', greenCircle.z, socket.id);
-
-       	         greenCircle.destroy();
-
-       	 
-       	 this.activarVelocidad() ;
-       	  this.llamarTextoSpeed(this);
-       	 
-       	 
-       	 		this.textOnDestroy(this, greenCircle.x, greenCircle.y, '+speed', '10px', '#0000ff');
-
-       	 console.log(`SPEED ACTIVATED.`);
-
+       	if(greenCircle.type === 'blue'){
+       	socket.emit('eliminarGreen', greenCircle.z, socket.id);
+	greenCircle.destroy();
+	this.activarVelocidad() ;
+       	this.llamarTextoSpeed(this);
+       	this.textOnDestroy(this, greenCircle.x, greenCircle.y, '+speed', '10px', '#0000ff');
+	console.log(`SPEED ACTIVATED.`);
        	}
-       	
-       	
        	
        	//COLISION WITH PLAYER
        	if(greenCircle.type === 'player'){
-       	    	//textOnDestroy(this, greenCircle.x, greenCircle.y, '+1 points', '20px', '#00ff00');
-
-
-			    const localPlayer = players[socket.id];
-			    const otherPlayer = players[greenCircle.id];
-			    
-			    const localPuntos = localPlayer.puntos;
-			    const otherPuntos = otherPlayer.puntos;
-			    
-			    
-			    if(otherPuntos > localPuntos){
-			    
-			    				localPlayer.destroyPlayer(socket.id);
-
-			    
-			    socket.emit('eliminarPlayer', socket.id);
-
-			    
-			    
-			    gameOver();
-			    
-			    }
-			    
-			     if(otherPuntos < localPuntos){
-			    
-			    
-				this.textOnDestroy(this, greenCircle.x, greenCircle.y, otherPlayer.name +' eliminated!', '20px', '#ff0000');
-
-				otherPlayer.destroyPlayer(greenCircle.id);
-
-			    
-			    }
-
-			
-			console.log(`COLISION WItH PLAYER`);
-			console.log(`PLAYER `,greenCircle.id );
-
-			
+	const localPlayer = players[socket.id];
+	const otherPlayer = players[greenCircle.id];
+	const localPuntos = localPlayer.puntos;
+	const otherPuntos = otherPlayer.puntos;
+	if(otherPuntos > localPuntos){
+	localPlayer.destroyPlayer(socket.id);
+	socket.emit('eliminarPlayer', socket.id);
+	gameOver();
+	}	    
+	if(otherPuntos < localPuntos){
+	this.textOnDestroy(this, greenCircle.x, greenCircle.y, otherPlayer.name +' eliminated!', '20px', '#ff0000');
+	otherPlayer.destroyPlayer(greenCircle.id);
+	}
+	console.log(`COLISION WItH PLAYER`);
+	console.log(`PLAYER `,greenCircle.id );	
        	}
-       
 }
-	  
-    
     
     stopCameraFollow() {
-        // Detener el seguimiento de la cámara
         this.scene.cameras.main.stopFollow();
     }
     
       fontSizePlayer(number) {
-        // Detener el seguimiento de la cámara
-        this.text.setFontSize(number); // Cambia el tamaño de la fuente a 48px
+        this.text.setFontSize(number); 
     }
     
     startCameraFollow() {
-        // Detener el seguimiento de la cámara
-            this.scene.cameras.main.startFollow(this.circle);
+        this.scene.cameras.main.startFollow(this.circle);
     }
     
-    // Método para actualizar la posición del jugador
     setPosition(x, y) {
         this.circle.setPosition(x, y);
         this.text.setPosition(x, y - 20);
@@ -247,16 +149,13 @@ if (this.circle.body) {
     }
 
     updateGraphicsPosition() {
-        // Actualizar la posición del círculo y el texto
         if (this.circle && this.text) {
             this.circle.x = this.x;
             this.circle.y = this.y;
             this.text.x = this.x;
             this.text.y = this.y - 20;
         }
-    }
-    
-    
+    }   
     
     //MOVER CAMARA A CENTRO CUANDO 30% y 70% LIMITE
     moveCameraToCenter() {
@@ -416,184 +315,6 @@ function updateTextPosition() {
 }
 
 		
-let boxSize = 20;
-let boxX = worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10;
-let boxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - boxSize*2 - 20;
-
-// Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
-let textYOffset = boxSize / 2;
-let staticText = this.add.text(boxX + boxSize + 10, boxY + textYOffset, 'Zoom', { fontSize: '16px', fill: '#ffffff' , resolution: dpi, fontFamily: 'Roboto'   });
-
-
-staticText.setShadow(2, 2, 'blue', 5);
-
-staticText.setOrigin(0, 0.5); // Ajuste vertical para centrar con el checkbox
-staticText.setScrollFactor(0); // Esto fija el texto para que no se desplace con la cámara
-
-// Crear el gráfico del checkbox
-let box = this.add.graphics();
-
-// Dibujar el checkbox
-box.fillStyle(0x00ff00); // Color verde
-box.fillRect(boxX, boxY, boxSize, boxSize);
-
-// Estado inicial del checkbox
-let isBoxChecked = true;
-
-// Función para dibujar o borrar la "X"
-let drawBoxCheck = (isBoxChecked) => {
-    box.clear();
-    box.fillStyle(0x00ff00); // Color verde
-    box.fillRect(boxX, boxY, boxSize, boxSize);
-
-    if (isBoxChecked) {
-        box.lineStyle(lineWidth, 0x000000); // Color negro para la "X"
-        box.beginPath();
-        box.moveTo(boxX, boxY);
-        box.lineTo(boxX + boxSize, boxY + boxSize);
-        box.moveTo(boxX + boxSize, boxY);
-        box.lineTo(boxX, boxY + boxSize);
-        box.strokePath();
-    }
-};
-
-// Dibujar el estado inicial del checkbox
-drawBoxCheck(isBoxChecked);
-
-// Hacer que el checkbox sea interactivo
-let hitAreaBox = new Phaser.Geom.Rectangle(boxX, boxY, boxSize, boxSize);
-box.setInteractive(hitAreaBox, Phaser.Geom.Rectangle.Contains);
-
-let toggleBox = () => {
-    isBoxChecked = !isBoxChecked;
-    drawBoxCheck(isBoxChecked);
-    
-    checkSecure = 1;
-    
-    
-    		 ZoomOut = 1;
-
-    //const localPlayer = players[socket.id];
-let playerLocal = players[socket.id];
-
-    if (isBoxChecked) {
-        this.cameras.main.setZoom(8 / dpi);
-    
-        let zoomFactor = this.cameras.main.zoom; 
-
-playerLocal.fontSizePlayer(12);
-
-
-    } else {
-  
-     		 this.cameras.main.setZoom(4 / dpi);
-
-    }
-};
-
-
-
-
-
-box.on('pointerdown', toggleBox);
-
-// Hacer que el texto sea interactivo y reaccione de la misma manera que el checkbox
-staticText.setInteractive();
-staticText.on('pointerdown', toggleBox);
-
-// Fijar el checkbox y el texto para que no se desplacen con la cámara
-box.setScrollFactor(0);
-staticText.setScrollFactor(0);
-
-
-
-this.events.on('update', updateTextPosition, this);
-
-
-//CHECKBOX CAM MOVE//////////////////
-           // Tamaño y posición del checkbox
-
-
-
-        let checkboxSize = 20;
-        let checkboxX =   worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10 ;
-        let checkboxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - checkboxSize - 10;
-
-        // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
-        let textOffsetY = checkboxSize / 2;
-        let fixedText = this.add.text(checkboxX + checkboxSize + 10, checkboxY + textOffsetY, 'Centered Cam', { fontSize: '16px', fill: '#ffffff' , resolution: dpi  , fontFamily: 'Roboto'});
-
-fixedText.setShadow(2, 2, 'blue', 5);
-
-
-
-        fixedText.setOrigin(0, 0.5); // Ajuste vertical para centrar con el checkbox
-        fixedText.setScrollFactor(0); // Esto fija el texto para que no se desplace con la cámara
-
-        // Crear el gráfico del checkbox
-        let checkbox = this.add.graphics();
-
-        // Dibujar el checkbox
-        checkbox.fillStyle(0x00ff00); // Color verde
-        checkbox.fillRect(checkboxX, checkboxY, checkboxSize, checkboxSize);
-
-        // Estado inicial del checkbox
-        let isChecked = true;
-
-        // Función para dibujar o borrar la "X"
-        let drawCheck = (isChecked) => {
-            checkbox.clear();
-            checkbox.fillStyle(0x00ff00); // Color verde
-            checkbox.fillRect(checkboxX, checkboxY, checkboxSize, checkboxSize);
-
-            if (isChecked) {
-                checkbox.lineStyle(lineWidth, 0x000000); // Color negro para la "X"
-                checkbox.beginPath();
-                checkbox.moveTo(checkboxX, checkboxY);
-                checkbox.lineTo(checkboxX + checkboxSize, checkboxY + checkboxSize);
-                checkbox.moveTo(checkboxX + checkboxSize, checkboxY);
-                checkbox.lineTo(checkboxX, checkboxY + checkboxSize);
-                checkbox.strokePath();
-            }
-        };
-
-        // Dibujar el estado inicial del checkbox
-        drawCheck(isChecked);
-
-        // Hacer que el checkbox sea interactivo
-        let hitArea = new Phaser.Geom.Rectangle(checkboxX, checkboxY, checkboxSize, checkboxSize);
-        checkbox.setInteractive(hitArea, Phaser.Geom.Rectangle.Contains);
-
-        let toggleCheckbox = () => {
-            isChecked = !isChecked;
-            drawCheck(isChecked);
-            
-            checkSecure = 1;
-    let playerLocal = players[socket.id];
-
-
-            if (isChecked) {
-                Cam = 1;
-                console.log('Checkbox checked, Cam =', Cam);
-                playerLocal.startCameraFollow();
-
-            } else {
-                Cam = 2;
-                console.log('Checkbox unchecked, Cam =', Cam);
-                playerLocal.stopCameraFollow();
-
-            }
-        };
-
-        checkbox.on('pointerdown', toggleCheckbox);
-
-        // Hacer que el texto sea interactivo y reaccione de la misma manera que el checkbox
-        fixedText.setInteractive();
-        fixedText.on('pointerdown', toggleCheckbox);
-
-        // Fijar el checkbox y el texto para que no se desplacen con la cámara
-        checkbox.setScrollFactor(0);
-        fixedText.setScrollFactor(0);
 
         // Muestra el estado inicial del checkbox
         console.log('Checkbox initial state: checked, Cam =', Cam);
@@ -1337,6 +1058,189 @@ worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
 fixedText7.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText7.width - 20, 
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 30);
 fixedText7.setText("");
+
+
+
+
+let boxSize = 20;
+let boxX = worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10;
+let boxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - boxSize*2 - 20;
+
+// Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
+let textYOffset = boxSize / 2;
+let staticText = this.add.text(boxX + boxSize + 10, boxY + textYOffset, 'Zoom', { fontSize: '16px', fill: '#ffffff' , resolution: dpi, fontFamily: 'Roboto'   });
+
+
+staticText.setShadow(2, 2, 'blue', 5);
+
+staticText.setOrigin(0, 0.5); // Ajuste vertical para centrar con el checkbox
+staticText.setScrollFactor(0); // Esto fija el texto para que no se desplace con la cámara
+
+// Crear el gráfico del checkbox
+let box = this.add.graphics();
+
+// Dibujar el checkbox
+box.fillStyle(0x00ff00); // Color verde
+box.fillRect(boxX, boxY, boxSize, boxSize);
+
+// Estado inicial del checkbox
+let isBoxChecked = true;
+
+// Función para dibujar o borrar la "X"
+let drawBoxCheck = (isBoxChecked) => {
+    box.clear();
+    box.fillStyle(0x00ff00); // Color verde
+    box.fillRect(boxX, boxY, boxSize, boxSize);
+
+    if (isBoxChecked) {
+        box.lineStyle(lineWidth, 0x000000); // Color negro para la "X"
+        box.beginPath();
+        box.moveTo(boxX, boxY);
+        box.lineTo(boxX + boxSize, boxY + boxSize);
+        box.moveTo(boxX + boxSize, boxY);
+        box.lineTo(boxX, boxY + boxSize);
+        box.strokePath();
+    }
+};
+
+// Dibujar el estado inicial del checkbox
+drawBoxCheck(isBoxChecked);
+
+// Hacer que el checkbox sea interactivo
+let hitAreaBox = new Phaser.Geom.Rectangle(boxX, boxY, boxSize, boxSize);
+box.setInteractive(hitAreaBox, Phaser.Geom.Rectangle.Contains);
+
+let toggleBox = () => {
+    isBoxChecked = !isBoxChecked;
+    drawBoxCheck(isBoxChecked);
+    
+    checkSecure = 1;
+    
+    
+    		 ZoomOut = 1;
+
+    //const localPlayer = players[socket.id];
+let playerLocal = players[socket.id];
+
+    if (isBoxChecked) {
+        this.cameras.main.setZoom(8 / dpi);
+    
+        let zoomFactor = this.cameras.main.zoom; 
+
+playerLocal.fontSizePlayer(12);
+
+
+    } else {
+  
+     		 this.cameras.main.setZoom(4 / dpi);
+
+    }
+};
+
+
+
+
+
+box.on('pointerdown', toggleBox);
+
+// Hacer que el texto sea interactivo y reaccione de la misma manera que el checkbox
+staticText.setInteractive();
+staticText.on('pointerdown', toggleBox);
+
+// Fijar el checkbox y el texto para que no se desplacen con la cámara
+box.setScrollFactor(0);
+staticText.setScrollFactor(0);
+
+
+
+this.events.on('update', updateTextPosition, this);
+
+
+//CHECKBOX CAM MOVE//////////////////
+           // Tamaño y posición del checkbox
+
+
+
+        let checkboxSize = 20;
+        let checkboxX =   worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10 ;
+        let checkboxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - checkboxSize - 10;
+
+        // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
+        let textOffsetY = checkboxSize / 2;
+        let fixedText = this.add.text(checkboxX + checkboxSize + 10, checkboxY + textOffsetY, 'Centered Cam', { fontSize: '16px', fill: '#ffffff' , resolution: dpi  , fontFamily: 'Roboto'});
+
+fixedText.setShadow(2, 2, 'blue', 5);
+
+
+
+        fixedText.setOrigin(0, 0.5); // Ajuste vertical para centrar con el checkbox
+        fixedText.setScrollFactor(0); // Esto fija el texto para que no se desplace con la cámara
+
+        // Crear el gráfico del checkbox
+        let checkbox = this.add.graphics();
+
+        // Dibujar el checkbox
+        checkbox.fillStyle(0x00ff00); // Color verde
+        checkbox.fillRect(checkboxX, checkboxY, checkboxSize, checkboxSize);
+
+        // Estado inicial del checkbox
+        let isChecked = true;
+
+        // Función para dibujar o borrar la "X"
+        let drawCheck = (isChecked) => {
+            checkbox.clear();
+            checkbox.fillStyle(0x00ff00); // Color verde
+            checkbox.fillRect(checkboxX, checkboxY, checkboxSize, checkboxSize);
+
+            if (isChecked) {
+                checkbox.lineStyle(lineWidth, 0x000000); // Color negro para la "X"
+                checkbox.beginPath();
+                checkbox.moveTo(checkboxX, checkboxY);
+                checkbox.lineTo(checkboxX + checkboxSize, checkboxY + checkboxSize);
+                checkbox.moveTo(checkboxX + checkboxSize, checkboxY);
+                checkbox.lineTo(checkboxX, checkboxY + checkboxSize);
+                checkbox.strokePath();
+            }
+        };
+
+        // Dibujar el estado inicial del checkbox
+        drawCheck(isChecked);
+
+        // Hacer que el checkbox sea interactivo
+        let hitArea = new Phaser.Geom.Rectangle(checkboxX, checkboxY, checkboxSize, checkboxSize);
+        checkbox.setInteractive(hitArea, Phaser.Geom.Rectangle.Contains);
+
+        let toggleCheckbox = () => {
+            isChecked = !isChecked;
+            drawCheck(isChecked);
+            
+            checkSecure = 1;
+    let playerLocal = players[socket.id];
+
+
+            if (isChecked) {
+                Cam = 1;
+                console.log('Checkbox checked, Cam =', Cam);
+                playerLocal.startCameraFollow();
+
+            } else {
+                Cam = 2;
+                console.log('Checkbox unchecked, Cam =', Cam);
+                playerLocal.stopCameraFollow();
+
+            }
+        };
+
+        checkbox.on('pointerdown', toggleCheckbox);
+
+        // Hacer que el texto sea interactivo y reaccione de la misma manera que el checkbox
+        fixedText.setInteractive();
+        fixedText.on('pointerdown', toggleCheckbox);
+
+        // Fijar el checkbox y el texto para que no se desplacen con la cámara
+        checkbox.setScrollFactor(0);
+        fixedText.setScrollFactor(0);
+		 
 
 		 
                 
