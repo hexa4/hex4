@@ -392,62 +392,7 @@ let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, th
 //TEXTOS POSICION START
 
 
-fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi , fontFamily: 'Roboto' });
-fixedText1.setShadow(2, 2, 'blue', 5);
-fixedText2 = this.add.text(10, 30, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
-fixedText2.setShadow(2, 2, 'blue', 5);
-fixedText3 = this.add.text(10, 50, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi , fontFamily: 'Roboto' });
-fixedText4 = this.add.text(10, 70, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
-fixedText5 = this.add.text(10, 90, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
-fixedText6 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'Points: 0', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi , fontFamily: 'Roboto' });
-fixedText7 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'X2 SPEED - 5 s', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi , fontFamily: 'Roboto' });
-        // Hace que los textos no se muevan con la cámara
-        fixedText1.setScrollFactor(0);
-        fixedText2.setScrollFactor(0);
-        fixedText3.setScrollFactor(0);
-        fixedText4.setScrollFactor(0);
-        fixedText5.setScrollFactor(0);
-        fixedText6.setScrollFactor(0);
-		fixedText7.setScrollFactor(0);
 
-
-
-
-fixedText1.setPosition( 	
-worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10); 
-
-
-
-fixedText2.setPosition( 	
-worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 30); 
-
-
-fixedText3.setPosition( 	
-worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 50); 
-
-
-
-fixedText4.setPosition( 	
-worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 70); 
-
-
-fixedText5.setPosition( 	
-worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 90); 
-
-
-
-fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText6.width - 20, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
-
-
-fixedText7.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText7.width - 20, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 30);
-fixedText7.setText("");
 
 
 //TEXTOS POSICION END
@@ -1413,7 +1358,70 @@ class UIScene extends Phaser.Scene {
          console.log(`INICIADO UISCENE!!!!`);
 
 
+	const zoomLevel = isMobile ? 8 / dpi : 2 / dpi; // Menos zoom en PC
+        this.cameras.main.setZoom(zoomLevel);
+//this.cameras.main.setZoom(8 / dpi);
 
+let zoomFactor = this.cameras.main.zoom; 
+let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
+            	 
+
+fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi , fontFamily: 'Roboto' });
+fixedText1.setShadow(2, 2, 'blue', 5);
+fixedText2 = this.add.text(10, 30, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
+fixedText2.setShadow(2, 2, 'blue', 5);
+fixedText3 = this.add.text(10, 50, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi , fontFamily: 'Roboto' });
+fixedText4 = this.add.text(10, 70, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
+fixedText5 = this.add.text(10, 90, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
+fixedText6 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'Points: 0', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi , fontFamily: 'Roboto' });
+fixedText7 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'X2 SPEED - 5 s', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi , fontFamily: 'Roboto' });
+        // Hace que los textos no se muevan con la cámara
+        fixedText1.setScrollFactor(0);
+        fixedText2.setScrollFactor(0);
+        fixedText3.setScrollFactor(0);
+        fixedText4.setScrollFactor(0);
+        fixedText5.setScrollFactor(0);
+        fixedText6.setScrollFactor(0);
+		fixedText7.setScrollFactor(0);
+
+
+
+
+fixedText1.setPosition( 	
+worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10); 
+
+
+
+fixedText2.setPosition( 	
+worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 30); 
+
+
+fixedText3.setPosition( 	
+worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 50); 
+
+
+
+fixedText4.setPosition( 	
+worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 70); 
+
+
+fixedText5.setPosition( 	
+worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 90); 
+
+
+
+fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText6.width - 20, 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
+
+
+fixedText7.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText7.width - 20, 
+worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 30);
+fixedText7.setText("");
 
 		 
                 
