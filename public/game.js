@@ -1153,9 +1153,6 @@ staticText.setScrollFactor(0);
 
 
 
-this.events.on('update', updateTextPosition, this);
-
-
 //CHECKBOX CAM MOVE//////////////////
            // Tamaño y posición del checkbox
 
