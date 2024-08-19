@@ -204,8 +204,43 @@ class GameScene extends Phaser.Scene {
 	
 	//CREATE GameScene //CREATE GameScene //CREATE GameScene //CREATE GameScene 
         create() {
+
+	//RECIBIR UPDATE POINTS AND SIZE Of PLAYER
+	socket.on('updatePuntos', function(myID, puntos) {
+	console.log('Recibido upDate Puntos:', myID, puntos);
+	const sizeCalc = (0.01 * puntos) + 0.2;		
+	players[myID].text.setText(players[myID].name + ' (' + puntos + ')');
+	players[myID].circle.setScale(sizeCalc); 
+	players[myID].puntos = puntos;
+	if(socket.id===myID)
+	fixedText6.setText('Points: '+puntos);
+	});	
 	
-	this.greenCirclesGroup = this.physics.add.group();
+	//RECIBIR UPDATE TOP PLAYERS
+	socket.on('updateTopPlayers', () =>  {
+	topplayers = [];
+	for (const playerId in players) {
+	const player = players[playerId];
+	console.log(`ID: ${playerId}, Nombre: ${player.name}, Puntos: ${player.puntos}`);
+	this.addPlayer(players[playerId].name, players[playerId].puntos, players[playerId].color);
+	}
+	const topPlayers = this.getTopPlayers();
+	fixedText1.setText(topPlayers.length >= 1 ? `#1 ${topPlayers[0].name}: ${topPlayers[0].puntos}` : '');
+	if (topPlayers[0] && topPlayers[0].color) {
+	fixedText1.setFill(topPlayers[0].color); }
+	fixedText2.setText(topPlayers.length >= 2 ? `#2 ${topPlayers[1].name}: ${topPlayers[1].puntos}` : '');
+	if (topPlayers[1] && topPlayers[1].color) {
+	fixedText2.setFill(topPlayers[1].color); }
+	fixedText3.setText(topPlayers.length >= 3 ? `#3 ${topPlayers[2].name}: ${topPlayers[2].puntos}` : '');
+	if (topPlayers[2] && topPlayers[2].color) {
+	fixedText3.setFill(topPlayers[2].color); }
+	fixedText4.setText(topPlayers.length >= 4 ? `#4 ${topPlayers[3].name}: ${topPlayers[3].puntos}` : '');
+	if (topPlayers[3] && topPlayers[3].color) {
+	fixedText4.setFill(topPlayers[3].color); }
+	fixedText5.setText(topPlayers.length >= 5 ? `#5 ${topPlayers[4].name}: ${topPlayers[4].puntos}` : '');
+	if (topPlayers[4] && topPlayers[4].color) {
+	fixedText5.setFill(topPlayers[4].color); }
+	});			 	
 
 	//BORRA TODOS CIRCULOS VERDES PARA VOLVER A GENERAR (DESDE SERVER ACCIONADO)
 	socket.on('borrarTodosGreen', () => {
@@ -217,93 +252,43 @@ class GameScene extends Phaser.Scene {
         } });   	    
 	});
    
-	
-
-
+//CAM ZOOM INITIALIZATION
 const zoomLevel = isMobile ? 8 / dpi : 2 / dpi; // Menos zoom en PC
-        this.cameras.main.setZoom(zoomLevel);
-//this.cameras.main.setZoom(8 / dpi);
-
+this.cameras.main.setZoom(zoomLevel);
 let zoomFactor = this.cameras.main.zoom; 
 let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
-            
 
+this.greenCirclesGroup = this.physics.add.group();
 
-//TEXTOS POSICION START
+//HEXAGONAL MAP INITIALIZATION		
+hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 6, color: 0x0077ff, alpha: 0.2 } });
+hexagonGroup2 = this.add.group();
+hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x808080 } });
+redCirclesGroup = this.add.group();
+hexagonGroup = this.add.group();
 
-
-
-
-
-//TEXTOS POSICION END
-		
-
-		  
-		            
-//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM
-//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM
-//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM
-//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM//CHECKBX ZOOM ZOOM ZOOM ZOOM
-//CHECKBOX PARA ZOOM MAPA
-
-let texto = this.add.text(0, 0, 'Hello World', { font: '16px Arial', fill: '#ffffff' });
-
-// Función para actualizar la posición del texto
-function updateTextPosition() {
-    let cam = this.cameras.main;
-    texto.setPosition(cam.scrollX, cam.scrollY);
-}
-
-		
-
-        // Muestra el estado inicial del checkbox
-        console.log('Checkbox initial state: checked, Cam =', Cam);
-
-
-
-        // Muestra el estado inicial del checkbox
-        console.log('Checkbox initial state: checked, Cam =', Cam);
-
-
-	hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 6, color: 0x0077ff, alpha: 0.2 } });
-            hexagonGroup2 = this.add.group();
-
-
-            hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x808080 } });
-
-            redCirclesGroup = this.add.group();
-            hexagonGroup = this.add.group();
-
-	//this.greenCirclesGroup = this.physics.add.group();
-
-
-		     for (let y = 0; y < hexagonMap.length; y++) {
+for (let y = 0; y < hexagonMap.length; y++) {
     for (let x = 0; x < hexagonMap[y].length; x++) {
         let hexX = x * hexagonWidth * 0.75;
         let hexY = y * hexagonHeight + (x % 2 === 0 ? 0 : hexagonHeight / 2);
-
         // Opcional: Usa la dirección del hexágono si es necesario
         let direction = hexagonMap[y][x].direction;
-        console.log(`Hexágono en (${x}, ${y}) tiene dirección: ${direction}`);
-
+        //console.log(`Hexágono en (${x}, ${y}) tiene dirección: ${direction}`);
         this.drawHexagon2(hexX, hexY, hexagonSize);
         hexagons.push({ x: hexX, y: hexY });
         vertices.push(...this.getHexVertices(hexX, hexY));
         hexagonGroup2.add(hexagonGraphics2); // Añadir el gráfico del hexágono al grupo
     }
-}
-		
-              
-            // Crear el mapa hexagonal
-     for (let y = 0; y < hexagonMap.length; y++) {
+}       
+
+// Crear el mapa hexagonal
+for (let y = 0; y < hexagonMap.length; y++) {
     for (let x = 0; x < hexagonMap[y].length; x++) {
         let hexX = x * hexagonWidth * 0.75;
         let hexY = y * hexagonHeight + (x % 2 === 0 ? 0 : hexagonHeight / 2);
-
         // Opcional: Usa la dirección del hexágono si es necesario
         let direction = hexagonMap[y][x].direction;
-        console.log(`Hexágono en (${x}, ${y}) tiene dirección: ${direction}`);
-
+       	//console.log(`Hexágono en (${x}, ${y}) tiene dirección: ${direction}`);
         this.drawHexagon(hexX, hexY, hexagonSize);
         hexagons.push({ x: hexX, y: hexY });
         vertices.push(...this.getHexVertices(hexX, hexY));
@@ -311,36 +296,17 @@ function updateTextPosition() {
     }
 }
 
+// Crear el jugador en un vértice aleatorio
+const randomHex = hexagons[Phaser.Math.Between(0, hexagons.length - 1)];
+const randomVertex = this.getHexVertices(randomHex.x, randomHex.y)[Phaser.Math.Between(0, 5)];
+player = this.add.circle(randomVertex.x, randomVertex.y, 0, 0xffffff);
 
-            // Crear el jugador en un vértice aleatorio
-            const randomHex = hexagons[Phaser.Math.Between(0, hexagons.length - 1)];
-            const randomVertex = this.getHexVertices(randomHex.x, randomHex.y)[Phaser.Math.Between(0, 5)];
-            player = this.add.circle(randomVertex.x, randomVertex.y, 0, 0xffffff);
-
-socket.emit('newPlayer', { name: playerName, x: randomVertex.x, y: randomVertex.y, skin: skinCode });
-
-
-          
+socket.emit('newPlayer', { name: playerName, x: randomVertex.x, y: randomVertex.y, skin: skinCode });       
 this.updateRedVertices.call(this, randomVertex.x, randomVertex.y); 
-console.log("COORDS", randomVertex.x,randomVertex.y);
+//console.log("COORDS", randomVertex.x,randomVertex.y);
+this.input.on('pointerdown', this.onPointerDown, this);
 
-          
-            this.input.on('pointerdown', this.onPointerDown, this);
-
-	        	socket.emit('LlamargreenCirclesS');
-
-
-//RECIBIR UPDATE POINTS AND SIZE Of PLAYER
-socket.on('updatePuntos', function(myID, puntos) {
-console.log('Recibido upDate Puntos:', myID, puntos);
-const sizeCalc = (0.01 * puntos) + 0.2;		
-players[myID].text.setText(players[myID].name + ' (' + puntos + ')');
-players[myID].circle.setScale(sizeCalc); 
-players[myID].puntos = puntos;
-if(socket.id===myID)
-fixedText6.setText('Points: '+puntos);
-});
-
+socket.emit('LlamargreenCirclesS');
 
 //UPDATE PLAYERS!!!!!! // AND CREATE PLAYERS //UPDATE PLAYERS!!!!!! // AND CREATE PLAYERS
 //UPDATE PLAYERS!!!!!! // AND CREATE PLAYERS //UPDATE PLAYERS!!!!!! // AND CREATE PLAYERS
@@ -368,11 +334,7 @@ const player = new Player(this, playerData.id, playerData.name, playerData.x, pl
 players[playerData.id] = player;
 console.log('SE CREA PLAYER', players[playerData.id]);
 
-console.log("Ejecutar Top Players 1111", playerData.id);
-console.log("Ejecutar Top Players2222", socket.id);
-
 if(socket.id===playerData.id){
-
 console.log("Ejecutar Top Players");
 socket.emit('crearTopPlayers');}
 });
@@ -385,27 +347,25 @@ players[playerData.id] = player;
 }
 });
 
-
 ///ANIMATE PLAYER MOVE // MOVE PLAYER FROM SERVER - ///ANIMATE PLAYER MOVE // MOVE PLAYER FROM SERVER - 
 ///ANIMATE PLAYER MOVE // MOVE PLAYER FROM SERVER - ///ANIMATE PLAYER MOVE // MOVE PLAYER FROM SERVER - 
 ///ANIMATE PLAYER MOVE // MOVE PLAYER FROM SERVER - ///ANIMATE PLAYER MOVE // MOVE PLAYER FROM SERVER - 
 ///ANIMATE PLAYER MOVE // MOVE PLAYER FROM SERVER - ///ANIMATE PLAYER MOVE // MOVE PLAYER FROM SERVER - 
 socket.on('animatePlayer', animationData => {
-    
-    const playerId = animationData.playerId;
-    const player = players[playerId];
+    	const playerId = animationData.playerId;
+    	const player = players[playerId];
 	const data = animationData.data;
-    const endX = data.end.x;
-    const endY = data.end.y;
+    	const endX = data.end.x;
+    	const endY = data.end.y;
     
-this.tweens.add({
+	this.tweens.add({
                 targets: [player.circle],
                	x: { value: endX, duration: data.speed, ease: 'Power2' },
-    			y: { value: endY, duration: data.speed, ease: 'Power2' },
+    		y: { value: endY, duration: data.speed, ease: 'Power2' },
                 duration: data.speed,
                 ease: 'Power2',
                 onUpdate: function(tween) {
-				player.text.setPosition(player.circle.x, player.circle.y - 20);
+			player.text.setPosition(player.circle.x, player.circle.y - 20);
               		},
                	onComplete: function() {
                	if(socket.id === playerId){
@@ -516,15 +476,7 @@ socket.on('eliminarGreenServer', (collisionIndex, myID) => {
     }
 });
 
-
-
-
-
-
-
-        
-        
-        
+    
 
 //ELIMINAR PLAYER ACTIVADO DESDE EL SERVER. DESDE EL SERVER ESTA FUNCION
 socket.on('eliminarPlayerServer', (collisionIndex) => {
@@ -942,31 +894,6 @@ let zoomFactor = this.cameras.main.zoom;
 let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
 
 
-//RECIBIR UPDATE TOP PLAYERS
-	socket.on('updateTopPlayers', () =>  {
-	topplayers = [];
-	for (const playerId in players) {
-	const player = players[playerId];
-	console.log(`ID: ${playerId}, Nombre: ${player.name}, Puntos: ${player.puntos}`);
-	this.addPlayer(players[playerId].name, players[playerId].puntos, players[playerId].color);
-	}
-	const topPlayers = this.getTopPlayers();
-	fixedText1.setText(topPlayers.length >= 1 ? `#1 ${topPlayers[0].name}: ${topPlayers[0].puntos}` : '');
-	if (topPlayers[0] && topPlayers[0].color) {
-	fixedText1.setFill(topPlayers[0].color); }
-	fixedText2.setText(topPlayers.length >= 2 ? `#2 ${topPlayers[1].name}: ${topPlayers[1].puntos}` : '');
-	if (topPlayers[1] && topPlayers[1].color) {
-	fixedText2.setFill(topPlayers[1].color); }
-	fixedText3.setText(topPlayers.length >= 3 ? `#3 ${topPlayers[2].name}: ${topPlayers[2].puntos}` : '');
-	if (topPlayers[2] && topPlayers[2].color) {
-	fixedText3.setFill(topPlayers[2].color); }
-	fixedText4.setText(topPlayers.length >= 4 ? `#4 ${topPlayers[3].name}: ${topPlayers[3].puntos}` : '');
-	if (topPlayers[3] && topPlayers[3].color) {
-	fixedText4.setFill(topPlayers[3].color); }
-	fixedText5.setText(topPlayers.length >= 5 ? `#5 ${topPlayers[4].name}: ${topPlayers[4].puntos}` : '');
-	if (topPlayers[4] && topPlayers[4].color) {
-	fixedText5.setFill(topPlayers[4].color); }
-	});			 
 
 fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi , fontFamily: 'Roboto' });
 fixedText1.setShadow(2, 2, 'blue', 5);
