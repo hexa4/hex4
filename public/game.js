@@ -118,7 +118,7 @@ if (this.circle.body) {
         if (id === socket.id) {
             // código adicional para el jugador local
            this.scene.cameras.main.startFollow(this.circle);
-            this.scene.physics.add.overlap(this.circle, this.greenCirclesGroup, this.collectGreenCircle, null, this.scene);
+            this.scene.physics.add.overlap(this.circle, this.greenCirclesGroup, this.collectGreenCircle2, null, this.scene);
 
 
 			//COLISION PLAYERS PRUEBA
@@ -132,6 +132,17 @@ if (this.circle.body) {
 
         
     }
+
+
+ collectGreenCircle2(player, greenCircle) {
+
+	 	console.log('BORRAR GREEN CIRCLES.');
+
+        // Aquí puedes manejar lo que sucede cuando el jugador colecta un círculo verde
+        greenCircle.destroy();
+        // Aumentar puntos o cambiar el tamaño del jugador
+    }
+	  
     
     
     stopCameraFollow() {
