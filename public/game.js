@@ -201,7 +201,7 @@ class GameScene extends Phaser.Scene {
         constructor() { super({ key: 'GameScene' }); }
         preload() { }
 
-	
+	//CREATE GameScene //CREATE GameScene //CREATE GameScene //CREATE GameScene 
 	//CREATE GameScene //CREATE GameScene //CREATE GameScene //CREATE GameScene 
         create() {
 
@@ -280,7 +280,6 @@ for (let y = 0; y < hexagonMap.length; y++) {
         hexagonGroup2.add(hexagonGraphics2); // Añadir el gráfico del hexágono al grupo
     }
 }       
-
 // Crear el mapa hexagonal
 for (let y = 0; y < hexagonMap.length; y++) {
     for (let x = 0; x < hexagonMap[y].length; x++) {
@@ -470,7 +469,6 @@ drawHexagon2(x, y, size) {
 	const points = this.getHexVertices(x, y, size);
         hexagonGraphics2.strokePoints(points, true);
 }
-
 getHexVertices(x, y, size = hexagonSize) {
         const points = [];
         for (let i = 0; i < 6; i++) {
@@ -552,8 +550,7 @@ findClosestRedVertexToClick(x, y) {
                     minDistance = dist;
                     closestVertex = vertex;
                 }
-            });
-            return closestVertex;
+            }); return closestVertex;
 }
                                      
 //CLEAR RED VERTEX                                                                         
@@ -605,66 +602,45 @@ console.log('GREEN CIRCLES DRAW');
     let index = 0;
       for (const circle of greenCirclesS) {
         const circleGraphics = this.add.graphics(); // 'this' debería ser la escena de Phaser.js
-       // circleGraphics.fillStyle(0x00ff00, 0.5); // Color verde con opacidad del 50%
-      //COLISION    
-      
+       // circleGraphics.fillStyle(0x00ff00, 0.5); // Color verde con opacidad del 50%      
        //GREEN POINTS
        if(index<15){
      		let graphics = this.add.graphics({ fillStyle: { color: 0x00ff00 } });
-            let greenCircle = graphics.fillCircle(0, 0, 5);
-            let greenCirclePhysics = this.physics.add.existing(greenCircle);
-            greenCirclePhysics.body.setCircle(5);
-            greenCirclePhysics.body.setCollideWorldBounds(true);
-            greenCirclePhysics.x = circle.x;
-            greenCirclePhysics.y = circle.y;
-            greenCirclePhysics.z = circle.z;
-                                    greenCirclePhysics.type = 'green';
-
-            this.greenCirclesGroup.add(greenCirclePhysics);  
- 
-        
+            	let greenCircle = graphics.fillCircle(0, 0, 5);
+            	let greenCirclePhysics = this.physics.add.existing(greenCircle);
+            	greenCirclePhysics.body.setCircle(5);
+            	greenCirclePhysics.body.setCollideWorldBounds(true);
+            	greenCirclePhysics.x = circle.x;
+            	greenCirclePhysics.y = circle.y;
+            	greenCirclePhysics.z = circle.z;
+                greenCirclePhysics.type = 'green';
+            	this.greenCirclesGroup.add(greenCirclePhysics);  
         //BLUE SPEED
         }else{
         let graphics = this.add.graphics({ fillStyle: { color: 0x0000ff } });
-            let greenCircle = graphics.fillCircle(0, 0, 3);
-            let greenCirclePhysics = this.physics.add.existing(greenCircle);
-            greenCirclePhysics.body.setCircle(3);
-            greenCirclePhysics.body.setCollideWorldBounds(true);
-            greenCirclePhysics.x = circle.x;
-            greenCirclePhysics.y = circle.y;
-            greenCirclePhysics.z = circle.z;
-                        greenCirclePhysics.type = 'blue';
-
-            this.greenCirclesGroup.add(greenCirclePhysics);   
-console.log(`Circle ${index} has body:`, !!greenCirclePhysics.body);
-
-        
+            	let greenCircle = graphics.fillCircle(0, 0, 3);
+            	let greenCirclePhysics = this.physics.add.existing(greenCircle);
+            	greenCirclePhysics.body.setCircle(3);
+            	greenCirclePhysics.body.setCollideWorldBounds(true);
+            	greenCirclePhysics.x = circle.x;
+            	greenCirclePhysics.y = circle.y;
+            	greenCirclePhysics.z = circle.z;
+                greenCirclePhysics.type = 'blue';
+            	this.greenCirclesGroup.add(greenCirclePhysics);   
         }
-        
-            index++;
-
-    }
-
-	 		    	let groupSize2 = this.greenCirclesGroup.getChildren().length;
-    console.log(`GreenSize! ${groupSize2}`);
-
-let groupSize = this.greenCirclesGroup.getChildren().length;
-    console.log(`GreenSize! ${groupSize}`);
-
-}
+	index++;
+	}
+} //END DRAW GREEN CIRCLES!!!!!!
 
 ///ACTIVAR VELOCIDAD TEXTO
 activarVelocidad() {
-clearInterval(intervalo);
-
-    Velocidad = true;
-    const newVel = { velocidad: Velocidad };
-    //socket.emit('updateVelocidadServer', newVel);
-    console.log('Velocidad activada');
-    fixedText7.setText(`X2 SPEED - 5 s`);
-
-    segundosRestantes = 5;
-    intervalo = setInterval(function() {
+	clearInterval(intervalo);
+    	Velocidad = true;
+    	const newVel = { velocidad: Velocidad };
+    	console.log('Velocidad activada');
+    	fixedText7.setText(`X2 SPEED - 5 s`);
+    	segundosRestantes = 5;
+    	intervalo = setInterval(function() {
         segundosRestantes--;
         if (segundosRestantes > 0) {
             fixedText7.setText(`X2 SPEED - ${segundosRestantes} s`);
@@ -675,65 +651,46 @@ clearInterval(intervalo);
             const newVel = { velocidad: Velocidad };
             //socket.emit('updateVelocidadServer', newVel);
             fixedText7.setText(``);
-        }
-    }, 1000); // Actualizar cada segundo
+        } }, 1000); // Actualizar cada segundo
 }
 
-
-
 ///TEXTO VELOCIDAD EN EL MEDIO PANTALLA
-  llamarTextoSpeed(scene) {
+llamarTextoSpeed(scene) {
         const width = scene.scale.width;
         const height = scene.scale.height;
-
         const text = scene.add.text(width / 2, height / 2, '+speed!', {
             fontSize: '40px',
-            fill: '#0000ff'
-, resolution: dpi , fontFamily: 'Roboto'
-
+            fill: '#0000ff', resolution: dpi, fontFamily: 'Roboto'
         }).setOrigin(0.5, 0.5);
-
         text.setScrollFactor(0);
-
-
-scene.tweens.add({ targets: text, scaleX: 2, scaleY: 2, duration: 500, ease: 'Power2', yoyo: scene, 
+	scene.tweens.add({ targets: text, scaleX: 2, scaleY: 2, duration: 500, ease: 'Power2', yoyo: scene, 
             onComplete: () => {
                 scene.time.addEvent({
                     delay: 200,
                     callback: () => { text.destroy();  }
-                });
-            }
-        });
-    }
+                }); } });
+}
 
 textOnDestroy(scene, x, y, texto, size, color) {
             const text = scene.add.text(x, y, texto, {
                     fontSize: size,
-                    fill: color, 
-resolution: dpi , fontFamily: 'Roboto'
+                    fill: color, resolution: dpi, fontFamily: 'Roboto'
             });
-            
-               text.setOrigin(0.5, 0.5); // Establece el origen del texto en su centro
-    text.setPosition(x, y); // Reposiciona el texto
-            
-             scene.time.addEvent({
+            	text.setOrigin(0.5, 0.5); // Establece el origen del texto en su centro
+    		text.setPosition(x, y); // Reposiciona el texto
+            	scene.time.addEvent({
                     delay: 500,
                     callback: () => {
                         text.destroy();
-                    }
-            });
-
-
+                    } });
 }
 
+///GAMESCENE END !!!/!?!?!?!?!?!?!?!?!?!?	
+///GAMESCENE END !!!/!?!?!?!?!?!?!?!?!?!?	
+///GAMESCENE END !!!/!?!?!?!?!?!?!?!?!?!?		
+}  
 
 
-
-}  ///GAMESCENE END !!!/!?!?!?!?!?!?!?!?!?!?	
-
-
-//UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
-//UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
 //UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
 //UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
 //UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
@@ -746,15 +703,10 @@ class UIScene extends Phaser.Scene {
          create() {
          console.log(`INICIADO UISCENE!!!!`);
 
-
 	const zoomLevel = isMobile ? 8 / dpi : 2 / dpi; // Menos zoom en PC
         this.cameras.main.setZoom(zoomLevel);
-//this.cameras.main.setZoom(8 / dpi);
-
-let zoomFactor = this.cameras.main.zoom; 
-let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
-
-
+	let zoomFactor = this.cameras.main.zoom; 
+	let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
 
 fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi , fontFamily: 'Roboto' });
 fixedText1.setShadow(2, 2, 'blue', 5);
@@ -766,87 +718,64 @@ fixedText5 = this.add.text(10, 90, '', { fontSize: '16px', fill: '#ffffff'  , re
 fixedText6 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'Points: 0', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi , fontFamily: 'Roboto' });
 fixedText7 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'X2 SPEED - 5 s', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi , fontFamily: 'Roboto' });
         // Hace que los textos no se muevan con la cámara
-        fixedText1.setScrollFactor(0);
-        fixedText2.setScrollFactor(0);
-        fixedText3.setScrollFactor(0);
-        fixedText4.setScrollFactor(0);
-        fixedText5.setScrollFactor(0);
-        fixedText6.setScrollFactor(0);
-		fixedText7.setScrollFactor(0);
-
-
-
+fixedText1.setScrollFactor(0);
+fixedText2.setScrollFactor(0);
+fixedText3.setScrollFactor(0);
+fixedText4.setScrollFactor(0);
+fixedText5.setScrollFactor(0);
+fixedText6.setScrollFactor(0);
+fixedText7.setScrollFactor(0);
 
 fixedText1.setPosition( 	
 worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10); 
 
-
-
 fixedText2.setPosition( 	
 worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 30); 
-
 
 fixedText3.setPosition( 	
 worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 50); 
 
-
-
 fixedText4.setPosition( 	
 worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 70); 
-
 
 fixedText5.setPosition( 	
 worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 90); 
 
-
-
 fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText6.width - 20, 
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
-
 
 fixedText7.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText7.width - 20, 
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 30);
 fixedText7.setText("");
 
-
-
+//CHECKBOXES FOR ZOOM AND CAMERA		 
 let lineWidth = 2; 	
-
 let boxSize = 20;
 let boxX = worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10;
 let boxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - boxSize*2 - 20;
-
 // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
 let textYOffset = boxSize / 2;
 let staticText = this.add.text(boxX + boxSize + 10, boxY + textYOffset, 'Zoom', { fontSize: '16px', fill: '#ffffff' , resolution: dpi, fontFamily: 'Roboto'   });
-
-
 staticText.setShadow(2, 2, 'blue', 5);
-
 staticText.setOrigin(0, 0.5); // Ajuste vertical para centrar con el checkbox
 staticText.setScrollFactor(0); // Esto fija el texto para que no se desplace con la cámara
-
 // Crear el gráfico del checkbox
 let box = this.add.graphics();
-
 // Dibujar el checkbox
 box.fillStyle(0x00ff00); // Color verde
 box.fillRect(boxX, boxY, boxSize, boxSize);
-
 // Estado inicial del checkbox
 let isBoxChecked = true;
-
 // Función para dibujar o borrar la "X"
 let drawBoxCheck = (isBoxChecked) => {
     box.clear();
     box.fillStyle(0x00ff00); // Color verde
     box.fillRect(boxX, boxY, boxSize, boxSize);
-
     if (isBoxChecked) {
         box.lineStyle(lineWidth, 0x000000); // Color negro para la "X"
         box.beginPath();
@@ -857,94 +786,56 @@ let drawBoxCheck = (isBoxChecked) => {
         box.strokePath();
     }
 };
-
 // Dibujar el estado inicial del checkbox
 drawBoxCheck(isBoxChecked);
-
 // Hacer que el checkbox sea interactivo
 let hitAreaBox = new Phaser.Geom.Rectangle(boxX, boxY, boxSize, boxSize);
 box.setInteractive(hitAreaBox, Phaser.Geom.Rectangle.Contains);
-
 let toggleBox = () => {
-    isBoxChecked = !isBoxChecked;
-    drawBoxCheck(isBoxChecked);
-    
-    checkSecure = 1;
-    
-    
-    		 ZoomOut = 1;
-
-    //const localPlayer = players[socket.id];
-let playerLocal = players[socket.id];
-
-    if (isBoxChecked) {
+    	isBoxChecked = !isBoxChecked;
+    	drawBoxCheck(isBoxChecked); 
+    	checkSecure = 1;
+    	ZoomOut = 1;
+	let playerLocal = players[socket.id];
+    	if (isBoxChecked) {
         this.cameras.main.setZoom(8 / dpi);
-    
         let zoomFactor = this.cameras.main.zoom; 
-
-playerLocal.fontSizePlayer(12);
-
-
-    } else {
-  
-     		 //this.cameras.main.setZoom(4 / dpi);
-                    this.scene.get('GameScene').cameras.main.setZoom(4 / dpi);
-
-    }
+	playerLocal.fontSizePlayer(12);
+    	} else {
+                this.scene.get('GameScene').cameras.main.setZoom(4 / dpi);
+    	}
 };
-
-
-
-
-
 box.on('pointerdown', toggleBox);
-
 // Hacer que el texto sea interactivo y reaccione de la misma manera que el checkbox
 staticText.setInteractive();
 staticText.on('pointerdown', toggleBox);
-
 // Fijar el checkbox y el texto para que no se desplacen con la cámara
 box.setScrollFactor(0);
 staticText.setScrollFactor(0);
 
-
-
 //CHECKBOX CAM MOVE//////////////////
-           // Tamaño y posición del checkbox
-
-
-
-        let checkboxSize = 20;
-        let checkboxX =   worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10 ;
-        let checkboxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - checkboxSize - 10;
-
-        // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
-        let textOffsetY = checkboxSize / 2;
-        let fixedText = this.add.text(checkboxX + checkboxSize + 10, checkboxY + textOffsetY, 'Centered Cam', { fontSize: '16px', fill: '#ffffff' , resolution: dpi  , fontFamily: 'Roboto'});
-
+// Tamaño y posición del checkbox
+let checkboxSize = 20;
+let checkboxX =   worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10 ;
+let checkboxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - checkboxSize - 10;
+// Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
+let textOffsetY = checkboxSize / 2;
+let fixedText = this.add.text(checkboxX + checkboxSize + 10, checkboxY + textOffsetY, 'Centered Cam', { fontSize: '16px', fill: '#ffffff' , resolution: dpi  , fontFamily: 'Roboto'});
 fixedText.setShadow(2, 2, 'blue', 5);
-
-
-
-        fixedText.setOrigin(0, 0.5); // Ajuste vertical para centrar con el checkbox
-        fixedText.setScrollFactor(0); // Esto fija el texto para que no se desplace con la cámara
-
-        // Crear el gráfico del checkbox
-        let checkbox = this.add.graphics();
-
-        // Dibujar el checkbox
-        checkbox.fillStyle(0x00ff00); // Color verde
-        checkbox.fillRect(checkboxX, checkboxY, checkboxSize, checkboxSize);
-
-        // Estado inicial del checkbox
-        let isChecked = true;
-
-        // Función para dibujar o borrar la "X"
+fixedText.setOrigin(0, 0.5); // Ajuste vertical para centrar con el checkbox
+fixedText.setScrollFactor(0); // Esto fija el texto para que no se desplace con la cámara
+// Crear el gráfico del checkbox
+let checkbox = this.add.graphics();
+// Dibujar el checkbox
+checkbox.fillStyle(0x00ff00); // Color verde
+checkbox.fillRect(checkboxX, checkboxY, checkboxSize, checkboxSize);
+// Estado inicial del checkbox
+let isChecked = true;
+// Función para dibujar o borrar la "X"
         let drawCheck = (isChecked) => {
             checkbox.clear();
             checkbox.fillStyle(0x00ff00); // Color verde
             checkbox.fillRect(checkboxX, checkboxY, checkboxSize, checkboxSize);
-
             if (isChecked) {
                 checkbox.lineStyle(lineWidth, 0x000000); // Color negro para la "X"
                 checkbox.beginPath();
@@ -955,22 +846,16 @@ fixedText.setShadow(2, 2, 'blue', 5);
                 checkbox.strokePath();
             }
         };
-
         // Dibujar el estado inicial del checkbox
         drawCheck(isChecked);
-
         // Hacer que el checkbox sea interactivo
         let hitArea = new Phaser.Geom.Rectangle(checkboxX, checkboxY, checkboxSize, checkboxSize);
         checkbox.setInteractive(hitArea, Phaser.Geom.Rectangle.Contains);
-
         let toggleCheckbox = () => {
-            isChecked = !isChecked;
-            drawCheck(isChecked);
-            
-            checkSecure = 1;
-    let playerLocal = players[socket.id];
-
-
+            	isChecked = !isChecked;
+            	drawCheck(isChecked);
+            	checkSecure = 1;
+    		let playerLocal = players[socket.id];
             if (isChecked) {
                 Cam = 1;
                 console.log('Checkbox checked, Cam =', Cam);
@@ -980,24 +865,16 @@ fixedText.setShadow(2, 2, 'blue', 5);
                 Cam = 2;
                 console.log('Checkbox unchecked, Cam =', Cam);
                 playerLocal.stopCameraFollow();
-
             }
         };
-
         checkbox.on('pointerdown', toggleCheckbox);
-
         // Hacer que el texto sea interactivo y reaccione de la misma manera que el checkbox
         fixedText.setInteractive();
         fixedText.on('pointerdown', toggleCheckbox);
-
         // Fijar el checkbox y el texto para que no se desplacen con la cámara
         checkbox.setScrollFactor(0);
-        fixedText.setScrollFactor(0);
-		 
-
-		 
-                
-          }
+        fixedText.setScrollFactor(0);    
+        }
             
         update() {}
         preload() {}
@@ -1007,10 +884,6 @@ fixedText.setShadow(2, 2, 'blue', 5);
 //END UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
 //END UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
 //END UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
-//END UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
-//END UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
-	
-
 
 //CONFIG SCENEN/////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         const config = {
