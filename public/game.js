@@ -798,11 +798,17 @@ let toggleBox = () => {
     	ZoomOut = 1;
 	let playerLocal = players[socket.id];
     	if (isBoxChecked) {
-        this.cameras.main.setZoom(8 / dpi);
-        let zoomFactor = this.cameras.main.zoom; 
-	playerLocal.fontSizePlayer(12);
+        //this.cameras.main.setZoom(8 / dpi);
+		//this.scene.get('GameScene').cameras.main.setZoom(8 / dpi);
+        //let zoomFactor = this.cameras.main.zoom; 
+		const zoomLevel = isMobile ? 8 / dpi : 2 / dpi; // Menos zoom en PC
+                this.scene.get('GameScene').cameras.main.setZoom(zoomLevel);
+		playerLocal.fontSizePlayer(12);
     	} else {
-                this.scene.get('GameScene').cameras.main.setZoom(4 / dpi);
+		const zoomLevel = isMobile ? 4 / dpi : 2 / dpi; // Menos zoom en PC
+                this.scene.get('GameScene').cameras.main.setZoom(zoomLevel);
+		playerLocal.fontSizePlayer(24);
+
     	}
 };
 box.on('pointerdown', toggleBox);
