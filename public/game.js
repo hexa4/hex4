@@ -913,7 +913,9 @@ let isChecked = true;
         			} },
             backgroundColor: '#0B1E00',
             scale: {
-                mode: Phaser.Scale.FIT,
+               // mode: Phaser.Scale.FIT,
+		        mode: Phaser.Scale.RESIZE,
+
                 autoCenter: Phaser.Scale.CENTER_BOTH
             },
         	scene: [GameScene, UIScene],
