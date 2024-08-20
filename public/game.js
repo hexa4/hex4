@@ -924,5 +924,17 @@ let isChecked = true;
         const game = new Phaser.Game(config);
 	game.scene.start('GameScene');
 
+	// Listener para el redimensionamiento de la ventana
+window.addEventListener('resize', () => {
+    const newWidth = window.innerWidth * dpi;
+    const newHeight = window.innerHeight * dpi;
+    game.scale.resize(newWidth, newHeight);
+    game.scene.scenes.forEach(scene => {
+        if (scene.cameras.main) {
+            scene.cameras.main.setViewport(0, 0, newWidth, newHeight);
+        }
+    });
+});
+
 	
 }  //END FUNCTION START GAME!!!!
