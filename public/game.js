@@ -423,7 +423,7 @@ socket.on('greenCirclesS', function(greenCirclesS) {
 socket.on('eliminarGreenServer', (collisionIndex, myID) => {
     	console.log(`eliminarGreenServer`);
     	if(myID!=socket.id){
-    	greenCirclesGroup.children.each((greenCircle) => {
+    	this.greenCirclesGroup.children.each((greenCircle) => {
         if (greenCircle.z === collisionIndex) {
         	textOnDestroy(this, greenCircle.x, greenCircle.y, '+1 points', '20px', '#00ff00');
 		if(greenCircle.type === 'blue'){
