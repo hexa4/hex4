@@ -936,6 +936,20 @@ function resizeTexts(scene) {
         worldPoint.y - (scene.cameras.main.height / 2) / zoomFactor + 30
     );
     fixedText7.setText("");
+
+
+
+boxSize = 20;
+boxX = worldPoint.x - (scene.cameras.main.width / 2) / zoomFactor + 10;
+boxY = worldPoint.y + (scene.cameras.main.height / 2) / zoomFactor - boxSize*2 - 20;
+// Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
+textYOffset = boxSize / 2;	
+staticText.setText(boxX + boxSize + 10, boxY + textYOffset);
+
+fixedText.setText(checkboxX + checkboxSize + 10, checkboxY + textOffsetY);
+
+
+	
 }
 
 
