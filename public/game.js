@@ -332,10 +332,12 @@ URL.revokeObjectURL(svgUrl);
 const player = new Player(this, playerData.id, playerData.name, playerData.x, playerData.y, 10, playerData.skin, this.greenCirclesGroup, playerData.puntos,playerData.color);
 players[playerData.id] = player;
 console.log('SE CREA PLAYER', players[playerData.id]);
+socket.emit('crearTopPlayers');
 
 if(socket.id===playerData.id){
 console.log("Ejecutar Top Players");
-socket.emit('crearTopPlayers');}
+//socket.emit('crearTopPlayers');
+}
 });
 this.load.start();
 } else {
