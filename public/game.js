@@ -893,44 +893,51 @@ let isChecked = true;
 
 
 	 		
-		  window.addEventListener('resize', resizeTexts);
+window.addEventListener('resize', () => resizeTexts(this));
 
-    function resizeTexts() {
+function resizeTexts(scene) {
+    console.log(`RESIZE!!!!`);
 
-         console.log(`RESIZE!!!!`);
+    const worldPoint = scene.cameras.main.midPoint; // Asumimos que este es el punto central que estás usando
+    const zoomFactor = scene.cameras.main.zoom;
 
-	    
-          //  game.scale.resize(window.innerWidth, window.innerHeight);
-       fixedText1.setPosition( 	
-worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10); 
+    fixedText1.setPosition( 	
+        worldPoint.x - (scene.cameras.main.width / 2) / zoomFactor + 10, 
+        worldPoint.y - (scene.cameras.main.height / 2) / zoomFactor + 10
+    ); 
 
-fixedText2.setPosition( 	
-worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 30); 
+    fixedText2.setPosition( 	
+        worldPoint.x - (scene.cameras.main.width / 2) / zoomFactor + 10, 
+        worldPoint.y - (scene.cameras.main.height / 2) / zoomFactor + 30
+    ); 
 
-fixedText3.setPosition( 	
-worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 50); 
+    fixedText3.setPosition( 	
+        worldPoint.x - (scene.cameras.main.width / 2) / zoomFactor + 10, 
+        worldPoint.y - (scene.cameras.main.height / 2) / zoomFactor + 50
+    ); 
 
-fixedText4.setPosition( 	
-worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 70); 
+    fixedText4.setPosition( 	
+        worldPoint.x - (scene.cameras.main.width / 2) / zoomFactor + 10, 
+        worldPoint.y - (scene.cameras.main.height / 2) / zoomFactor + 70
+    ); 
 
-fixedText5.setPosition( 	
-worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 90); 
+    fixedText5.setPosition( 	
+        worldPoint.x - (scene.cameras.main.width / 2) / zoomFactor + 10, 
+        worldPoint.y - (scene.cameras.main.height / 2) / zoomFactor + 90
+    ); 
 
-fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText6.width - 20, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
+    fixedText6.setPosition(
+        worldPoint.x + (scene.cameras.main.width / 2) / zoomFactor - fixedText6.width - 20, 
+        worldPoint.y - (scene.cameras.main.height / 2) / zoomFactor + 10
+    );
 
-fixedText7.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText7.width - 20, 
-worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 30);
-fixedText7.setText("");
+    fixedText7.setPosition(
+        worldPoint.x + (scene.cameras.main.width / 2) / zoomFactor - fixedText7.width - 20, 
+        worldPoint.y - (scene.cameras.main.height / 2) / zoomFactor + 30
+    );
+    fixedText7.setText("");
+}
 
-
-
-    }
 
 		 
         } //END CREATE UISCENE
