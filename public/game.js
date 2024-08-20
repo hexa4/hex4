@@ -480,7 +480,7 @@ getHexVertices(x, y, size = hexagonSize) {
 }
 
 //UPDATE RED VERTICES REDIBUJARLOS	
-updateRedVertices() {
+/*updateRedVertices() {
             this.clearRedVertices.call(this); 
             const verticesInRadius = this.getVerticesInRadius(player.x, player.y, 60); // Radio de 60 píxeles
             verticesInRadius.forEach(vertex => {
@@ -490,7 +490,7 @@ updateRedVertices() {
                 graphics.fillCircle(vertex.x, vertex.y, 4); // Dibuja un círculo en la posición (vertex.x, vertex.y) con radio 5
                 redCirclesGroup.add(graphics);
             });
-}
+}*/
 getVerticesInRadius(x, y, radius) {
 		return vertices.filter(vertex => {
                 let distance = Phaser.Math.Distance.Between(x, y, vertex.x, vertex.y);
