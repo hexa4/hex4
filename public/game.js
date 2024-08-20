@@ -442,7 +442,7 @@ socket.on('eliminarPlayerServer', (collisionIndex) => {
     	if(collisionIndex!=socket.id){
    		const otherPlayer = players[collisionIndex];
 		console.log(`playerEliminado:`, otherPlayer);
-		textOnDestroy(this, otherPlayer.x, otherPlayer.y, otherPlayer.name +' eliminated!', '20px', '#ff0000');
+		this.textOnDestroy(this, otherPlayer.x, otherPlayer.y, otherPlayer.name +' eliminated!', '20px', '#ff0000');
     		otherPlayer.destroyPlayer(collisionIndex);
     		socket.emit('crearTopPlayers');
     	}
@@ -803,12 +803,19 @@ let toggleBox = () => {
         //let zoomFactor = this.cameras.main.zoom; 
 		const zoomLevel = isMobile ? 8 / dpi : 2 / dpi; // Menos zoom en PC
                 this.scene.get('GameScene').cameras.main.setZoom(zoomLevel);
-		playerLocal.fontSizePlayer(12);
+		//playerLocal.fontSizePlayer(12);
+		Object.values(players).forEach(player => {
+    		player.fontSizePlayer(12); // Cambia el tamaño de la fuente a 24px para cada jugador
+		});
     	} else {
 		const zoomLevel = isMobile ? 4 / dpi : 2 / dpi; // Menos zoom en PC
                 this.scene.get('GameScene').cameras.main.setZoom(zoomLevel);
-		playerLocal.fontSizePlayer(24);
+		//playerLocal.fontSizePlayer(24);
+		Object.values(players).forEach(player => {
+    		player.fontSizePlayer(24); // Cambia el tamaño de la fuente a 24px para cada jugador
+		});
 
+		
     	}
 };
 box.on('pointerdown', toggleBox);
