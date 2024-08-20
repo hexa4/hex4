@@ -896,6 +896,10 @@ let isChecked = true;
 		  window.addEventListener('resize', resizeTexts);
 
     function resizeTexts() {
+
+         console.log(`RESIZE!!!!`);
+
+	    
           //  game.scale.resize(window.innerWidth, window.innerHeight);
        fixedText1.setPosition( 	
 worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
@@ -967,7 +971,7 @@ fixedText7.setText("");
 	game.scene.start('GameScene');
 
 	// Listener para el redimensionamiento de la ventana
-window.addEventListener('resize', () => {
+/*window.addEventListener('resize', () => {
     const newWidth = window.innerWidth * dpi;
     const newHeight = window.innerHeight * dpi;
     game.scale.resize(newWidth, newHeight);
@@ -976,7 +980,7 @@ window.addEventListener('resize', () => {
             scene.cameras.main.setViewport(0, 0, newWidth, newHeight);
         }
     });
-});
+});*/
 
 	
 }  //END FUNCTION START GAME!!!!
