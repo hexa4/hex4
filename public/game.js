@@ -116,7 +116,7 @@ function startGame(playerName) {
 	if(otherPuntos > localPuntos){
 	localPlayer.destroyPlayer(socket.id);
 	socket.emit('eliminarPlayer', socket.id);
-	gameOver();
+	this.gameOver();
 	}	    
 	if(otherPuntos < localPuntos){
 	this.textOnDestroy(this, greenCircle.x, greenCircle.y, otherPlayer.name +' eliminated!', '20px', '#ff0000');
