@@ -955,6 +955,7 @@ checkboxY = worldPoint.y + (scene.cameras.main.height / 2) / zoomFactor - checkb
 // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
 textOffsetY = checkboxSize / 2;
 fixedText.setPosition(checkboxX + checkboxSize + 10, checkboxY + textOffsetY);
+drawCheck(isChecked);
 
 	
 
