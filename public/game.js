@@ -944,7 +944,7 @@ boxX = worldPoint.x - (scene.cameras.main.width / 2) / zoomFactor + 10;
 boxY = worldPoint.y + (scene.cameras.main.height / 2) / zoomFactor - boxSize*2 - 20;
 // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
 textYOffset = boxSize / 2;	
-staticText.setText(boxX + boxSize + 10, boxY + textYOffset);
+staticText.setPosition(boxX + boxSize + 10, boxY + textYOffset);
 
 
 
@@ -953,7 +953,7 @@ checkboxX =   worldPoint.x - (scene.cameras.main.width / 2) / zoomFactor + 10 ;
 checkboxY = worldPoint.y + (scene.cameras.main.height / 2) / zoomFactor - checkboxSize - 10;
 // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
 textOffsetY = checkboxSize / 2;
-fixedText.setText(checkboxX + checkboxSize + 10, checkboxY + textOffsetY);
+fixedText.setPosition(checkboxX + checkboxSize + 10, checkboxY + textOffsetY);
 
 	
 
