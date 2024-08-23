@@ -935,7 +935,8 @@ function resizeTexts(scene) {
         worldPoint.x + (scene.cameras.main.width / 2) / zoomFactor - fixedText7.width - 20, 
         worldPoint.y - (scene.cameras.main.height / 2) / zoomFactor + 30
     );
-    	fixedText7.setText(`X2 SPEED - 5 s`);
+    	//fixedText7.setText(`X2 SPEED - 5 s`);
+    	fixedText7.setText(`              `);
 
 
 
