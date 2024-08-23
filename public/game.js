@@ -935,7 +935,7 @@ function resizeTexts(scene) {
         worldPoint.x + (scene.cameras.main.width / 2) / zoomFactor - fixedText7.width - 20, 
         worldPoint.y - (scene.cameras.main.height / 2) / zoomFactor + 30
     );
-    fixedText7.setText("");
+    	fixedText7.setText(`X2 SPEED - 5 s`);
 
 
 
@@ -945,6 +945,7 @@ boxY = worldPoint.y + (scene.cameras.main.height / 2) / zoomFactor - boxSize*2 -
 // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
 textYOffset = boxSize / 2;	
 staticText.setPosition(boxX + boxSize + 10, boxY + textYOffset);
+drawBoxCheck(isBoxChecked);
 
 
 
