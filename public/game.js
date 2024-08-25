@@ -962,7 +962,8 @@ drawCheck(isChecked);
         } //END CREATE UISCENE
             
         update() {}
-        preload() {this.load.font('Roboto', 'path/to/Roboto.ttf');}
+        preload() {
+	}
          
 }
 //END UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
