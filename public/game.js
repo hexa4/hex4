@@ -245,7 +245,7 @@ class GameScene extends Phaser.Scene {
 	//BORRA TODOS CIRCULOS VERDES PARA VOLVER A GENERAR (DESDE SERVER ACCIONADO)
 	socket.on('borrarTodosGreen', () => {
 	console.log('BORRAR GREEN CIRCLES.');
-	greenCirclesGroup.getChildren().forEach(circle => {
+	this.greenCirclesGroup.getChildren().forEach(circle => {
         // Verificar si el tipo no es 'player'
         if (circle.type !== 'player') {
             circle.destroy();
