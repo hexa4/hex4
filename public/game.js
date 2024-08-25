@@ -380,10 +380,10 @@ socket.on('animatePlayer', animationData => {
         		//INTENTO LIMITES CAMARA NO MARK:
         		let cameraX = this.cameras.main.scrollX;
         		let cameraY = this.cameras.main.scrollY;
-        		let rightLimit = window.innerWidth * 0.7;
-        		let leftLimit = window.innerWidth * 0.3;
-        		let bottomLimit = window.innerHeight * 0.7;
-        		let topLimit = window.innerHeight * 0.3;
+        		let rightLimit = (window.innerWidth*dpi) * 0.7;
+        		let leftLimit = (window.innerWidth*dpi) * 0.3;
+        		let bottomLimit = (window.innerHeight*dpi) * 0.7;
+        		let topLimit = (window.innerHeigh*dpi) * 0.3;
         		let playerRelativeX = -cameraX + player.circle.x;
         		let playerRelativeY = -cameraY + player.circle.y;
 			const playerLocal = players[socket.id];
