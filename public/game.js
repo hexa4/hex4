@@ -990,8 +990,10 @@ drawCheck(isChecked);
                 autoCenter: Phaser.Scale.CENTER_BOTH
             },
         	scene: [GameScene, UIScene],
-            pixelArt: true,
-            roundPixels: true
+            pixelArt: false,
+            roundPixels: true,
+	antialias: true,
+
         };
 
         const game = new Phaser.Game(config);
