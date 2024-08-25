@@ -165,7 +165,7 @@ align-items: center;
 color: white;
 transition: opacity 1s;
 line-height: 1; 
-text-shadow: 2px 2px 5px blue;     
+text-shadow: 3px 3px 7px blue;     
 }
 .hidden {
 opacity: 0;
