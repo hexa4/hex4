@@ -258,7 +258,6 @@ this.cameras.main.setZoom(zoomLevel);
 let zoomFactor = this.cameras.main.zoom; 
 let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
 
-const textResolution = dpi > 1 ? dpi * 2 : dpi;
 
 this.greenCirclesGroup = this.physics.add.group();
 
@@ -701,6 +700,9 @@ class UIScene extends Phaser.Scene {
 	let zoomFactor = this.cameras.main.zoom; 
 	let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
 
+	const textResolution = dpi > 1 ? dpi * 2 : dpi;
+	 
+		 
 fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff'  , resolution: textResolution , fontFamily: 'Roboto' });
 fixedText1.setShadow(2, 2, 'blue', 5);
 fixedText2 = this.add.text(10, 30, '', { fontSize: '16px', fill: '#ffffff'  , resolution: textResolution  , fontFamily: 'Roboto' });
@@ -960,7 +962,7 @@ drawCheck(isChecked);
         } //END CREATE UISCENE
             
         update() {}
-        preload() {}
+        preload() {this.load.font('Roboto', 'path/to/Roboto.ttf');}
          
 }
 //END UISCENE!!!!!!////!!! / / /// // / / / / / / / / // / / / / / / 	
