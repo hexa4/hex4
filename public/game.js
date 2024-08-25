@@ -261,7 +261,8 @@ let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, th
 this.greenCirclesGroup = this.physics.add.group();
 
 //HEXAGONAL MAP INITIALIZATION		
-hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 6, color: 0x0077ff, alpha: 0.2 } });
+//hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 6, color: 0x0077ff, alpha: 0.2 } });
+hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 6, color: 0x32CD32 } });	
 hexagonGroup2 = this.add.group();
 hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x808080 } });
 redCirclesGroup = this.add.group();
@@ -481,18 +482,6 @@ getHexVertices(x, y, size = hexagonSize) {
         } return points;
 }
 
-//UPDATE RED VERTICES REDIBUJARLOS	
-/*updateRedVertices() {
-            this.clearRedVertices.call(this); 
-            const verticesInRadius = this.getVerticesInRadius(player.x, player.y, 60); // Radio de 60 píxeles
-            verticesInRadius.forEach(vertex => {
-                redVertices.push({ x: vertex.x, y: vertex.y });
-                const graphics = this.add.graphics();
-                graphics.fillStyle(0xff0000, 1); // Color rojo, opacidad 1
-                graphics.fillCircle(vertex.x, vertex.y, 4); // Dibuja un círculo en la posición (vertex.x, vertex.y) con radio 5
-                redCirclesGroup.add(graphics);
-            });
-}*/
 getVerticesInRadius(x, y, radius) {
 		return vertices.filter(vertex => {
                 let distance = Phaser.Math.Distance.Between(x, y, vertex.x, vertex.y);
