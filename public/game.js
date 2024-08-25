@@ -994,11 +994,13 @@ drawCheck(isChecked);
             roundPixels: true,
 	antialias: true,
 
-		 render: {
+		/* render: {
         pixelArt: false,
         antialias: true,
     },
 
+
+*/
         };
 
         const game = new Phaser.Game(config);
