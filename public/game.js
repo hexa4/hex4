@@ -433,7 +433,7 @@ socket.on('eliminarGreenServer', (collisionIndex, myID) => {
         if (greenCircle.z === collisionIndex) {
         	this.textOnDestroy(this, greenCircle.x, greenCircle.y, '+1 points', '20px', '#00ff00');
 		if(greenCircle.type === 'blue'){
-       	 		textOnDestroy(this, greenCircle.x, greenCircle.y, '+speed', '20px', '#0000ff');
+       	 		this.textOnDestroy(this, greenCircle.x, greenCircle.y, '+speed', '20px', '#0000ff');
 			console.log(`SPEED ACTIVATED.`);
 		}
             console.log(`Green circle with z = ${collisionIndex} found and destroyed.`);
