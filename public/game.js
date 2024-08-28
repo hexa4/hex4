@@ -77,6 +77,8 @@ function startGame(playerName) {
         // Texto encima del jugador
         this.text = this.scene.add.text(x, y - 20, name + ' (' + puntos + ')', { fontSize: '12px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto'});
         this.text.setOrigin(0.5);
+	this.text.setShadow(2, 2, 'blue', 5);
+	
         
 	//CAMARA PARA CLIENTE INDIVIDUAL
         if (id === socket.id) {
@@ -722,6 +724,13 @@ fixedText4.setScrollFactor(0);
 fixedText5.setScrollFactor(0);
 fixedText6.setScrollFactor(0);
 fixedText7.setScrollFactor(0);
+
+fixedText3.setShadow(2, 2, 'blue', 5);
+fixedText4.setShadow(2, 2, 'blue', 5);
+fixedText5.setShadow(2, 2, 'blue', 5);
+fixedText6.setShadow(2, 2, 'blue', 5);
+fixedText7.setShadow(2, 2, 'blue', 5);
+		 
 
 fixedText1.setPosition( 	
 worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10, 
