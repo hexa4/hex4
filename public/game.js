@@ -265,11 +265,13 @@ this.greenCirclesGroup = this.physics.add.group();
 //hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 6, color: 0x0077ff, alpha: 0.2 } });
 hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 6, color: 0x32CD32 } });	
 hexagonGroup2 = this.add.group();
-hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x808080 } });
+//hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x808080 } });
+hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x0099ff } });
+
 redCirclesGroup = this.add.group();
 hexagonGroup = this.add.group();
 
-for (let y = 0; y < hexagonMap.length; y++) {
+/*for (let y = 0; y < hexagonMap.length; y++) {
     for (let x = 0; x < hexagonMap[y].length; x++) {
         let hexX = x * hexagonWidth * 0.75;
         let hexY = y * hexagonHeight + (x % 2 === 0 ? 0 : hexagonHeight / 2);
@@ -279,9 +281,9 @@ for (let y = 0; y < hexagonMap.length; y++) {
         this.drawHexagon2(hexX, hexY, hexagonSize);
         hexagons.push({ x: hexX, y: hexY });
         vertices.push(...this.getHexVertices(hexX, hexY));
-        //hexagonGroup2.add(hexagonGraphics2); // Añadir el gráfico del hexágono al grupo
+        hexagonGroup2.add(hexagonGraphics2); // Añadir el gráfico del hexágono al grupo
     }
-}       
+}  */     
 // Crear el mapa hexagonal
 for (let y = 0; y < hexagonMap.length; y++) {
     for (let x = 0; x < hexagonMap[y].length; x++) {
