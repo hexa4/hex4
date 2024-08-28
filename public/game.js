@@ -203,11 +203,7 @@ class GameScene extends Phaser.Scene {
 
 	//CREATE GameScene //CREATE GameScene //CREATE GameScene //CREATE GameScene 
 	//CREATE GameScene //CREATE GameScene //CREATE GameScene //CREATE GameScene 
-        create() {
-
-        this.game.canvas.getContext('2d').imageSmoothingEnabled = true;
-
-		
+        create() {		
 
 	//RECIBIR UPDATE POINTS AND SIZE Of PLAYER
 	socket.on('updatePuntos', function(myID, puntos) {
@@ -283,7 +279,7 @@ for (let y = 0; y < hexagonMap.length; y++) {
         this.drawHexagon2(hexX, hexY, hexagonSize);
         hexagons.push({ x: hexX, y: hexY });
         vertices.push(...this.getHexVertices(hexX, hexY));
-        hexagonGroup2.add(hexagonGraphics2); // Añadir el gráfico del hexágono al grupo
+        //hexagonGroup2.add(hexagonGraphics2); // Añadir el gráfico del hexágono al grupo
     }
 }       
 // Crear el mapa hexagonal
