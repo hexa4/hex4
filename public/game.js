@@ -205,6 +205,10 @@ class GameScene extends Phaser.Scene {
 	//CREATE GameScene //CREATE GameScene //CREATE GameScene //CREATE GameScene 
         create() {
 
+        this.game.canvas.getContext('2d').imageSmoothingEnabled = true;
+
+		
+
 	//RECIBIR UPDATE POINTS AND SIZE Of PLAYER
 	socket.on('updatePuntos', function(myID, puntos) {
 	console.log('Recibido upDate Puntos:', myID, puntos);
