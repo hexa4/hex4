@@ -622,30 +622,27 @@ const initialRadius = 5;
                 greenCirclePhysics.type = 'green';
             	this.greenCirclesGroup.add(greenCirclePhysics);  
 
-
 this.tweens.add({
-                targets: graphics,
-                props: {
-                    radius: {
-                        from: initialRadius,
-                        to: maxRadius
-                    }
-                },
-                duration: duration,
-                yoyo: true,
-                repeat: -1, // Repetir infinitamente
-                ease: 'Sine.easeInOut',
-                onUpdate: function (tween) {
-                    const radius = tween.getValue(); // Obtener el valor del radio del tween
-                    graphics.clear(); // Limpiar gráficos existentes
-                    graphics.fillStyle(0x00ff00); // Color verde
-                    graphics.fillCircle(circle.x, circle.y, radius); // Redibujar el círculo con el nuevo radio
-                    greenCirclePhysics.body.setCircle(radius); // Actualizar el cuerpo de física
+            targets: graphics,
+            props: {
+                radius: {
+                    from: initialRadius,
+                    to: maxRadius
                 }
-            });
-
-
-
+            },
+            duration: duration,
+            yoyo: true,
+            repeat: -1, // Repetir infinitamente
+            ease: 'Sine.easeInOut',
+            onUpdate: function (tween) {
+                const radius = tween.getValue(); // Obtener el valor del radio del tween
+                graphics.clear(); // Limpiar gráficos existentes
+                graphics.fillStyle(0x00ff00); // Color verde
+                graphics.fillCircle(graphics.x, graphics.y, radius); // Redibujar el círculo con el nuevo radio
+                greenCirclePhysics.body.setCircle(radius); // Actualizar el cuerpo de física
+                greenCirclePhysics.body.setPosition(graphics.x, graphics.y); // Asegúrate de que la posición sea correcta
+            }
+        });
 
 
 
