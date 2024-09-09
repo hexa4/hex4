@@ -639,8 +639,7 @@ this.tweens.add({
                 graphics.clear(); // Limpiar gráficos existentes
                 graphics.fillStyle(0x00ff00); // Color verde
                 graphics.fillCircle(graphics.x, graphics.y, radius); // Redibujar el círculo con el nuevo radio
-                greenCirclePhysics.body.setCircle(radius); // Actualizar el cuerpo de física
-                greenCirclePhysics.body.setPosition(graphics.x, graphics.y); // Asegúrate de que la posición sea correcta
+                greenCirclePhysics.body.setCircle(radius); // Actualizar el radio del cuerpo de física
             }
         });
 
