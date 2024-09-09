@@ -593,6 +593,9 @@ gameOver(){
 }
 
 //DRAW GREEN CIRCLES!!!!!!
+
+
+/*
 drawGreenCircles(greenCirclesS) {
 console.log('GREEN CIRCLES DRAW');
     let index = 0;
@@ -627,6 +630,63 @@ console.log('GREEN CIRCLES DRAW');
 	index++;
 	}
 } //END DRAW GREEN CIRCLES!!!!!!
+*/
+
+
+
+drawGreenCircles(greenCirclesS) {
+    console.log('GREEN CIRCLES DRAW');
+    let index = 0;
+    for (const circle of greenCirclesS) {
+        const radius = index < 15 ? 5 : 3; // Radio inicial basado en el índice
+        
+        // Crear gráfico para el círculo
+        let graphics = this.add.graphics();
+        graphics.fillStyle(index < 15 ? 0x00ff00 : 0x0000ff, 1); // Verde o azul
+        graphics.fillCircle(0, 0, radius);
+        
+        // Crear objeto de física para el círculo
+        let circlePhysics = this.physics.add.existing(graphics);
+        circlePhysics.body.setCircle(radius);
+        circlePhysics.body.setCollideWorldBounds(true);
+        circlePhysics.setPosition(circle.x, circle.y);
+        
+        // Añadir al grupo de círculos
+        this.greenCirclesGroup.add(circlePhysics);
+
+        // Aplicar tween para cambiar el radio
+        this.tweens.add({
+            targets: graphics,
+            props: {
+                radius: {
+                    from: radius,
+                    to: index < 15 ? 10 : 6 // Radio máximo basado en el índice
+                }
+            },
+            duration: 1000,
+            yoyo: true,
+            repeat: -1, // Repetir infinitamente
+            ease: 'Sine.easeInOut',
+            onUpdate: function (tween) {
+                const radius = tween.getValue(); // Obtener el valor del radio del tween
+                graphics.clear(); // Limpiar gráficos existentes
+                graphics.fillStyle(index < 15 ? 0x00ff00 : 0x0000ff, 1); // Color verde o azul
+                graphics.fillCircle(graphics.x, graphics.y, radius); // Redibujar el círculo con el nuevo radio
+                circlePhysics.body.setCircle(radius); // Actualizar el cuerpo de física
+            }
+        });
+
+        index++;
+    }
+}
+
+
+
+
+
+
+
+
 
 ///ACTIVAR VELOCIDAD TEXTO
 activarVelocidad() {
