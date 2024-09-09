@@ -639,7 +639,7 @@ this.tweens.add({
                     const radius = tween.getValue(); // Obtener el valor del radio del tween
                     graphics.clear(); // Limpiar gráficos existentes
                     graphics.fillStyle(0x00ff00); // Color verde
-                    graphics.fillCircle(graphics.x, graphics.y, radius); // Redibujar el círculo con el nuevo radio
+                    graphics.fillCircle(circle.x, circle.y, radius); // Redibujar el círculo con el nuevo radio
                     greenCirclePhysics.body.setCircle(radius); // Actualizar el cuerpo de física
                 }
             });
