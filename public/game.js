@@ -598,6 +598,13 @@ gameOver(){
 
 drawGreenCircles(greenCirclesS) {
 console.log('GREEN CIRCLES DRAW');
+
+const initialRadius = 5;
+        const maxRadius = 10;
+        const duration = 1000; // Duración del tween en milisegundos
+
+
+
     let index = 0;
       for (const circle of greenCirclesS) {
         const circleGraphics = this.add.graphics(); // 'this' debería ser la escena de Phaser.js
