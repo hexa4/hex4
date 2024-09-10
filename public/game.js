@@ -692,10 +692,19 @@ drawGreenCircles(greenCirclesS) {
         if (index < 15) {
             let graphics = this.add.graphics({ fillStyle: { color: 0x00ff00 } });
 
-            // Dibuja el círculo verde directamente en las coordenadas correctas (circle.x, circle.y)
+            // Dibuja el círculo verde inicialmente en las coordenadas correctas (circle.x, circle.y)
             graphics.fillCircle(circle.x, circle.y, minRadius);
-            
-            // Agregar tween para cambiar el radio del círculo verde
+
+            // Añadir el cuerpo físico con un radio constante de 10
+            let greenCirclePhysics = this.physics.add.existing(graphics);
+            greenCirclePhysics.body.setCircle(10); // El radio físico será siempre 10
+            greenCirclePhysics.body.setCollideWorldBounds(true);
+            greenCirclePhysics.x = circle.x;
+            greenCirclePhysics.y = circle.y;
+            greenCirclePhysics.z = circle.z;
+            greenCirclePhysics.type = 'green';
+
+            // Agregar tween para cambiar el radio visual del círculo verde
             this.tweens.add({
                 targets: graphics,
                 props: {
@@ -712,13 +721,13 @@ drawGreenCircles(greenCirclesS) {
                     const radius = tween.getValue(); // Obtener el valor del radio del tween
                     graphics.clear(); // Limpiar gráficos existentes
                     graphics.fillStyle(0x00ff00, 1);
-                    // Redibujar el círculo verde con el nuevo radio en la misma posición original
+                    // Redibujar el círculo verde con el nuevo radio en las mismas coordenadas originales
                     graphics.fillCircle(circle.x, circle.y, radius);
                 }
             });
 
-            // Añadir el gráfico al grupo, sin física
-            this.greenCirclesGroup.add(graphics);
+            // Añadir el círculo físico al grupo
+            this.greenCirclesGroup.add(greenCirclePhysics);
 
         } else {
             // BLUE SPEED (sin tween de tamaño)
