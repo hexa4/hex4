@@ -595,7 +595,7 @@ gameOver(){
 //DRAW GREEN CIRCLES!!!!!!
 
 
-
+/*
 drawGreenCircles(greenCirclesS) {
 console.log('GREEN CIRCLES DRAW');
 
@@ -674,8 +674,75 @@ this.tweens.add({
 } //END DRAW GREEN CIRCLES!!!!!!
 
 
+*/
 
 
+
+
+drawGreenCircles(greenCirclesS) {
+    console.log('GREEN CIRCLES DRAW');
+
+    const minRadius = 5;
+    const maxRadius = 10;
+    const duration = 1000; // Duración del tween en milisegundos
+
+    let index = 0;
+    for (const circle of greenCirclesS) {
+        const graphics = this.add.graphics(); // 'this' debería ser la escena de Phaser.js
+
+        // Crear el círculo verde con un radio inicial en las coordenadas correctas
+        if (index < 15) {
+            let graphics = this.add.graphics({ fillStyle: { color: 0x00ff00 } });
+            let greenCircle = graphics.fillCircle(circle.x, circle.y, minRadius); // Dibujar directamente en las coordenadas correctas
+            
+            // Agregar tween para cambiar el radio del círculo verde
+            this.tweens.add({
+                targets: graphics,
+                props: {
+                    radius: {
+                        from: minRadius,
+                        to: maxRadius
+                    }
+                },
+                duration: duration,
+                yoyo: true,
+                repeat: -1, // Repetir infinitamente
+                ease: 'Sine.easeInOut',
+                onUpdate: function (tween) {
+                    const radius = tween.getValue(); // Obtener el valor del radio del tween
+                    graphics.clear(); // Limpiar gráficos existentes
+                    graphics.fillStyle(0x00ff00, 1);
+                    graphics.fillCircle(circle.x, circle.y, radius); // Redibujar el círculo con el nuevo radio y en la posición correcta
+                }
+            });
+
+            // Añadir la física al círculo
+            let greenCirclePhysics = this.physics.add.existing(graphics);
+            greenCirclePhysics.body.setCircle(minRadius);
+            greenCirclePhysics.body.setCollideWorldBounds(true);
+            greenCirclePhysics.x = circle.x;
+            greenCirclePhysics.y = circle.y;
+            greenCirclePhysics.z = circle.z;
+            greenCirclePhysics.type = 'green';
+            this.greenCirclesGroup.add(greenCirclePhysics);
+
+        } else {
+            // Círculos azules (sin tween de tamaño)
+            let graphics = this.add.graphics({ fillStyle: { color: 0x0000ff } });
+            let blueCircle = graphics.fillCircle(circle.x, circle.y, 3); // Dibujar en las coordenadas correctas
+            let blueCirclePhysics = this.physics.add.existing(graphics);
+            blueCirclePhysics.body.setCircle(3);
+            blueCirclePhysics.body.setCollideWorldBounds(true);
+            blueCirclePhysics.x = circle.x;
+            blueCirclePhysics.y = circle.y;
+            blueCirclePhysics.z = circle.z;
+            blueCirclePhysics.type = 'blue';
+            this.greenCirclesGroup.add(blueCirclePhysics);
+        }
+
+        index++;
+    }
+}
 
 
 
