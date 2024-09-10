@@ -601,8 +601,10 @@ console.log('GREEN CIRCLES DRAW');
 
 const initialRadius = 5;
         const maxRadius = 10;
-        const duration = 1000; // Duración del tween en milisegundos
+        const duration = 1000; 
+// Duración del tween en milisegundos
 
+const minRadius = 5;
 
 
     let index = 0;
