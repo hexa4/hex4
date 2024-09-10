@@ -620,7 +620,32 @@ const initialRadius = 5;
             	greenCirclePhysics.y = circle.y;
             	greenCirclePhysics.z = circle.z;
                 greenCirclePhysics.type = 'green';
-            	this.greenCirclesGroup.add(greenCirclePhysics);  
+
+
+this.tweens.add({
+                targets: graphics,
+                props: {
+                    radius: {
+                        from: minRadius,
+                        to: maxRadius
+                    }
+                },
+                duration: duration,
+                yoyo: true,
+                repeat: -1, // Repetir infinitamente
+                ease: 'Sine.easeInOut',
+                onUpdate: function (tween) {
+                    const radius = tween.getValue(); // Obtener el valor del radio del tween
+                    graphics.clear(); // Limpiar gráficos existentes
+                    graphics.fillStyle(0x00ff00, 1);
+                    graphics.fillCircle(circle.x, circle.y, radius); // Redibujar el círculo con el nuevo radio
+                }
+            });
+
+
+
+
+  	this.greenCirclesGroup.add(greenCirclePhysics);  
 
 
 
