@@ -688,12 +688,12 @@ drawGreenCircles(greenCirclesS) {
 
     let index = 0;
     for (const circle of greenCirclesS) {
-        const graphics = this.add.graphics(); // 'this' debería ser la escena de Phaser.js
-
-        // Crear el círculo verde con un radio inicial en las coordenadas correctas
+        // GREEN POINTS
         if (index < 15) {
             let graphics = this.add.graphics({ fillStyle: { color: 0x00ff00 } });
-            let greenCircle = graphics.fillCircle(circle.x, circle.y, minRadius); // Dibujar directamente en las coordenadas correctas
+
+            // Dibuja el círculo verde directamente en las coordenadas correctas (circle.x, circle.y)
+            graphics.fillCircle(circle.x, circle.y, minRadius);
             
             // Agregar tween para cambiar el radio del círculo verde
             this.tweens.add({
@@ -712,25 +712,19 @@ drawGreenCircles(greenCirclesS) {
                     const radius = tween.getValue(); // Obtener el valor del radio del tween
                     graphics.clear(); // Limpiar gráficos existentes
                     graphics.fillStyle(0x00ff00, 1);
-                    graphics.fillCircle(circle.x, circle.y, radius); // Redibujar el círculo con el nuevo radio y en la posición correcta
+                    // Redibujar el círculo verde con el nuevo radio en la misma posición original
+                    graphics.fillCircle(circle.x, circle.y, radius);
                 }
             });
 
-            // Añadir la física al círculo
-            let greenCirclePhysics = this.physics.add.existing(graphics);
-            greenCirclePhysics.body.setCircle(minRadius);
-            greenCirclePhysics.body.setCollideWorldBounds(true);
-            greenCirclePhysics.x = circle.x;
-            greenCirclePhysics.y = circle.y;
-            greenCirclePhysics.z = circle.z;
-            greenCirclePhysics.type = 'green';
-            this.greenCirclesGroup.add(greenCirclePhysics);
+            // Añadir el gráfico al grupo, sin física
+            this.greenCirclesGroup.add(graphics);
 
         } else {
-            // Círculos azules (sin tween de tamaño)
+            // BLUE SPEED (sin tween de tamaño)
             let graphics = this.add.graphics({ fillStyle: { color: 0x0000ff } });
-            let blueCircle = graphics.fillCircle(circle.x, circle.y, 3); // Dibujar en las coordenadas correctas
-            let blueCirclePhysics = this.physics.add.existing(graphics);
+            graphics.fillCircle(circle.x, circle.y, 3);
+            let blueCirclePhysics = this.physics.add.existing(graphics); // Física para los círculos azules
             blueCirclePhysics.body.setCircle(3);
             blueCirclePhysics.body.setCollideWorldBounds(true);
             blueCirclePhysics.x = circle.x;
@@ -739,12 +733,9 @@ drawGreenCircles(greenCirclesS) {
             blueCirclePhysics.type = 'blue';
             this.greenCirclesGroup.add(blueCirclePhysics);
         }
-
         index++;
     }
 }
-
-
 
 
 
