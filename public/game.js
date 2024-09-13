@@ -613,22 +613,22 @@ const minRadius = 5;
        // circleGraphics.fillStyle(0x00ff00, 0.5); // Color verde con opacidad del 50%      
        //GREEN POINTS
        if(index<15){
-     		let graphics = this.add.graphics({ fillStyle: { color: 0x00ff00 } });
-            	let greenCircle = graphics.fillCircle(0, 0, 5);
-            	let greenCirclePhysics = this.physics.add.existing(greenCircle);
-            	greenCirclePhysics.body.setCircle(5);
-            	greenCirclePhysics.body.setCollideWorldBounds(true);
-            	greenCirclePhysics.x = circle.x;
-            	greenCirclePhysics.y = circle.y;
-            	greenCirclePhysics.z = circle.z;
-                greenCirclePhysics.type = 'green';
+     		let graphics = this.add.graphics(); // Añadir el gráfico para el círculo verde
 
+            // Dibuja el círculo verde inicialmente en las coordenadas correctas (circle.x, circle.y)
+            graphics.fillCircle(circle.x, circle.y, minRadius);
 
+            // Añadir física al círculo (sin cambiar su posición ni su radio físico)
+            let greenCirclePhysics = this.physics.add.existing(graphics);
+            greenCirclePhysics.body.setCircle(5); // El radio físico se mantiene en 5
+            greenCirclePhysics.body.setCollideWorldBounds(true);
+            greenCirclePhysics.x = circle.x;
+            greenCirclePhysics.y = circle.y;
+            greenCirclePhysics.z = circle.z;
+            greenCirclePhysics.type = 'green';
 
-
-
-
-this.tweens.add({
+            // Agregar el tween para animar solo el radio visual, sin modificar la posición
+            this.tweens.add({
                 targets: graphics,
                 props: {
                     radius: {
@@ -644,13 +644,12 @@ this.tweens.add({
                     const radius = tween.getValue(); // Obtener el valor del radio del tween
                     graphics.clear(); // Limpiar gráficos existentes
                     graphics.fillStyle(0x00ff00, 1); // Establecer color verde
-                    graphics.fillCircle(circle.x, circle.y, radius); // Redibujar el círculo con el nuevo radio
+                    graphics.fillCircle(circle.x, circle.y, radius); // Redibujar el círculo con el nuevo radio en las coordenadas originales
                 }
             });
 
-  	this.greenCirclesGroup.add(greenCirclePhysics);  
-
-
+            // Añadir el círculo físico al grupo de círculos verdes
+            this.greenCirclesGroup.add(greenCirclePhysics);
 
 
 
