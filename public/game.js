@@ -640,16 +640,47 @@ const minRadius = 5;
 
         //BLUE SPEED
         }else{
-        let graphics = this.add.graphics({ fillStyle: { color: 0x0000ff } });
-            	let greenCircle = graphics.fillCircle(0, 0, 3);
-            	let greenCirclePhysics = this.physics.add.existing(greenCircle);
-            	greenCirclePhysics.body.setCircle(3);
-            	greenCirclePhysics.body.setCollideWorldBounds(true);
-            	greenCirclePhysics.x = circle.x;
-            	greenCirclePhysics.y = circle.y;
-            	greenCirclePhysics.z = circle.z;
-                greenCirclePhysics.type = 'blue';
-            	this.greenCirclesGroup.add(greenCirclePhysics);   
+       // Crear el círculo inicial
+let graphics = this.add.graphics({ fillStyle: { color: 0x0000ff } });
+let initialRadius = 6;
+let greenCircle = graphics.fillCircle(0, 0, initialRadius);
+
+// Añadir física
+let greenCirclePhysics = this.physics.add.existing(greenCircle);
+greenCirclePhysics.body.setCircle(initialRadius);
+
+// Asegurarse de que el círculo colisione con los límites del mundo
+greenCirclePhysics.body.setCollideWorldBounds(true);
+
+// Posición inicial
+greenCirclePhysics.body.x = circle.x;
+greenCirclePhysics.body.y = circle.y;
+greenCirclePhysics.z = circle.z;
+greenCirclePhysics.type = 'blue';
+
+// Añadir a tu grupo
+this.greenCirclesGroup.add(greenCirclePhysics);
+
+// Guardar la posición original
+let originalPosition = { x: greenCirclePhysics.body.x, y: greenCirclePhysics.body.y };
+
+// Crear una animación intermitente del radio
+this.tweens.add({
+    targets: greenCirclePhysics.body,
+    repeat: -1, // Repetir indefinidamente
+    ease: 'Sine.easeInOut', // Suavizar la transición
+    duration: 1000, // Duración de la animación (en milisegundos)
+    onUpdate: function(tween, target) {
+        // Cambiar el radio entre 6 y 10 de forma intermitente
+        let newRadius = 6 + 4 * Math.sin(tween.progress * Math.PI); // Oscila entre 6 y 10
+        target.setCircle(newRadius);
+
+        // Mantener el centro en su posición original
+        target.x = originalPosition.x - newRadius;
+        target.y = originalPosition.y - newRadius;
+    }
+});
+   
         }
 	index++;
 	}
