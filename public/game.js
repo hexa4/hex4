@@ -601,10 +601,8 @@ console.log('GREEN CIRCLES DRAW');
 
 const initialRadius = 5;
         const maxRadius = 10;
-        const duration = 1000; 
-// Duración del tween en milisegundos
+        const duration = 1000; // Duración del tween en milisegundos
 
-const minRadius = 5;
 
 
     let index = 0;
@@ -613,25 +611,18 @@ const minRadius = 5;
        // circleGraphics.fillStyle(0x00ff00, 0.5); // Color verde con opacidad del 50%      
        //GREEN POINTS
        if(index<15){
-     		let graphics = this.add.graphics(); // Añadir el gráfico para el círculo verde
+                     let graphics = this.add.graphics({ fillStyle: { color: 0x00ff00 } });
+                    let greenCircle = graphics.fillCircle(0, 0, 5);
+                    let greenCirclePhysics = this.physics.add.existing(greenCircle);
+                    greenCirclePhysics.body.setCircle(5);
+                    greenCirclePhysics.body.setCollideWorldBounds(true);
+                    greenCirclePhysics.x = circle.x;
+                    greenCirclePhysics.y = circle.y;
+                    greenCirclePhysics.z = circle.z;
+                greenCirclePhysics.type = 'green';
+                    this.greenCirclesGroup.add(greenCirclePhysics);  
 
-            // Dibuja el círculo verde inicialmente en las coordenadas correctas (circle.x, circle.y)
-            graphics.fillCircle(circle.x, circle.y, minRadius);
 
-            // Añadir física al círculo (sin cambiar su posición ni su radio físico)
-            let greenCirclePhysics = this.physics.add.existing(graphics);
-            greenCirclePhysics.body.setCircle(5); // El radio físico se mantiene en 5
-            greenCirclePhysics.body.setCollideWorldBounds(true);
-            greenCirclePhysics.x = circle.x;
-            greenCirclePhysics.y = circle.y;
-            greenCirclePhysics.z = circle.z;
-            greenCirclePhysics.type = 'green';
-
-            // Agregar el tween para animar solo el radio visual, sin modificar la posición
-            
-
-            // Añadir el círculo físico al grupo de círculos verdes
-            this.greenCirclesGroup.add(greenCirclePhysics);
 
 
 
@@ -640,51 +631,21 @@ const minRadius = 5;
 
         //BLUE SPEED
         }else{
-       // Crear el círculo inicial
-let graphics = this.add.graphics({ fillStyle: { color: 0x0000ff } });
-let initialRadius = 6;
-let greenCircle = graphics.fillCircle(0, 0, initialRadius);
-
-// Añadir física
-let greenCirclePhysics = this.physics.add.existing(greenCircle);
-greenCirclePhysics.body.setCircle(initialRadius);
-
-// Asegurarse de que el círculo colisione con los límites del mundo
-greenCirclePhysics.body.setCollideWorldBounds(true);
-
-// Posición inicial
-greenCirclePhysics.body.x = circle.x;
-greenCirclePhysics.body.y = circle.y;
-greenCirclePhysics.z = circle.z;
-greenCirclePhysics.type = 'blue';
-
-// Añadir a tu grupo
-this.greenCirclesGroup.add(greenCirclePhysics);
-
-// Guardar la posición original
-let originalPosition = { x: greenCirclePhysics.body.x, y: greenCirclePhysics.body.y };
-
-// Crear una animación intermitente del radio
-this.tweens.add({
-    targets: greenCirclePhysics.body,
-    repeat: -1, // Repetir indefinidamente
-    ease: 'Sine.easeInOut', // Suavizar la transición
-    duration: 1000, // Duración de la animación (en milisegundos)
-    onUpdate: function(tween, target) {
-        // Cambiar el radio entre 6 y 10 de forma intermitente
-        let newRadius = 6 + 4 * Math.sin(tween.progress * Math.PI); // Oscila entre 6 y 10
-        target.setCircle(newRadius);
-
-        // Mantener el centro en su posición original
-        target.x = originalPosition.x - newRadius;
-        target.y = originalPosition.y - newRadius;
-    }
-});
-   
+        let graphics = this.add.graphics({ fillStyle: { color: 0x0000ff } });
+                    let greenCircle = graphics.fillCircle(0, 0, 3);
+                    let greenCirclePhysics = this.physics.add.existing(greenCircle);
+                    greenCirclePhysics.body.setCircle(3);
+                    greenCirclePhysics.body.setCollideWorldBounds(true);
+                    greenCirclePhysics.x = circle.x;
+                    greenCirclePhysics.y = circle.y;
+                    greenCirclePhysics.z = circle.z;
+                greenCirclePhysics.type = 'blue';
+                    this.greenCirclesGroup.add(greenCirclePhysics);   
         }
-	index++;
-	}
+        index++;
+        }
 } //END DRAW GREEN CIRCLES!!!!!!
+
 
 
 
