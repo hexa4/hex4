@@ -665,11 +665,23 @@ const initialRadius = 5;
         yoyo: true, // Vuelve al tamaño original (radio 5)
         repeat: -1, // Repite indefinidamente
         onUpdate: (tween) => {
+
+
+if (!container.active) {
+                tween.stop();  // Detén el tween
+                tween.remove(); // Elimina el tween
+            } else {
+
             // Obtener el valor de la escala actual (suponiendo que escala 1 = radio 5, y escala 2 = radio 10)
             let scale = container.scaleX;
             let newRadius = 5 * scale; // Ajustar el nuevo radio según la escala
             greenCirclePhysics.body.setCircle(newRadius); // Actualizar el radio físico
         }
+
+}
+
+
+
     });
 
 
