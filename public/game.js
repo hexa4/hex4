@@ -631,6 +631,10 @@ const initialRadius = 5;
 
         //BLUE SPEED
         }else{
+
+
+
+
         let graphics = this.add.graphics({ fillStyle: { color: 0x0000ff } });
                     let greenCircle = graphics.fillCircle(0, 0, 3);
                     let greenCirclePhysics = this.physics.add.existing(greenCircle);
@@ -641,7 +645,35 @@ const initialRadius = 5;
                     greenCirclePhysics.z = circle.z;
                 greenCirclePhysics.type = 'blue';
                     this.greenCirclesGroup.add(greenCirclePhysics);   
-        }
+     
+/////////////_________________
+
+
+this.tweens.timeline({
+        targets: greenCirclePhysics.body, // El cuerpo físico del círculo
+        loop: -1, // Repite infinitamente
+        tweens: [
+            {
+                scaleX: 2, // Duplicar el tamaño (de radio 5 a 10)
+                scaleY: 2,
+                duration: 1000, // Cambia en 1 segundo
+                ease: 'Linear'
+            },
+            {
+                scaleX: 1, // Vuelve al tamaño original (radio 5)
+                scaleY: 1,
+                duration: 1000, // Cambia en 1 segundo
+                ease: 'Linear'
+            }
+        ]
+    });
+
+
+
+/////////////__________________
+
+
+   }
         index++;
         }
 } //END DRAW GREEN CIRCLES!!!!!!
