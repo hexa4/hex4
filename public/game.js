@@ -635,39 +635,42 @@ const initialRadius = 5;
 
 
 
-        let graphics = this.add.graphics({ fillStyle: { color: 0x0000ff } });
-                    let greenCircle = graphics.fillCircle(0, 0, 3);
-                    let greenCirclePhysics = this.physics.add.existing(greenCircle);
-                    greenCirclePhysics.body.setCircle(3);
-                    greenCirclePhysics.body.setCollideWorldBounds(true);
-                    greenCirclePhysics.x = circle.x;
-                    greenCirclePhysics.y = circle.y;
-                    greenCirclePhysics.z = circle.z;
-                greenCirclePhysics.type = 'blue';
-                    this.greenCirclesGroup.add(greenCirclePhysics);   
-     
-/////////////_________________
+        const circleGraphics = this.add.graphics({ fillStyle: { color: 0x0000ff } });
+    
+    // Dibujar el círculo inicialmente con radio 5
+    circleGraphics.fillCircle(0, 0, 5); // Radio 5 inicial
 
+    // Crear un contenedor para manejar la escala
+    let container = this.add.container(circle.x, circle.y, [circleGraphics]);
 
-this.tweens.timeline({
-        targets: greenCirclePhysics.body, // El cuerpo físico del círculo
-        loop: -1, // Repite infinitamente
-        tweens: [
-            {
-                scaleX: 2, // Duplicar el tamaño (de radio 5 a 10)
-                scaleY: 2,
-                duration: 1000, // Cambia en 1 segundo
-                ease: 'Linear'
-            },
-            {
-                scaleX: 1, // Vuelve al tamaño original (radio 5)
-                scaleY: 1,
-                duration: 1000, // Cambia en 1 segundo
-                ease: 'Linear'
-            }
-        ]
+    // Añadir física al contenedor (no a los gráficos directamente)
+    let greenCirclePhysics = this.physics.add.existing(container);
+    greenCirclePhysics.body.setCircle(5); // Radio inicial del cuerpo físico
+
+    // Hacer que colisione con los límites del mundo
+    greenCirclePhysics.body.setCollideWorldBounds(true);
+
+    // Asignar el 'type' personalizado para clasificar el círculo
+    greenCirclePhysics.type = 'blue'; // En este caso, lo etiquetamos como un círculo "azul"
+    
+    // Añadir el círculo al grupo
+    this.greenCirclesGroup.add(greenCirclePhysics);
+
+    // Crear el tween para cambiar el tamaño del círculo usando escalado
+    this.tweens.add({
+        targets: container, // Escalar el contenedor
+        scaleX: 2, // Escala en el eje X (para un radio de 10)
+        scaleY: 2, // Escala en el eje Y (para un radio de 10)
+        duration: 1000, // Cambia en 1 segundo
+        yoyo: true, // Vuelve al tamaño original (radio 5)
+        repeat: -1, // Repite indefinidamente
+        onUpdate: (tween) => {
+            // Obtener el valor de la escala actual (suponiendo que escala 1 = radio 5, y escala 2 = radio 10)
+            let scale = container.scaleX;
+            let newRadius = 5 * scale; // Ajustar el nuevo radio según la escala
+            greenCirclePhysics.body.setCircle(newRadius); // Actualizar el radio físico
+        }
     });
-
 
 
 /////////////__________________
