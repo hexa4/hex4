@@ -657,7 +657,14 @@ const initialRadius = 5;
     this.greenCirclesGroup.add(greenCirclePhysics);
 
     // Crear el tween para cambiar el tamaño del círculo usando escalado
-    this.tweens.add({
+   
+
+
+
+
+/*
+
+ this.tweens.add({
         targets: container, // Escalar el contenedor
         scaleX: 2, // Escala en el eje X (para un radio de 10)
         scaleY: 2, // Escala en el eje Y (para un radio de 10)
@@ -680,9 +687,20 @@ if (!container.active) {
 
 }
 
-
-
     });
+*/
+
+
+
+this.tweens.add({
+        targets: greenCirclesGroup.getChildren(),  // Obtener todos los círculos del grupo
+        scaleX: 2,  // Cambiar la escala en el eje X
+        scaleY: 2,  // Cambiar la escala en el eje Y
+        duration: 1000,
+        yoyo: true,  // Hacer que vuelva al tamaño original
+        repeat: -1  // Repetir indefinidamente
+    });
+
 
 
 /////////////__________________
