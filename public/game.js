@@ -612,7 +612,11 @@ const initialRadius = 5;
        // circleGraphics.fillStyle(0x00ff00, 0.5); // Color verde con opacidad del 50%      
        //GREEN POINTS
        if(index<15){
-                     let graphics = this.add.graphics({ fillStyle: { color: 0x00ff00 } });
+
+
+
+	       
+                  /*   let graphics = this.add.graphics({ fillStyle: { color: 0x00ff00 } });
                     let greenCircle = graphics.fillCircle(0, 0, 5);
                     let greenCirclePhysics = this.physics.add.existing(greenCircle);
                     greenCirclePhysics.body.setCircle(5);
@@ -621,7 +625,30 @@ const initialRadius = 5;
                     greenCirclePhysics.y = circle.y;
                     greenCirclePhysics.z = circle.z;
                 greenCirclePhysics.type = 'green';
-                    this.greenCirclesGroup.add(greenCirclePhysics);  
+*/
+
+	               const circleGraphics = this.add.graphics({ fillStyle: { color: 0x00ff00 } });
+    
+    // Dibujar el círculo inicialmente con radio 5
+    circleGraphics.fillCircle(0, 0, 5); // Radio 5 inicial
+
+    // Crear un contenedor para manejar la escala
+    let container = this.add.container(circle.x, circle.y, [circleGraphics]);
+
+    // Añadir física al contenedor (no a los gráficos directamente)
+    let greenCirclePhysics = this.physics.add.existing(container);
+    greenCirclePhysics.body.setCircle(5); // Radio inicial del cuerpo físico
+
+    // Hacer que colisione con los límites del mundo
+    greenCirclePhysics.body.setCollideWorldBounds(true);
+
+    // Asignar el 'type' personalizado para clasificar el círculo
+    greenCirclePhysics.type = 'green'; // En este caso, lo etiquetamos como un círculo "azul"
+    
+    // Añadir el círculo al grupo
+    this.greenCirclesGroup.add(greenCirclePhysics);
+  
+                  //  this.greenCirclesGroup.add(greenCirclePhysics);  
 
 
 
