@@ -273,7 +273,7 @@ hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x0099ff } }
 redCirclesGroup = this.add.group();
 hexagonGroup = this.add.group();
 
-/*for (let y = 0; y < hexagonMap.length; y++) {
+for (let y = 0; y < hexagonMap.length; y++) {
     for (let x = 0; x < hexagonMap[y].length; x++) {
         let hexX = x * hexagonWidth * 0.75;
         let hexY = y * hexagonHeight + (x % 2 === 0 ? 0 : hexagonHeight / 2);
@@ -285,7 +285,8 @@ hexagonGroup = this.add.group();
         vertices.push(...this.getHexVertices(hexX, hexY));
         hexagonGroup2.add(hexagonGraphics2); // Añadir el gráfico del hexágono al grupo
     }
-}  */     
+}  
+		
 // Crear el mapa hexagonal
 for (let y = 0; y < hexagonMap.length; y++) {
     for (let x = 0; x < hexagonMap[y].length; x++) {
@@ -662,7 +663,7 @@ const initialRadius = 5;
 
 
 
-/*
+
 
  this.tweens.add({
         targets: container, // Escalar el contenedor
@@ -688,9 +689,9 @@ if (!container.active) {
 }
 
     });
-*/
 
 
+/*
 
 this.tweens.add({
         targets: greenCirclesGroup.getChildren(),  // Obtener todos los círculos del grupo
@@ -701,7 +702,7 @@ this.tweens.add({
         repeat: -1  // Repetir indefinidamente
     });
 
-
+*/
 
 /////////////__________________
 
