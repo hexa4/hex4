@@ -265,7 +265,7 @@ this.greenCirclesGroup = this.physics.add.group();
 
 //HEXAGONAL MAP INITIALIZATION		
 //hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 6, color: 0x0077ff, alpha: 0.2 } });
-hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 6, color: 0x32CD32 } });	
+hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 6, color: 0x808080 } });	
 hexagonGroup2 = this.add.group();
 //hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x808080 } });
 hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x0099ff } });
@@ -625,7 +625,30 @@ const initialRadius = 5;
 
 
 
+ this.tweens.add({
+        targets: container, // Escalar el contenedor
+        scaleX: 2, // Escala en el eje X (para un radio de 10)
+        scaleY: 2, // Escala en el eje Y (para un radio de 10)
+        duration: 1000, // Cambia en 1 segundo
+        yoyo: true, // Vuelve al tamaño original (radio 5)
+        repeat: -1, // Repite indefinidamente
+        onUpdate: (tween) => {
 
+
+if (!container.active) {
+                tween.stop();  // Detén el tween
+                tween.remove(); // Elimina el tween
+            } else {
+
+            // Obtener el valor de la escala actual (suponiendo que escala 1 = radio 5, y escala 2 = radio 10)
+            let scale = container.scaleX;
+            let newRadius = 5 * scale; // Ajustar el nuevo radio según la escala
+            greenCirclePhysics.body.setCircle(newRadius); // Actualizar el radio físico
+        }
+
+}
+
+    });
 
 
 
