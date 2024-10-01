@@ -9,7 +9,7 @@ let errorMessage = document.getElementById('errorMessage');
 let submitButton = document.getElementById('submitButton');
 const nameForm = document.getElementById('nameForm');
 
-//FUNCION DEL BOTON JUGAR PLAY SE INICIA JUEGO
+///FUNCION DEL BOTON JUGAR PLAY SE INICIA JUEGO
 submitButton.addEventListener('click', function() {
 playerName = playerNameInput.value.trim();      
 if (playerName.length === 0 || playerName.length > 20) {
