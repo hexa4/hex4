@@ -627,7 +627,7 @@ const initialRadius = 5;
                 greenCirclePhysics.type = 'green';
 */
 
-	               const circleGraphics = this.add.graphics({ fillStyle: { color: 0x00ff00 } });
+	               const circleGraphics = this.add.graphics({ fillStyle: { color: 0x00ff00, alpha: 0.5 } });
     
     // Dibujar el círculo inicialmente con radio 5
     circleGraphics.fillCircle(0, 0, 5); // Radio 5 inicial
@@ -654,8 +654,8 @@ const initialRadius = 5;
 
  this.tweens.add({
         targets: container, // Escalar el contenedor
-        scaleX: 2, // Escala en el eje X (para un radio de 10)
-        scaleY: 2, // Escala en el eje Y (para un radio de 10)
+        scaleX: 1.5, // Escala en el eje X (para un radio de 10)
+        scaleY: 1.5, // Escala en el eje Y (para un radio de 10)
         duration: 1000, // Cambia en 1 segundo
         yoyo: true, // Vuelve al tamaño original (radio 5)
         repeat: -1, // Repite indefinidamente
@@ -686,17 +686,17 @@ if (!container.active) {
 
 
 
-        const circleGraphics = this.add.graphics({ fillStyle: { color: 0x0000ff } });
+        const circleGraphics = this.add.graphics({ fillStyle: { color: 0x0000ff, alpha: 0.5 } });
     
     // Dibujar el círculo inicialmente con radio 5
-    circleGraphics.fillCircle(0, 0, 5); // Radio 5 inicial
+    circleGraphics.fillCircle(0, 0, 2); // Radio 5 inicial
 
     // Crear un contenedor para manejar la escala
     let container = this.add.container(circle.x, circle.y, [circleGraphics]);
 
     // Añadir física al contenedor (no a los gráficos directamente)
     let greenCirclePhysics = this.physics.add.existing(container);
-    greenCirclePhysics.body.setCircle(5); // Radio inicial del cuerpo físico
+    greenCirclePhysics.body.setCircle(2); // Radio inicial del cuerpo físico
 
     // Hacer que colisione con los límites del mundo
     greenCirclePhysics.body.setCollideWorldBounds(true);
