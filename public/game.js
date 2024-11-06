@@ -265,14 +265,22 @@ this.greenCirclesGroup = this.physics.add.group();
 
 //HEXAGONAL MAP INITIALIZATION		
 //hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 6, color: 0x0077ff, alpha: 0.2 } });
-hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 6, color: 0x808080 } });	
+//hexagonGraphics2 = this.add.graphics({ lineStyle: { width: 6, color: 0x808080 } });	
+		hexagonGraphics2 = this.add.graphics({
+    lineStyle: { width: 6, color: 0x808080 },
+    antialias: true // Intenta añadir esta propiedad si el renderizador lo permite
+});
 hexagonGroup2 = this.add.group();
 //hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x808080 } });
-hexagonGraphics = this.add.graphics({ lineStyle: { width: 2, color: 0x0099ff } });
-
+hexagonGraphics = this.add.graphics({
+    lineStyle: { width: 2, color: 0x0099ff },
+    antialias: true // Intenta añadir esta propiedad si el renderizador lo permite
+});
+		
 redCirclesGroup = this.add.group();
 hexagonGroup = this.add.group();
 
+		
 for (let y = 0; y < hexagonMap.length; y++) {
     for (let x = 0; x < hexagonMap[y].length; x++) {
         let hexX = x * hexagonWidth * 0.75;
@@ -1151,8 +1159,9 @@ drawCheck(isChecked);
         	scene: [GameScene, UIScene],
            pixelArt: false,
 //pixelArt: true,
-            roundPixels: true,
+            roundPixels: false,
 antialias: true,
+		resolution: 2
 
 		/* render: {
         pixelArt: false,
