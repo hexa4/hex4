@@ -280,7 +280,7 @@ hexagonGraphics = this.add.graphics({
 redCirclesGroup = this.add.group();
 hexagonGroup = this.add.group();
 
-		
+/*		
 for (let y = 0; y < hexagonMap.length; y++) {
     for (let x = 0; x < hexagonMap[y].length; x++) {
         let hexX = x * hexagonWidth * 0.75;
@@ -294,7 +294,7 @@ for (let y = 0; y < hexagonMap.length; y++) {
         hexagonGroup2.add(hexagonGraphics2); // Añadir el gráfico del hexágono al grupo
     }
 }  
-		
+	*/	
 // Crear el mapa hexagonal
 for (let y = 0; y < hexagonMap.length; y++) {
     for (let x = 0; x < hexagonMap[y].length; x++) {
