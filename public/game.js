@@ -98,6 +98,8 @@ function startGame(playerName) {
 	greenCircle.destroy();
 	this.textOnDestroy(this, greenCircle.x, greenCircle.y, '+1 points', '10px', '#00ff00');
 	socket.emit('greenCircleEaten');
+	console.log(`type ='GREEN.`);
+	
        	}
        	
        	if(greenCircle.type === 'blue'){
@@ -107,6 +109,8 @@ function startGame(playerName) {
        	this.llamarTextoSpeed(this);
        	this.textOnDestroy(this, greenCircle.x, greenCircle.y, '+speed', '10px', '#0000ff');
 	console.log(`SPEED ACTIVATED.`);
+	console.log(`type ='BLUE.`);
+
        	}
        	
        	//COLISION WITH PLAYER
@@ -118,6 +122,8 @@ function startGame(playerName) {
 	if(otherPuntos > localPuntos){
 	localPlayer.destroyPlayer(socket.id);
 	socket.emit('eliminarPlayer', socket.id);
+	console.log(`type ='PLAYER.`);
+	
 	this.gameOver();
 	}	    
 	if(otherPuntos < localPuntos){
