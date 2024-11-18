@@ -669,7 +669,8 @@ const initialRadius = 5;
 
     // Asignar el 'type' personalizado para clasificar el círculo
     greenCirclePhysics.type = 'green'; // En este caso, lo etiquetamos como un círculo "azul"
-    
+                        greenCirclePhysics.z = circle.z;
+
     // Añadir el círculo al grupo
     this.greenCirclesGroup.add(greenCirclePhysics);
   
@@ -728,7 +729,8 @@ if (!container.active) {
 
     // Asignar el 'type' personalizado para clasificar el círculo
     greenCirclePhysics.type = 'blue'; // En este caso, lo etiquetamos como un círculo "azul"
-    
+                        greenCirclePhysics.z = circle.z;
+
     // Añadir el círculo al grupo
     this.greenCirclesGroup.add(greenCirclePhysics);
 
