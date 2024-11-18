@@ -803,6 +803,7 @@ this.tweens.add({
 
 ///ACTIVAR VELOCIDAD TEXTO
 activarVelocidad() {
+	fixedText7.visible = true;
 	clearInterval(intervalo);
     	Velocidad = true;
     	const newVel = { velocidad: Velocidad };
@@ -928,6 +929,8 @@ worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 90);
 fixedText6.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText6.width - 20, 
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 10);
 
+		 
+fixedText7.visible = false;
 fixedText7.setPosition(worldPoint.x + (this.cameras.main.width / 2) / zoomFactor - fixedText7.width - 20, 
 worldPoint.y - (this.cameras.main.height / 2) / zoomFactor + 30);
 //fixedText7.setText("");
