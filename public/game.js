@@ -92,7 +92,8 @@ function startGame(playerName) {
     }
 
  collectGreenCircle2(player, greenCircle) {
-	 
+
+	//COLISION WITH GREEN CIRCLE 	 
        	if(greenCircle.type === 'green'){
        	socket.emit('eliminarGreen', greenCircle.z, socket.id);
 	greenCircle.destroy();
@@ -101,7 +102,8 @@ function startGame(playerName) {
 	console.log(`type ='GREEN.`);
 	
        	}
-       	
+
+	//COLISION WITH BLUE CIRCLE 
        	if(greenCircle.type === 'blue'){
        	socket.emit('eliminarGreen', greenCircle.z, socket.id);
 	greenCircle.destroy();
@@ -123,7 +125,6 @@ function startGame(playerName) {
 	localPlayer.destroyPlayer(socket.id);
 	socket.emit('eliminarPlayer', socket.id);
 	console.log(`type ='PLAYER.`);
-	
 	this.gameOver();
 	}	    
 	if(otherPuntos < localPuntos){
@@ -133,6 +134,10 @@ function startGame(playerName) {
 	console.log(`COLISION WItH PLAYER`);
 	console.log(`PLAYER `,greenCircle.id );	
        	}
+
+	console.log(`ELIMINAR ESTE Z: `,greenCircle.z);
+ 
+	 
 } //END collectGreenCircle2
     
 stopCameraFollow() {
@@ -445,6 +450,8 @@ socket.on('greenCirclesS', function(greenCirclesS) {
 //ELIMINAR VERDE ACTIVADO DESDE EL SERVER. DESDE EL SERVER ESTA FUNCION
 socket.on('eliminarGreenServer', (collisionIndex, myID) => {
     	console.log(`eliminarGreenServer`);
+
+	
     	if(myID!=socket.id){
     	this.greenCirclesGroup.children.each((greenCircle) => {
         if (greenCircle.z === collisionIndex) {
@@ -457,6 +464,8 @@ socket.on('eliminarGreenServer', (collisionIndex, myID) => {
             greenCircle.destroy();   
         } });
     }
+
+	
 });
 
 //ELIMINAR PLAYER ACTIVADO DESDE EL SERVER. DESDE EL SERVER ESTA FUNCION
