@@ -631,6 +631,8 @@ const initialRadius = 5;
 
     let index = 0;
       for (const circle of greenCirclesS) {
+	          	console.log('CIRCLES Z', circle.z);
+
         const circleGraphics = this.add.graphics(); // 'this' debería ser la escena de Phaser.js
        // circleGraphics.fillStyle(0x00ff00, 0.5); // Color verde con opacidad del 50%      
        //GREEN POINTS
