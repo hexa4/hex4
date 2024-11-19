@@ -519,7 +519,7 @@ z-index: 999;
 #retryButton {
 padding: 10px 20px; 
 font-size: 16px;
-background-color: #ff8c00; 
+background-color: #04135a; 
 color: white;
 border: none; 
 border-radius: 5px;
@@ -528,24 +528,18 @@ cursor: pointer;
 transition: background-color 0.3s, box-shadow 0.3s;
 }
 #retryButton:hover {
-background-color: #ffc107;
+background-color: #2f2c79;
 box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
 }	
 #gameOverText {
-    font-size: 64px; /* Tamaño grande para destacar */
-    font-family: 'Arial', sans-serif; /* Fuente limpia y legible */
-    color: red; /* Color rojo llamativo */
-    text-shadow: 2px 2px 4px black; /* Sombra para resaltar */
-    text-align: center; /* Centrado horizontalmente */
-    margin-bottom: 20px; /* Espacio entre este texto y los puntos */
+    font-size: 32px; /* Tamaño grande para destacar */
+    color: white; /* Color rojo llamativo */
+    text-shadow: 2px 2px 4px red; /* Sombra para resaltar */
 }
 
 /* Estilo para el texto "Points: X" */
 #points {
-    font-size: 48px; /* Un poco más pequeño que "Game Over" */
-    font-family: 'Arial', sans-serif; /* Fuente consistente */
-    color: gold; /* Color dorado para resaltar */
-    text-shadow: 1px 1px 3px black; /* Sombra ligera para contraste */
-    text-align: center; /* Centrado horizontalmente */
-    margin-top: 0; /* Espacio uniforme con otros elementos */
+    font-size: 22px; /* Un poco más pequeño que "Game Over" */
+    color: white; /* Color dorado para resaltar */
+    text-shadow: 1px 1px 3px gold; /* Sombra ligera para contraste */
 }
