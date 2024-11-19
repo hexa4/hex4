@@ -625,6 +625,14 @@ getTopPlayers() {
 
 //GAME OVER FUNCTION	
 gameOver(){
+	let pointsText = fixedText6.text;
+
+    // Encuentra el elemento HTML
+    let pointsElement = document.getElementById('points');
+
+    // Actualiza el texto del elemento con el puntaje
+    pointsElement.innerText = pointsText;
+
 	document.getElementById("retryBox").style.visibility = "visible";
 	var retryButton = document.getElementById("retryButton");
 	retryButton.onclick = function() {
