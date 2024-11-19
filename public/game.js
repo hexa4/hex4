@@ -1174,7 +1174,7 @@ drawCheck(isChecked);
 
             scale: {
               // mode: Phaser.Scale.FIT,
-		mode: Phaser.Scale.NONE, // Mantén el tamaño del juego fijo
+		mode: Phaser.Scale.RESIZE, // Mantén el tamaño del juego fijo
 
 		    //    mode: Phaser.Scale.RESIZE,
 
