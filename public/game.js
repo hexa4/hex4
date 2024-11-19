@@ -536,12 +536,29 @@ onPointerDown(pointer) {
 
 	if(ZoomOut === 1){
 		 closestRedVertex = this.findClosestRedVertexToClick(pointer.x + cameraX, pointer.y + cameraY, cameraX, cameraY);
-        }
-    	if(ZoomOut === 2){
-    	let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
-		 closestRedVertex = this.findClosestRedVertexToClick(pointer.x + worldPoint.x, pointer.y + worldPoint.y, cameraX, cameraY);
+       	        console.log(`1 Closest Click: (${closestRedVertex.x}, ${closestRedVertex.y}) `);	
+
 	}
-        console.log(`Closest Click: (${closestRedVertex.x}, ${closestRedVertex.y}) `);	
+
+
+			
+    	if(ZoomOut === 2){
+	    let worldPoint = this.cameras.main.getWorldPoint(pointer.x, pointer.y);
+    	//let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
+		// closestRedVertex = this.findClosestRedVertexToClick(pointer.x + worldPoint.x, pointer.y + worldPoint.y, cameraX, cameraY);
+	closestRedVertex = this.findClosestRedVertexToClick(
+        worldPoint.x, 
+        worldPoint.y, 
+        this.cameras.main.scrollX, 
+        this.cameras.main.scrollY
+    );
+
+	        console.log(`2 Closest Click: (${closestRedVertex.x}, ${closestRedVertex.y}) `);	
+	
+	}
+
+
+			
 
 	//ENVIAR A SERVER QUE SE EJECUTE MOVIMIENTO EN TODOS
 	const player = players[socket.id];
@@ -985,6 +1002,9 @@ let toggleBox = () => {
         //let zoomFactor = this.cameras.main.zoom; 
 		const zoomLevel = isMobile ? 8 / dpi : 1 / dpi; // Menos zoom en PC
                 this.scene.get('GameScene').cameras.main.setZoom(zoomLevel);
+
+		    	ZoomOut = 1;
+
 		//playerLocal.fontSizePlayer(12);
 		Object.values(players).forEach(player => {
     		player.fontSizePlayer(12); // Cambia el tamaño de la fuente a 24px para cada jugador
@@ -992,6 +1012,10 @@ let toggleBox = () => {
     	} else {
 		const zoomLevel = isMobile ? 4 / dpi : 0.5 / dpi; // Menos zoom en PC
                 this.scene.get('GameScene').cameras.main.setZoom(zoomLevel);
+
+		    	ZoomOut = 2;
+
+		
 		//playerLocal.fontSizePlayer(24);
 		Object.values(players).forEach(player => {
     		player.fontSizePlayer(24); // Cambia el tamaño de la fuente a 24px para cada jugador
