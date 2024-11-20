@@ -266,7 +266,7 @@ class GameScene extends Phaser.Scene {
 	});
    
 //CAM ZOOM INITIALIZATION
-const zoomLevel = isMobile ? 8 / dpi : 2 / dpi; // Menos zoom en PC
+const zoomLevel = isMobile ? 8 / dpi : 1 / dpi; // Menos zoom en PC
 this.cameras.main.setZoom(zoomLevel);
 let zoomFactor = this.cameras.main.zoom; 
 let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
