@@ -75,7 +75,7 @@ function startGame(playerName) {
         this.circle.setInteractive();
 
         // Texto encima del jugador
-        this.text = this.scene.add.text(x, y - 20, name + ' (' + puntos + ')', { fontSize: '12px', fill: '#ffffff'  , resolution: 0.5  , fontFamily: 'Roboto'});
+        this.text = this.scene.add.text(x, y - 20, name + ' (' + puntos + ')', { fontSize: '12px', fill: '#ffffff'  , resolution: 2  , fontFamily: 'Roboto'});
         this.text.setOrigin(0.5);
 	this.text.setShadow(2, 2, 'blue', 5);
 	
