@@ -1217,7 +1217,7 @@ drawCheck(isChecked);
 //pixelArt: true,
             roundPixels: false,
 antialias: true,
-		resolution: 2
+		resolution: 1
 
 		/* render: {
         pixelArt: false,
