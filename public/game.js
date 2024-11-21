@@ -266,7 +266,7 @@ class GameScene extends Phaser.Scene {
 	});
    
 //CAM ZOOM INITIALIZATION
-const zoomLevel = isMobile ? 8 / dpi : 1 / dpi; // Menos zoom en PC
+const zoomLevel = isMobile ? 16 / dpi : 1 / dpi; // Menos zoom en PC
 this.cameras.main.setZoom(zoomLevel);
 let zoomFactor = this.cameras.main.zoom; 
 let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
@@ -898,7 +898,7 @@ class UIScene extends Phaser.Scene {
          create() {
          console.log(`INICIADO UISCENE!!!!`);
 
-	const zoomLevel = isMobile ? 8 / dpi : 1 / dpi; // Menos zoom en PC
+	const zoomLevel = isMobile ? 16 / dpi : 1 / dpi; // Menos zoom en PC
         this.cameras.main.setZoom(zoomLevel);
 	let zoomFactor = this.cameras.main.zoom; 
 	let worldPoint = this.cameras.main.getWorldPoint(this.cameras.main.width / 2, this.cameras.main.height / 2);
@@ -1008,7 +1008,7 @@ let toggleBox = () => {
         //this.cameras.main.setZoom(8 / dpi);
 		//this.scene.get('GameScene').cameras.main.setZoom(8 / dpi);
         //let zoomFactor = this.cameras.main.zoom; 
-		const zoomLevel = isMobile ? 8 / dpi : 1 / dpi; // Menos zoom en PC
+		const zoomLevel = isMobile ? 16 / dpi : 1 / dpi; // Menos zoom en PC
                 this.scene.get('GameScene').cameras.main.setZoom(zoomLevel);
 
 		    	ZoomOut = 1;
@@ -1018,7 +1018,7 @@ let toggleBox = () => {
     		player.fontSizePlayer(12); // Cambia el tamaño de la fuente a 24px para cada jugador
 		});
     	} else {
-		const zoomLevel = isMobile ? 4 / dpi : 0.5 / dpi; // Menos zoom en PC
+		const zoomLevel = isMobile ? 8 / dpi : 0.5 / dpi; // Menos zoom en PC
                 this.scene.get('GameScene').cameras.main.setZoom(zoomLevel);
 
 		    	ZoomOut = 2;
@@ -1205,10 +1205,10 @@ drawCheck(isChecked);
 		      //      backgroundColor: '#0B1E00',
 
             scale: {
-               mode: Phaser.Scale.FIT,
+              // mode: Phaser.Scale.FIT,
 		//mode: Phaser.Scale.RESIZE, // Mantén el tamaño del juego fijo
 
-		    //    mode: Phaser.Scale.RESIZE,
+		        mode: Phaser.Scale.RESIZE,
 
                 autoCenter: Phaser.Scale.CENTER_BOTH
             },
