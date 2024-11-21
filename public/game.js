@@ -677,8 +677,10 @@ const initialRadius = 5;
                 greenCirclePhysics.type = 'green';
 */
 
-	               const circleGraphics = this.add.graphics({ fillStyle: { color: 0x00ff00, alpha: 0.5 } });
-    
+	           //    const circleGraphics = this.add.graphics({ fillStyle: { color: 0x00ff00, alpha: 0.5 } });
+    const circleGraphics = this.add.graphics({ resolution: window.devicePixelRatio * 2 });
+circleGraphics.fillStyle(0x00ff00, 0.5); // Color y opacidad
+
     // Dibujar el círculo inicialmente con radio 5
     circleGraphics.fillCircle(0, 0, 5); // Radio 5 inicial
 
