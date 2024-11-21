@@ -1205,8 +1205,8 @@ drawCheck(isChecked);
 		      //      backgroundColor: '#0B1E00',
 
             scale: {
-              // mode: Phaser.Scale.FIT,
-		mode: Phaser.Scale.RESIZE, // Mantén el tamaño del juego fijo
+               mode: Phaser.Scale.FIT,
+		//mode: Phaser.Scale.RESIZE, // Mantén el tamaño del juego fijo
 
 		    //    mode: Phaser.Scale.RESIZE,
 
