@@ -75,7 +75,7 @@ function startGame(playerName) {
         this.circle.setInteractive();
 
         // Texto encima del jugador
-        this.text = this.scene.add.text(Math.round(x), Math.round(y - 20), name + ' (' + puntos + ')', { fontSize: '12px', fill: '#ffffff'  , resolution: dpi * 4  , fontFamily: 'Roboto'});
+        this.text = this.scene.add.text(Math.round(x), Math.round(y - 20), name + ' (' + puntos + ')', { fontSize: '12px', fill: '#ffffff'  , resolution: dpi * 2  , fontFamily: 'Roboto'});
         this.text.setOrigin(0.5);
 	this.text.setShadow(2, 2, 'blue', 5);
 	
@@ -855,7 +855,7 @@ llamarTextoSpeed(scene) {
         const height = scene.scale.height;
         const text = scene.add.text(width / 2, height / 2, '+speed!', {
             fontSize: '40px',
-            fill: '#0000ff', resolution: dpi, fontFamily: 'Roboto'
+            fill: '#0000ff', resolution: dpi * 2, fontFamily: 'Roboto'
         }).setOrigin(0.5, 0.5);
         text.setScrollFactor(0);
 	scene.tweens.add({ targets: text, scaleX: 2, scaleY: 2, duration: 500, ease: 'Power2', yoyo: scene, 
@@ -869,7 +869,7 @@ llamarTextoSpeed(scene) {
 textOnDestroy(scene, x, y, texto, size, color) {
             const text = scene.add.text(x, y, texto, {
                     fontSize: size,
-                    fill: color, resolution: dpi, fontFamily: 'Roboto'
+                    fill: color, resolution: dpi * 2 , fontFamily: 'Roboto'
             });
             	text.setOrigin(0.5, 0.5); // Establece el origen del texto en su centro
     		text.setPosition(x, y); // Reposiciona el texto
@@ -906,15 +906,15 @@ class UIScene extends Phaser.Scene {
 //	const textResolution = dpi > 1 ? dpi * 2 : dpi;
 	 
 		 
-fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi , fontFamily: 'Roboto' });
+fixedText1 = this.add.text(10, 10, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi * 2 , fontFamily: 'Roboto' });
 fixedText1.setShadow(2, 2, 'blue', 5);
-fixedText2 = this.add.text(10, 30, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
+fixedText2 = this.add.text(10, 30, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi * 2   , fontFamily: 'Roboto' });
 fixedText2.setShadow(2, 2, 'blue', 5);
-fixedText3 = this.add.text(10, 50, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi , fontFamily: 'Roboto' });
-fixedText4 = this.add.text(10, 70, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
-fixedText5 = this.add.text(10, 90, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi  , fontFamily: 'Roboto' });
-fixedText6 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'Points: 0', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi , fontFamily: 'Roboto' });
-fixedText7 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'X2 SPEED - 5 s', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi , fontFamily: 'Roboto' });
+fixedText3 = this.add.text(10, 50, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi * 2  , fontFamily: 'Roboto' });
+fixedText4 = this.add.text(10, 70, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi * 2   , fontFamily: 'Roboto' });
+fixedText5 = this.add.text(10, 90, '', { fontSize: '16px', fill: '#ffffff'  , resolution: dpi * 2   , fontFamily: 'Roboto' });
+fixedText6 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'Points: 0', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi * 2  , fontFamily: 'Roboto' });
+fixedText7 = this.add.text(window.innerWidth * dpi - 10, 10 * dpi, 'X2 SPEED - 5 s', { fontSize: '16px', fill: '#ffffff'   , resolution: dpi * 2  , fontFamily: 'Roboto' });
         // Hace que los textos no se muevan con la cámara
 fixedText1.setScrollFactor(0);
 fixedText2.setScrollFactor(0);
@@ -967,7 +967,7 @@ let boxX = worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10;
 let boxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - boxSize*2 - 20;
 // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
 let textYOffset = boxSize / 2;
-let staticText = this.add.text(boxX + boxSize + 10, boxY + textYOffset, 'Zoom', { fontSize: '16px', fill: '#ffffff' , resolution: dpi, fontFamily: 'Roboto'   });
+let staticText = this.add.text(boxX + boxSize + 10, boxY + textYOffset, 'Zoom', { fontSize: '16px', fill: '#ffffff' , resolution: dpi * 2 , fontFamily: 'Roboto'   });
 staticText.setShadow(2, 2, 'blue', 5);
 staticText.setOrigin(0, 0.5); // Ajuste vertical para centrar con el checkbox
 staticText.setScrollFactor(0); // Esto fija el texto para que no se desplace con la cámara
@@ -1047,7 +1047,7 @@ let checkboxX =   worldPoint.x - (this.cameras.main.width / 2) / zoomFactor + 10
 let checkboxY = worldPoint.y + (this.cameras.main.height / 2) / zoomFactor - checkboxSize - 10;
 // Añadir texto fijo en la pantalla y centrarlo verticalmente con el checkbox
 let textOffsetY = checkboxSize / 2;
-let fixedText = this.add.text(checkboxX + checkboxSize + 10, checkboxY + textOffsetY, 'Centered Cam', { fontSize: '16px', fill: '#ffffff' , resolution: dpi  , fontFamily: 'Roboto'});
+let fixedText = this.add.text(checkboxX + checkboxSize + 10, checkboxY + textOffsetY, 'Centered Cam', { fontSize: '16px', fill: '#ffffff' , resolution: dpi * 2   , fontFamily: 'Roboto'});
 fixedText.setShadow(2, 2, 'blue', 5);
 fixedText.setOrigin(0, 0.5); // Ajuste vertical para centrar con el checkbox
 fixedText.setScrollFactor(0); // Esto fija el texto para que no se desplace con la cámara
