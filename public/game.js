@@ -1208,7 +1208,7 @@ drawCheck(isChecked);
               // mode: Phaser.Scale.FIT,
 		//mode: Phaser.Scale.RESIZE, // Mantén el tamaño del juego fijo
 
-		        mode: Phaser.Scale.RESIZE,
+		        mode: isMobile ? Phaser.Scale.FIT : Phaser.Scale.RESIZE,
 
                 autoCenter: Phaser.Scale.CENTER_BOTH
             },
