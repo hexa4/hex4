@@ -71,7 +71,8 @@ function startGame(playerName) {
         const sizeCalc = (0.01 * puntos) + 0.2;		
 	    
 	this.circle = this.scene.physics.add.image(x, y, id);
-        this.circle.setScale(sizeCalc); 
+     //   this.circle.setScale(sizeCalc); 
+	this.circle.setScale(2);	
         this.circle.setInteractive();
 
         // Texto encima del jugador
